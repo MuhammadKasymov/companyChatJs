@@ -1,0 +1,23 @@
+@import "/src/styles/colors.scss";
+@import '/src/styles/fonts.scss';
+
+
+%bg_base {
+  z-index: 5;
+  background: url('../assets/img/bgImg.jpg') bottom / 100% no-repeat $color-bg;
+  background-image: url('../assets/img/bgImg.jpg');
+}
+
+
+%bg_component {
+  background: $color-bg-container;
+  backdrop-filter: blur(5px);
+  border: 5px solid $color-bg-container;
+  border-radius: 4px;
+}
+
+%bg_button {
+  background: rgb(103, 138, 202);
+  border: 5px solid $color-bg-container;
+  border-radius: 10px;
+}

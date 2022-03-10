@@ -1,0 +1,24 @@
+@import "/src/styles/backgroudns.scss";
+
+input {
+  outline:none;
+  border: unset;
+}
+
+button {
+  @extend %bg_button;
+  @extend %font_btn;
+}
+
+p {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 25px 100px;
+  height: calc(100% - 50px);
+  background-image: url('/src/assets/img/bgImg.jpg');
+  @extend %bg_base;
+}

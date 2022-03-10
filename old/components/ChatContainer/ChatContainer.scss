@@ -1,0 +1,75 @@
+@import '/src/styles/backgroudns.scss';
+@import '/src/styles/fonts.scss';
+@import '/src/styles/utils.scss';
+@import '/src/styles/colors.scss';
+
+.container {
+  width: 860px;
+  margin-left: 10px;
+  height: 760px;
+}
+
+.messageContainer {
+  height: 750px;
+  margin-bottom: 10px;
+  overflow-y: scroll;
+  padding: 10px 15px;
+  @extend %bg_component;
+  @extend %hideScrollbar;
+}
+.inpContiner {
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 5px 10px 20px;
+  min-height: 40px;
+  @extend %bg_component;
+}
+
+.choosedMessageContainer {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top:30px;
+  width: 850px;
+  margin-left: 5px;
+  z-index: 5;
+  height: 45px;
+  background: $colort-bg-container-rgb;
+  border-bottom: 5px solid $color-bg-container;
+  .btnEditContainer {
+    margin: auto 10px auto auto;
+    button {
+      &:first-of-type {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.txt {
+  width: 770px;
+  min-height: 38px;
+  background: #fff;
+  border: unset;
+  border-style: unset;
+  border-color: unset;
+  cursor: unset;
+  outline: none;
+  resize: none;
+  border-radius: 20px;
+  padding: 12px 15px;
+  @extend %font_chat;
+  @extend %hideScrollbar;
+}
+
+.btn {
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+  background: #fff;
+  border-radius: 50px;
+  border: 0;
+  @extend %font_chat;
+  font-size: 40px;
+  color: $color-bg;
+}

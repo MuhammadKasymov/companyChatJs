@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  height: 50px;
+  width: calc(100% - 20px);
+  margin: 10px auto;
+  border-radius: 50px;
+}
+
+.bgColor {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.ico {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  p {
+    color: blue;
+    font-size: 25px;
+  }
+}
+
+.infDiv {
+  padding: 5px 5px 5px 10px;
+  margin-left: 10px;
+  background: white;
+  width: 200px;
+  border-radius: 15px;
+}

@@ -1,0 +1,33 @@
+@import "/src/styles/backgroudns.scss";
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  @extend %bg_base;
+}
+
+body,
+p,
+h1,
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  outline: none;
+  border: unset;
+}
+
+button {
+  @extend %bg_button;
+  @extend %font_btn;
+}
+
+p {
+  margin: 0;
+}

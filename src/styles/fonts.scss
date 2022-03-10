@@ -1,0 +1,41 @@
+@import '/src/styles/colors.scss';
+
+@font-face  {
+    font-family: 'STIX Two Text', sans-serif;
+    src: url("../assets/fonts/STIXTwoText-VariableFont_wght.ttf")
+}
+
+%font_chat {
+  font-family: 'STIX Two Text';
+  font-weight: 400;
+  font-size: 18px;
+  @extend %font_chat;
+}
+
+%font_h1 {
+  font-family: 'STIX Two Text';
+  font-weight: 600;
+  font-size: 36px;
+  color: $color-font-h1;
+}
+
+%font_p {
+  font-family: 'STIX Two Text';
+  font-weight: 400;
+  font-size: 21px;
+  color: $color-font-p;
+}
+
+%font_btn {
+  font-family: 'STIX Two Text';
+  font-weight: 600;
+  font-size: 21px;
+  color: $color-font-btn;
+}
+
+%font_error_p {
+  font-family: 'STIX Two Text';
+  font-weight: 400;
+  font-size: 16px;
+  color: $color-font-error-p;
+}
