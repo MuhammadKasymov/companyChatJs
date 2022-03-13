@@ -1,0 +1,5 @@
+@import "../../styles/backgroudns.scss";
+
+.container {
+  @extend %bg_component;
+}
