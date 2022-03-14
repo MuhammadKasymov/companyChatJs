@@ -1,7 +1,10 @@
-import styles from "./App.module.scss";
+import AppRouter from "./AppRouter";
+import { useSelector } from "react-redux";
 
 function App() {
-  return <div className={styles.container}></div>;
+  const count = useSelector((state) => state.auth);
+  console.log(count);
+  return <AppRouter />;
 }
 
 export default App;

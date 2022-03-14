@@ -8,7 +8,7 @@ import { getChatIdByUrl } from "../../common/composeString";
 const ChooseChat = ({ chatsData }) => {
   const history = useLocation();
   console.log(history);
-  const currentLocation = history.location.pathname;
+  const currentLocation = history.pathname;
   const currentChat = getChatIdByUrl(currentLocation);
 
   return (
