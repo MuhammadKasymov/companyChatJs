@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { getChats, getLastMessages } from "../../controllers/chatController";
 import { bindActionCreators } from "redux";
+import ChooseChat from "../../components/ChooseChat/ChooseChat";
 
 class HomePage extends React.Component {
   state = {
@@ -26,7 +27,11 @@ class HomePage extends React.Component {
   };
 
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <ChooseChat />
+      </div>
+    );
   }
 }
 

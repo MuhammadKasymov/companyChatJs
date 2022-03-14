@@ -4,8 +4,7 @@ import { addTripleDot } from "../../common/composeString";
 
 //Todo: получать последнее сообщение
 // и выбранный чат из redux из redux;
-const ChatLine = ({ isChoosed, name, lastMessage }) => {
-  
+const ChatLine = ({ isChoosed, name, user, lastMessage }) => {
   const msgText = addTripleDot(lastMessage.txt);
   //Todo: изменять текущий чат в redux
   const setChooseChat = () => {

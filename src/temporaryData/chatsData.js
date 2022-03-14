@@ -1,4 +1,4 @@
-{
+export const data = {
   "chats": [
     {
       "id": 0,

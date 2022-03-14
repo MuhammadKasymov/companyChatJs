@@ -17,3 +17,17 @@ export const addTripleDot = (str, len) => {
   }
   return catchedString;
 };
+
+/**
+ *  @param {string} url - string;
+ *  @returns {number} id of url  */
+export const getChatIdByUrl = (url) => {
+  let chatId = -1; 
+  const partsOfUlr = url.split("/");
+  const lastIndexParts = partsOfUlr.length - 1;
+  const lastPartUlr = partsOfUlr[lastIndexParts];
+  if (lastPartUlr.match(/^\d+$/)) {
+    chatId = parseInt(lastPartUlr, 10)
+  };
+  return chatId;
+};

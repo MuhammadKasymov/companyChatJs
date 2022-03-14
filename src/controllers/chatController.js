@@ -1,9 +1,9 @@
-import { chats } from "../../temporaryData/chatsData.json";
-import { getLastMessages as lastMessage } from "../../temporaryData/lastChatData";
+import {data} from "../temporaryData/chatsData";
+import { getLastMessages as lastMessage } from "../temporaryData/lastChatData";
 
 //Todo: связать с беком
 export const getChats = async () => {
-  return chats;
+  return data;
 };
 
 //Todo: связать с беком
