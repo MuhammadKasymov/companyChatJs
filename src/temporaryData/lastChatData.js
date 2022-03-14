@@ -8,10 +8,10 @@ export const getLastMessages = () => {
     const lastMessageIndex = chatHistorie.length - 1;
     const fullDataMessage = {
       id: data.chats[i].id,
-      date: data.chats[i].date,
       name: data.chats[i].name,
       lastMessage: chatHistorie[lastMessageIndex],
     };
     lastMessages.push(fullDataMessage);
   }
+  return lastMessages;
 };

@@ -7,16 +7,16 @@ import { getChatIdByUrl } from "../../common/composeString";
 
 const ChooseChat = ({ chatsData }) => {
   const history = useLocation();
-  console.log(history);
   const currentLocation = history.pathname;
   const currentChat = getChatIdByUrl(currentLocation);
-
+  console.log(chatsData);
   return (
-    <Frame className={styles.container}>
+    <Frame style={styles.container}>
       {chatsData.map((chatData) => {
         const isChoosed = currentChat === chatData.id;
         return (
           <ChatLine
+            key={chatData.id}
             isChoosed={isChoosed}
             name={chatData.name}
             user={chatData.user}

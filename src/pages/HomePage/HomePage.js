@@ -1,8 +1,10 @@
 import React from "react";
+import styles from './HomePage.module.scss';
 import { connect } from "react-redux";
 import { getChats, getLastMessages } from "../../controllers/chatController";
 import { bindActionCreators } from "redux";
 import ChooseChat from "../../components/ChooseChat/ChooseChat";
+import { setAuth } from "../../store/action-creators/auth";
 
 class HomePage extends React.Component {
   state = {
@@ -28,17 +30,17 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <div>
-        <ChooseChat />
-      </div>
+      <>
+        {!this.state.NeadLoad && (
+          <div className={styles.container}>
+            <ChooseChat chatsData={this.state.lastMessagesData} />
+          </div>
+        )}
+      </>
     );
   }
 }
 
-const mapStateToProps = (state) => ({});
-
-const mapDispatchToProps = (dispatch) => {
-  bindActionCreators({}, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ setAuth }, dispatch);
+export default connect(null, mapDispatchToProps)(HomePage);
