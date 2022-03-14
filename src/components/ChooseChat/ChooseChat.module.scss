@@ -1,5 +1,6 @@
 .container {
   width: 300px;
   min-height: 60px;
+  height: min-content;
   max-height: 100vh / 3;
 }
