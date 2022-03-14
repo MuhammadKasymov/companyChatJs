@@ -1,0 +1,21 @@
+import React from "react";
+import styles from "./MessageLine.module.scss";
+import { useSelector } from "react-redux";
+
+const MessageLine = ({ message }) => {
+  const userData = useSelector((state) => state.auth);
+  const isSelf = userData.id === message.id;
+  return (
+    <div className={isSelf ? styles.selfMsg : styles.container}>
+      <div className={styles.msgText}>
+        <p>{message.txt}</p>
+        <p className={styles.date}>&nbsp;&nbsp;{message.date}</p>
+      </div>
+      <div className={styles.ico}>
+        <p>{message.user.charAt(0)}</p>
+      </div>
+    </div>
+  );
+};
+
+export default MessageLine;
