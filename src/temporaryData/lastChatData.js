@@ -15,3 +15,13 @@ export const getLastMessages = () => {
   }
   return lastMessages;
 };
+
+export const getChatById = (chatId) => {
+  let result = null;
+  for (let i = 0; i < data.chats.length; i++) {
+    if (data.chats[i].id === chatId) {
+      result = data.chats[i];
+    }
+  }
+  return result;
+};

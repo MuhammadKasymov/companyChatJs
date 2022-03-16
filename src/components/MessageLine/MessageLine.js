@@ -6,7 +6,7 @@ import { getFormatedTime } from "../../common/time";
 
 const MessageLine = ({ message }) => {
   const userData = useSelector((state) => state.auth);
-  const isSelf = userData.id === message.id;
+  const isSelf = userData.id === message.userId;
   const messageTime = getFormatedTime(getDateType.HM, Number(message.date));
   return (
     <div className={isSelf ? styles.selfMsg : styles.container}>

@@ -1,11 +1,12 @@
-@import '../../styles/utils.scss';
-@import '../../styles/backgroudns.scss';
+@import "../../styles/utils.scss";
+
+.container {
+  margin-bottom: 10px;
+}
 
 .messageContainer {
-  height: 750px;
-  margin-bottom: 10px;
-  overflow-y: scroll;
+  height: 700px;
   padding: 10px 15px;
-  @extend %bg_component;
+  overflow-y: scroll;
   @extend %hideScrollbar;
 }

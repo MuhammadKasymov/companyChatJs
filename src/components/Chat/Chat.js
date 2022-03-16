@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import styles from "./Chat.module.scss";
 import ChatMessages from "../ChatMessages/ChatMessages";
 import TextInput from "../TextInput/TextInput";
+import { connectToChatById } from "../../controllers/chatController";
 
 class Chat extends React.Component {
   state = {
@@ -10,15 +11,23 @@ class Chat extends React.Component {
     NeadLoad: true,
   };
 
-  constructor({ props }) {
+  constructor({props}) {
     super(props);
+    console.log(props)
   }
 
   async componentDidMount() {
     await this.uploadData();
   }
 
-  uploadData = async () => {};
+  uploadData = async () => {
+    const chatId = this.props.auth;
+    const chatData = await connectToChatById(chatId);
+    this.setState({
+      chatData: chatData,
+      NeadLoad: false,
+    });
+  };
 
   sendMessage = async (messageText) => {
     const currentDate = new Date();
@@ -32,22 +41,26 @@ class Chat extends React.Component {
 
   render() {
     return (
-      <div className={styles.container}>
-        <ChatMessages chatData={this.state.chatData} />
-        <TextInput sendMsg={this.sendMessage} />
-      </div>
+      <>
+        {!this.state.NeadLoad && (
+          <div className={styles.container}>
+            <ChatMessages chatData={this.state.chatData} />
+            <TextInput sendMsg={this.sendMessage} />
+          </div>
+        )}
+      </>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  const { chatData, authData } = state;
-  return { chatData, authData };
+  const { auth } = state;
+  return { auth };
 };
 
 const mapDispatchToProps = (state) => {
-  const { chatData } = state;
-  return { chatData };
+  const { chatData, chatId } = state;
+  return { chatData, chatId };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chat);

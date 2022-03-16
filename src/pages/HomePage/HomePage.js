@@ -1,10 +1,11 @@
 import React from "react";
-import styles from './HomePage.module.scss';
+import styles from "./HomePage.module.scss";
 import { connect } from "react-redux";
 import { getChats, getLastMessages } from "../../controllers/chatController";
 import { bindActionCreators } from "redux";
 import ChooseChat from "../../components/ChooseChat/ChooseChat";
 import { setAuth } from "../../store/action-creators/auth";
+import Chat from "../../components/Chat/Chat";
 
 class HomePage extends React.Component {
   state = {
@@ -34,6 +35,7 @@ class HomePage extends React.Component {
         {!this.state.NeadLoad && (
           <div className={styles.container}>
             <ChooseChat chatsData={this.state.lastMessagesData} />
+            <Chat chatId={0} />
           </div>
         )}
       </>

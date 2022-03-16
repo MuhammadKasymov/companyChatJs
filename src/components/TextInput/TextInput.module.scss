@@ -1,14 +1,12 @@
-@import '../../styles/backgroudns.scss';
-@import '../../styles/backgroudns.scss';
-@import '../../styles/backgroudns.scss';
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/utils.scss";
 
-
-.сontiner {
+.сontainer {
   display: flex;
   align-items: flex-end;
   padding: 10px 5px 10px 20px;
   min-height: 40px;
-  @extend %bg_component;
 }
 
 .textInput {

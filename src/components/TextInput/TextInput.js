@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./TextInput.module.scss";
 import { isEnterPressed } from "../../common/handlerEvents";
 import { isEmpty } from "../../common/utils";
+import Frame from "../Frame/Frame";
 
 const TextInput = ({ sendMsg }) => {
   const [inpValue, setInpValue] = useState("");
@@ -19,7 +20,7 @@ const TextInput = ({ sendMsg }) => {
   };
 
   return (
-    <div className={styles.сontiner}>
+    <Frame style={styles.сontainer}>
       <textarea
         onKeyPress={handlerEvents}
         className={styles.textInput}
@@ -30,7 +31,7 @@ const TextInput = ({ sendMsg }) => {
       <button className={styles.btn} onClick={sendCheckedMsg}>
         S
       </button>
-    </div>
+    </Frame>
   );
 };
 

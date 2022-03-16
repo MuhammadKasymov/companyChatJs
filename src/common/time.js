@@ -13,7 +13,7 @@ import { getDateType } from "../contants/types/timeUtil";
  * format the time from the current
  */
 
-const getFormatedTime = (format, milliseconds) => {
+export const getFormatedTime = (format, milliseconds) => {
   let date = "";
   if (milliseconds !== 0) {
     date = new Date(milliseconds);
@@ -32,5 +32,3 @@ const getFormatedTime = (format, milliseconds) => {
       return "";
   }
 };
-
-export default getFormatedTime;
