@@ -32,10 +32,11 @@ class Chat extends React.Component {
   sendMessage = async (messageText) => {
     const currentDate = new Date();
     const msg = {
-      userId: this.props.authData.id,
+      userId: this.props.auth.id,
       date: currentDate.toString(),
       txt: messageText.trim(),
     };
+    console.log(msg)
     return msg;
   };
 
@@ -62,8 +63,6 @@ const mapDispatchToProps = (state) => {
   const { chatData } = state;
   return { chatData };
 };
-
-
 
 // export default Chat;
 export default connect(mapStateToProps, mapDispatchToProps)(Chat);
