@@ -6,7 +6,7 @@ const AppRouter = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/home" element={<HomePage />} />
+      <Route path="/chat/:chatId" element={<HomePage />} />
     </Routes>
   </BrowserRouter>
 );
