@@ -15,5 +15,5 @@ export const getLastMessages = async () => {
 };
 
 export const connectToChatById = async (chatId) => {
-  return getChatWithId();
+  return getChatWithId(chatId);
 };

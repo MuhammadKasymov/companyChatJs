@@ -19,7 +19,7 @@ const ChatLine = ({ isChoosed, name, lastMessage }) => {
         </div>
         <div className={styles.infDiv}>
           <p>{`Имя: ${name}`} </p>
-          <p>{`Последне: ${msgText}`}</p>
+          <p>{`Последнeе: ${msgText}`}</p>
         </div>
       </div>
     // </Link>

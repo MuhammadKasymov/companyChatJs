@@ -11,9 +11,8 @@ class Chat extends React.Component {
     NeadLoad: true,
   };
 
-  constructor({props}) {
+  constructor({ props }) {
     super(props);
-    console.log(props)
   }
 
   async componentDidMount() {
@@ -21,8 +20,9 @@ class Chat extends React.Component {
   }
 
   uploadData = async () => {
-    const chatId = this.props.auth;
+    const chatId = this.props.chatId;
     const chatData = await connectToChatById(chatId);
+
     this.setState({
       chatData: chatData,
       NeadLoad: false,
@@ -59,8 +59,11 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (state) => {
-  const { chatData, chatId } = state;
-  return { chatData, chatId };
+  const { chatData } = state;
+  return { chatData };
 };
 
+
+
+// export default Chat;
 export default connect(mapStateToProps, mapDispatchToProps)(Chat);

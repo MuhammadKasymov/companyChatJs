@@ -6,15 +6,18 @@ import Frame from "../Frame/Frame";
 const ChatMessages = ({ chatData }) => {
   const chatRef = useRef();
 
-  //Todo: проскролить вниз
-  useEffect(() => console.log(chatData));
+  useEffect(() => {
+    const scrollHeightComponent = chatRef.current.scrollHeight;
+    chatRef.current.scrollTop = scrollHeightComponent;
+  });
+
   return (
     <Frame style={styles.container}>
-      <div className={styles.messageContainer} ref={chatRef}></div>
-      {/* {chatData.map((el, idx) => {
-        console.log(el);
-        return <MessageLine key={idx.toString()} message={el} />;
-      })} */}
+      <div className={styles.messageContainer} ref={chatRef}>
+        {chatData.chatHistorie.map((el, idx) => {
+          return <MessageLine key={idx.toString()} message={el} />;
+        })}
+      </div>
     </Frame>
   );
 };
