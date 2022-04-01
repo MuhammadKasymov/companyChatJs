@@ -1,5 +1,4 @@
-@import "/src/styles/colors.scss";
-@import '/src/styles/fonts.scss';
+@import "./colors.scss";
 
 
 %bg_base {
@@ -17,7 +16,7 @@
 }
 
 %bg_button {
-  background: rgb(103, 138, 202);
+  background: $color-bg-accept-btn;
   border: 5px solid $color-bg-container;
   border-radius: 10px;
 }
