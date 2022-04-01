@@ -1,8 +1,8 @@
 .container {
   display: flex;
   justify-content: center;
-  width: 650px;
-  height: 470px;
+  width: 640px;
+  height: 440px;
   margin: 100px auto;
 }
 
@@ -11,7 +11,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 290px;
-  margin-top: 70px;
+  margin-top: 50px;
   &:nth-of-type(odd){
     margin-left: 40px;
   }
