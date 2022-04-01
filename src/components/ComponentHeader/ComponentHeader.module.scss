@@ -3,18 +3,17 @@
 .container {
   display: flex;
   position: fixed;
-  top: 0;
+  top: -27px;
   padding: 4px 15px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgb(77,189,225);
   border: 5px solid $color-bg-container;
-  border-top: 0;
   width: min-content;
-  border-radius: 0 0 4px 0;
-  height: min-content;
+  border-radius: 4px;
+  height: 34px;
 }
 
 
 .headerText {
   font-size: 30px;
-  color: rgba(255, 255, 255, 1);
+  color: $color-white;
 }
