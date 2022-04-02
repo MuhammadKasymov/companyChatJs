@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   width: 640px;
-  height: 440px;
+  height: 480px;
   margin: 100px auto;
 }
 
@@ -27,6 +27,7 @@
 
 .btn {
   height: 40px;
+  padding: 0 10px;
   &:first-of-type {
     margin-right: 10px;
   }
