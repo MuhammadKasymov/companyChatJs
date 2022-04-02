@@ -1,19 +1,12 @@
 @import "../../styles/colors.scss";
-@import '../../styles/fonts.scss';
+@import "../../styles/fonts.scss";
 
 .container {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   width: 100%;
-  height: 28px;
   border: 0;
-  padding-bottom: 3px;
-  border-bottom: 3px solid $color-bg-container;
-  border-radius: 3px;
-}
-
-.choosedInput {
-  border-bottom: 3px solid $color-choosed-input-border;
 }
 
 .inputText {
@@ -22,5 +15,37 @@
   margin: 0 auto;
   border-radius: 5px;
   padding: 0 5px;
-  @extend %font-input;
+  @extend %font_input;
+}
+
+.errorText {
+  position: relative;
+  top: 3px;
+  @extend %font_error_p;
+}
+
+%indicator {
+  height: 3px;
+  margin-top: 5px;
+  border-radius: 0 0 5px 5px;
+}
+
+.unreadIndicator {
+  @extend %indicator;
+  background-color: $color-bg-container;
+}
+
+.choosedIndicator {
+  @extend %indicator;
+  background-color: $color-choosed-input-border;
+}
+
+.successIndicator {
+  @extend %indicator;
+  background-color: $color-success-indicator;
+}
+
+.errorIndicator {
+  @extend %indicator;
+  background-color: $color-error-indicator;
 }
