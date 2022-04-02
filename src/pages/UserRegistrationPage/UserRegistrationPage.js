@@ -3,7 +3,7 @@ import Frame from "../../components/Frame/Frame";
 import InputWithHeader from "../../components/InputWithHeader/InputWithHeader";
 import ComponenHeader from "../../components/ComponentHeader/ComponentHeader";
 import styles from "./UserRegistrationPage.module.scss";
-import { inputTypes } from "../../contants/types/pageTypes.js/UserRegistrationContstans";
+import { inputTypes } from "../../contants/types/pageTypes/UserRegistrationContstans";
 
 class UserRegistrationPage extends Component {
   state = {
