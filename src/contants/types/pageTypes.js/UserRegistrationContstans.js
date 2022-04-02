@@ -5,5 +5,6 @@ export const inputTypes = {
   birthday: 'birthday',
   login: 'login',
   password: 'password',
+  repeatedPassword: 'repeatedPassword',
   email: 'email',
 }
