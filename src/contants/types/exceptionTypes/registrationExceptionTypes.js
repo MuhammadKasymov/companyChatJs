@@ -11,5 +11,5 @@ export const BAD_INCLUDE_PASSWORD =
 export const REPEAT_PASSWORD = "Повторите пароль";
 export const BAD_REPEAT_PASSWORD = "Пароли не совпадают";
 export const BAD_FORMAT_DATE = "Дата должна быть формата дд.мм.гггг";
-export const INCORRECT_FUTUR_DATE = "Дата не может быть позднее текущего числа";
-export const INCORRECT_PAST_DATE = "Дата не может быть раньше 1920 г.";
+export const INCORRECT_DATE =
+  "Дата не может быть позднее текущего числа и раньше 1920 г.";
