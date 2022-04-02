@@ -1,9 +1,9 @@
-@import '../../styles/fonts.scss';
+@import "../../styles/fonts.scss";
 
 .container {
   width: 250px;
   height: 62px;
-  margin: 0 5px;
+  margin-bottom: 25px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -14,4 +14,5 @@
   font-size: 24px;
   line-height: 24px;
   margin-left: 2px;
+  margin-bottom: 3px;
 }
