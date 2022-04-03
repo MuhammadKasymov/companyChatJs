@@ -46,7 +46,6 @@ class UserRegistrationPage extends Component {
       );
       changedData.errorStateInputs[inputType] = errorType;
       this.setState(changedData);
-      console.log(this.state);
     }, 500);
 
     return errorType;
@@ -71,36 +70,44 @@ class UserRegistrationPage extends Component {
         <ComponenHeader header="Регистрация" />
         <div className={styles.inputColumn}>
           <InputWithHeader
-            onInput={this.typedOnInput(inputTypes.login)}
-            headerText={"Логин"}
-          />
-          <InputWithHeader
+            errorText={this.state.errorStateInputs[inputTypes.firstName]}
             onInput={this.typedOnInput(inputTypes.firstName)}
             headerText={"Имя"}
           />
           <InputWithHeader
+            errorText={this.state.errorStateInputs[inputTypes.lastName]}
             onInput={this.typedOnInput(inputTypes.lastName)}
             headerText={"Отчество"}
           />
           <InputWithHeader
+            errorText={this.state.errorStateInputs[inputTypes.login]}
+            onInput={this.typedOnInput(inputTypes.login)}
+            headerText={"Логин"}
+          />
+          <InputWithHeader
+            errorText={this.state.errorStateInputs[inputTypes.password]}
             onInput={this.typedOnInput(inputTypes.password)}
             headerText={"Пароль"}
           />
         </div>
         <div className={styles.inputColumn}>
           <InputWithHeader
-            onInput={this.typedOnInput(inputTypes.email)}
-            headerText={"Email"}
-          />
-          <InputWithHeader
+            errorText={this.state.errorStateInputs[inputTypes.secontName]}
             onInput={this.typedOnInput(inputTypes.secontName)}
             headerText={"Фамилия"}
           />
           <InputWithHeader
+            errorText={this.state.errorStateInputs[inputTypes.birthday]}
             onInput={this.typedOnInput(inputTypes.birthday)}
             headerText={"Дата рождения"}
           />
           <InputWithHeader
+            errorText={this.state.errorStateInputs[inputTypes.email]}
+            onInput={this.typedOnInput(inputTypes.email)}
+            headerText={"Email"}
+          />
+          <InputWithHeader
+            errorText={this.state.errorStateInputs[inputTypes.repeatedPassword]}
             onInput={this.typedOnInput(inputTypes.repeatedPassword)}
             headerText={"Повторитие пароль"}
           />

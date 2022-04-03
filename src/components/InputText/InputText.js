@@ -24,7 +24,7 @@ const InputText = ({ onInput, placeholder, errorText }) => {
         onBlur={onBlur}
         className={styles.inputText}
       />
-      {errorText && <p className={styles.errorText}>Dummy error</p>}
+      {errorText && <p className={styles.errorText}>{errorText}</p>}
       {!isChoosed && !errorText && !isTyped && (
         <div className={styles.unreadIndicator} />
       )}
