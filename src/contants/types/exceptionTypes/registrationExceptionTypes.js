@@ -15,3 +15,4 @@ export const BAD_REPEAT_PASSWORD = "Пароли не совпадают";
 export const BAD_FORMAT_DATE = "Дата должна быть формата дд.мм.гггг";
 export const INCORRECT_DATE =
   "Дата не может быть позднее текущего числа и раньше 1920 г.";
+export const EMPTY_INPUT = "Это поле является обязательным";
