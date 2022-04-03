@@ -26,19 +26,18 @@ import {
   INCORRECT_DATE,
   INVALID_EMAIL,
   ONLY_NUMB_LAT_KYR_LETTERS,
+  EMPTY_INPUT,
+  REPEAT_PASSWORD,
 } from "../../contants/types/exceptionTypes/registrationExceptionTypes";
 import { getMonthsLengthList } from "../time";
-
-export const isString = (variable) => {
-  if (typeof variable !== "string") {
-    return false;
-  }
-  return true;
-};
+import { isEmptyString } from "./stringValidations";
 
 export const validEMail = (email) => {
   let result = null;
-  if (!mailReg.test(email)) {
+  const isEmpty = isEmptyString(email);
+  if (isEmpty) {
+    result = EMPTY_INPUT;
+  } else if (!mailReg.test(email)) {
     result = INVALID_EMAIL;
   }
   return result;
@@ -48,7 +47,10 @@ export const validLogin = (login) => {
   let result = null;
   const logLength = login.length;
   const isGoodLength = logLength >= MIN_LOGIN_LENGTH;
-  if (!isGoodLength) {
+  const isEmpty = isEmptyString(login);
+  if (isEmpty) {
+    result = EMPTY_INPUT;
+  } else if (!isGoodLength) {
     result = MIN_TWO_SYMBOLS;
   } else if (!latinAndNumbersReg.test(login)) {
     result = ONLY_NUMB_LAT_LETTERS;
@@ -60,7 +62,10 @@ export const validName = (name) => {
   let result = null;
   const logLength = name.length;
   const isGoodLength = logLength >= MIN_NAME_LENGTH;
-  if (!isGoodLength) {
+  const isEmpty = isEmptyString(name);
+  if (isEmpty) {
+    result = EMPTY_INPUT;
+  } else if (!isGoodLength) {
     result = MIN_TWO_SYMBOLS;
   } else if (!latinAndCyrrilReg.test(name)) {
     result = ONLY_LAT_KYR_LETTERS;
@@ -70,7 +75,10 @@ export const validName = (name) => {
 
 export const validDate = (date) => {
   let result = null;
-  if (dateReg.test(date)) {
+  const isEmpty = isEmptyString(date);
+  if (isEmpty) {
+    result = EMPTY_INPUT;
+  } else if (dateReg.test(date)) {
     /** Decomposing parametr date */
     const parts = date.split(".");
     const day = parseInt(parts[0], 10);
@@ -109,7 +117,10 @@ export const validPassword = (password) => {
   const isGoodLength = passwordLength > MIN_PASSWORD_LENGTH;
   const isIncludeNumbers = numberndNotOnlyReg.test(password);
   const isIncludeLetters = lettersAndNotOnlyReg.test(password);
-  if (!isGoodLength) {
+  const isEmpty = isEmptyString(password);
+  if (isEmpty) {
+    result = EMPTY_INPUT;
+  } else if (!isGoodLength) {
     result = SHORT_LENGTH_PASSWORD;
   } else if (!isIncludeNumbers || !isIncludeLetters) {
     result = BAD_INCLUDE_PASSWORD;
@@ -118,9 +129,12 @@ export const validPassword = (password) => {
   return result;
 };
 
-export const validRepeatedPassword = (password, repeatedPassword) => {
+export const validRepeatedPassword = (repeatedPassword, password) => {
   let result = null;
-  if (password !== repeatedPassword) {
+  const isEmpty = isEmptyString(password);
+  if (isEmpty) {
+    result = REPEAT_PASSWORD;
+  } else if (password !== repeatedPassword) {
     result = BAD_REPEAT_PASSWORD;
   }
   return result;
@@ -130,8 +144,10 @@ export const validBirthplace = (birthPlace) => {
   let result = null;
   const birthPlaceLength = birthPlace.length;
   const isGoodLength = birthPlaceLength > MIN_LENGTH_BIRTHPLACE;
-
-  if (!isGoodLength) {
+  const isEmpty = isEmptyString(birthPlace);
+  if (isEmpty) {
+    result = EMPTY_INPUT;
+  } else if (!isGoodLength) {
     result = MIN_TWO_SYMBOLS;
   } else if (latinCyrrilNumbReg.test(birthPlace)) {
     result = ONLY_NUMB_LAT_KYR_LETTERS;
