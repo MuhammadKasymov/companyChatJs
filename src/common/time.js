@@ -1,4 +1,4 @@
-import { getDateType } from "../contants/types/timeUtil";
+import { getDateType } from "../constants/types/timeUtil";
 
 /** Get formated time
  * @param {string} format - type of get data

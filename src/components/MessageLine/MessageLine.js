@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./MessageLine.module.scss";
 import { useSelector } from "react-redux";
-import { getDateType } from "../../contants/types/timeUtil";
+import { getDateType } from "../../constants/types/timeUtil";
 import { getFormatedTime } from "../../common/time";
 
 const MessageLine = ({ message }) => {

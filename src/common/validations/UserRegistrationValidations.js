@@ -6,7 +6,7 @@ import {
   validPassword,
   validRepeatedPassword,
 } from "./validateInputs";
-import { inputTypes } from "../../contants/types/pageTypes/UserRegistrationContstans";
+import { inputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
 import {
   checkLogin,
   checkEmail,
@@ -15,7 +15,7 @@ import {
   EXIST_EMAIL,
   EXIST_LOGIN,
   EMPTY_INPUT,
-} from "../../contants/types/exceptionTypes/registrationExceptionTypes";
+} from "../../constants/types/exceptionTypes/registrationExceptionTypes";
 import { isEmptyString } from "./stringValidations";
 
 export default async function userRegistrationValidations(

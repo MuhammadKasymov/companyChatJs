@@ -6,15 +6,15 @@ import {
   lettersAndNotOnlyReg,
   numberndNotOnlyReg,
   latinCyrrilNumbReg,
-} from "../../contants/regularExpressions";
+} from "../../constants/regularExpressions";
 import {
   MIN_YEAR,
   MIN_LOGIN_LENGTH,
   MIN_NAME_LENGTH,
   MIN_PASSWORD_LENGTH,
   MIN_LENGTH_BIRTHPLACE,
-} from "../../contants/validations/userRegistration";
-import { CURRENT_YEAR, CURRENT_MONTH, CURRENT_DAY } from "../../contants/date";
+} from "../../constants/validations/userRegistration";
+import { CURRENT_YEAR, CURRENT_MONTH, CURRENT_DAY } from "../../constants/date";
 import {
   ONLY_LAT_KYR_LETTERS,
   MIN_TWO_SYMBOLS,
@@ -28,7 +28,7 @@ import {
   ONLY_NUMB_LAT_KYR_LETTERS,
   EMPTY_INPUT,
   REPEAT_PASSWORD,
-} from "../../contants/types/exceptionTypes/registrationExceptionTypes";
+} from "../../constants/types/exceptionTypes/registrationExceptionTypes";
 import { getMonthsLengthList } from "../time";
 import { isEmptyString } from "./stringValidations";
 

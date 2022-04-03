@@ -3,9 +3,9 @@ import Frame from "../../components/Frame/Frame";
 import InputWithHeader from "../../components/InputWithHeader/InputWithHeader";
 import ComponenHeader from "../../components/ComponentHeader/ComponentHeader";
 import styles from "./UserRegistrationPage.module.scss";
-import { inputTypes } from "../../contants/types/pageTypes/UserRegistrationContstans";
+import { inputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
 import userRegistrationValidations from "../../common/validations/userRegistrationValidations";
-import { errorStateInputs } from "../../contants/initialStates/userRegistrationStates";
+import { errorStateInputs } from "../../constants/initialStates/userRegistrationStates";
 
 class UserRegistrationPage extends Component {
   state = {

@@ -1,4 +1,4 @@
-import { AuthActionTypes } from "../../contants/types/reducerActionTypes";
+import { AuthActionTypes } from "../../constants/types/reducerActionTypes";
 
 export const setAuth = (authData) => {
   return (dispatch) => {

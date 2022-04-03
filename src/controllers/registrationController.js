@@ -3,7 +3,7 @@ import {
   URL_SERVER,
   CHECK_ROUTE_USER_EMAIL,
   CHECK_ROUTE_USER_LOGIN,
-} from "../contants/server";
+} from "../constants/server";
 
 export const checkEmail = async (email) => {
   let isExist = false;

@@ -1,5 +1,5 @@
-import { AuthActionTypes } from "../../contants/types/reducerActionTypes";
-import { initialSelfInformationState } from "../../contants/initialStates/reducerStates";
+import { AuthActionTypes } from "../../constants/types/reducerActionTypes";
+import { initialSelfInformationState } from "../../constants/initialStates/reducerStates";
 
 export const selfInfoReducer = (
   state = initialSelfInformationState,
