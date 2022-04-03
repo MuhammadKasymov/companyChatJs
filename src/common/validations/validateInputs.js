@@ -131,12 +131,13 @@ export const validPassword = (password) => {
 
 export const validRepeatedPassword = (repeatedPassword, password) => {
   let result = null;
-  const isEmpty = isEmptyString(password);
+  const isEmpty = isEmptyString(repeatedPassword);
   if (isEmpty) {
     result = REPEAT_PASSWORD;
   } else if (password !== repeatedPassword) {
     result = BAD_REPEAT_PASSWORD;
   }
+  console.log(repeatedPassword, password);
   return result;
 };
 

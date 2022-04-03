@@ -66,8 +66,7 @@ export default async function userRegistrationValidations(
       result = validPassword(value);
       break;
     case inputTypes.repeatedPassword:
-      if (isEmptyString(value))
-        result = validRepeatedPassword(value, extraValue);
+      result = validRepeatedPassword(value, extraValue);
       break;
     default:
       return null;
