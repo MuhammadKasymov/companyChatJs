@@ -4,6 +4,8 @@ import InputWithHeader from "../../components/InputWithHeader/InputWithHeader";
 import ComponenHeader from "../../components/ComponentHeader/ComponentHeader";
 import styles from "./UserRegistrationPage.module.scss";
 import { inputTypes } from "../../contants/types/pageTypes/UserRegistrationContstans";
+import userRegistrationValidations from "../../common/validations/userRegistrationValidations";
+import { errorStateInputs } from "../../contants/initialStates/userRegistrationStates";
 
 class UserRegistrationPage extends Component {
   state = {
@@ -15,17 +17,49 @@ class UserRegistrationPage extends Component {
     password: "",
     repeatedPassword: "",
     email: "",
+    errorStateInputs: errorStateInputs,
   };
 
-  componentDidMount() {
-    console.log("it's started ");
-  }
+  validTimers = {
+    firstName: null,
+    secontName: null,
+    lastName: null,
+    birthday: null,
+    login: null,
+    password: null,
+    repeatedPassword: null,
+    email: null,
+  };
 
-  onInput(inputType, value) {
-    let changedDate = {};
-    changedDate[inputType] = value;
-    this.setState(changedDate);
-  }
+  validInput = async (inputType, value) => {
+    let errorType = null;
+    let changedData = {
+      errorStateInputs: this.state.errorStateInputs,
+    };
+    this.validTimers[inputType] && clearTimeout(this.validTimers[inputType]);
+    this.validTimers[inputType] = setTimeout(async () => {
+      const trimmedPasswordValue = this.state.password.trim();
+      errorType = await userRegistrationValidations(
+        inputType,
+        value,
+        trimmedPasswordValue
+      );
+      changedData.errorStateInputs[inputType] = errorType;
+      this.setState(changedData);
+      console.log(this.state);
+    }, 500);
+
+    return errorType;
+  };
+
+  onInput = async (inputType, value) => {
+    let changedData = {};
+    const trimmedValue = value.trim();
+    changedData[inputType] = value;
+
+    await this.validInput(inputType, trimmedValue);
+    this.setState(changedData);
+  };
 
   typedOnInput(inputType) {
     return (value) => this.onInput(inputType, value);
