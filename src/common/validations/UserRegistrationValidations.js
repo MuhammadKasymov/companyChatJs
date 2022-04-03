@@ -14,9 +14,11 @@ import {
 import {
   EXIST_EMAIL,
   EXIST_LOGIN,
+  EMPTY_INPUT,
 } from "../../contants/types/exceptionTypes/registrationExceptionTypes";
+import { isEmptyString } from "./stringValidations";
 
-export async function userRegistrationValidations(
+export default async function userRegistrationValidations(
   inputType,
   value,
   extraValue
@@ -25,19 +27,27 @@ export async function userRegistrationValidations(
   let isExist = false;
   switch (inputType) {
     case inputTypes.login:
-      isExist = await checkLogin(value);
-      if (!isExist) {
-        result = validLogin(value);
+      if (isEmptyString(value)) {
+        result = EMPTY_INPUT;
       } else {
-        result = EXIST_LOGIN;
+        isExist = await checkLogin(value);
+        if (!isExist) {
+          result = validLogin(value);
+        } else {
+          result = EXIST_LOGIN;
+        }
       }
       break;
     case inputTypes.email:
-      isExist = await checkEmail(value);
-      if (!isExist) {
-        result = validEMail(value);
+      if (isEmptyString(value)) {
+        result = EMPTY_INPUT;
       } else {
-        result = EXIST_EMAIL;
+        isExist = await checkEmail(value);
+        if (!isExist) {
+          result = validEMail(value);
+        } else {
+          result = EXIST_EMAIL;
+        }
       }
       break;
     case inputTypes.firstName:
@@ -56,11 +66,11 @@ export async function userRegistrationValidations(
       result = validPassword(value);
       break;
     case inputTypes.repeatedPassword:
-      result = validRepeatedPassword(value, extraValue);
+      if (isEmptyString(value))
+        result = validRepeatedPassword(value, extraValue);
       break;
     default:
       return null;
   }
-
   return result;
 }
