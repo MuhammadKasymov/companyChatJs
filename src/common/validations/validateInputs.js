@@ -152,7 +152,6 @@ export const validRepeatedPassword = (repeatedPassword, password) => {
   } else if (password !== repeatedPassword) {
     result = BAD_REPEAT_PASSWORD;
   }
-  console.log(repeatedPassword, password);
   return result;
 };
 
