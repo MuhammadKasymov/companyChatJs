@@ -17,7 +17,7 @@ import {
 class UserRegistrationPage extends Component {
   state = {
     firstName: "",
-    secontName: "",
+    secondName: "",
     lastName: "",
     birthday: "",
     login: "",
@@ -29,7 +29,7 @@ class UserRegistrationPage extends Component {
 
   validTimers = {
     firstName: null,
-    secontName: null,
+    secondName: null,
     lastName: null,
     birthday: null,
     login: null,
@@ -40,36 +40,52 @@ class UserRegistrationPage extends Component {
 
   validInput = async (inputType, value) => {
     let errorType = null;
+    const trimmedValue = value.trim();
+    const trimmedPasswordValue = this.state.password.trim();
     let changedData = {
       errorStateInputs: this.state.errorStateInputs,
     };
-    this.validTimers[inputType] && clearTimeout(this.validTimers[inputType]);
-    this.validTimers[inputType] = setTimeout(async () => {
-      const trimmedPasswordValue = this.state.password.trim();
-      errorType = await userRegistrationValidations(
-        inputType,
-        value,
-        trimmedPasswordValue
-      );
-      changedData.errorStateInputs[inputType] = errorType;
-      this.setState(changedData);
-    }, 500);
 
-    return errorType;
+    errorType = await userRegistrationValidations(
+      inputType,
+      trimmedValue,
+      trimmedPasswordValue
+    );
+
+    changedData.errorStateInputs[inputType] = errorType;
+    this.setState(changedData);
   };
 
   onInput = async (inputType, value) => {
     let changedData = {};
-    const trimmedValue = value.trim();
     changedData[inputType] = value;
 
-    await this.validInput(inputType, trimmedValue);
+    this.validTimers[inputType] && clearTimeout(this.validTimers[inputType]);
+    this.validTimers[inputType] = setTimeout(
+      await this.validInput(inputType, value),
+      500
+    );
+
     this.setState(changedData);
   };
 
   typedOnInput(inputType) {
     return (value) => this.onInput(inputType, value);
   }
+
+  acceptData = async () => {
+    let isExactly = true;
+    const regInputTypesList = Object.keys(regInputTypes);
+    await regInputTypesList.forEach(
+      (el) => this.validInput(el, this.state[el])
+    );
+    regInputTypesList.forEach((el) => {
+      if (this.state.errorStateInputs[el] != null) isExactly = false;
+    });
+    if (isExactly) {
+      console.log(true);
+    }
+  };
 
   render() {
     return (
@@ -103,8 +119,8 @@ class UserRegistrationPage extends Component {
         </div>
         <div className={styles.inputColumn}>
           <InputWithHeader
-            errorText={this.state.errorStateInputs[regInputTypes.secontName]}
-            onInput={this.typedOnInput(regInputTypes.secontName)}
+            errorText={this.state.errorStateInputs[regInputTypes.secondName]}
+            onInput={this.typedOnInput(regInputTypes.secondName)}
             headerText={"Фамилия"}
             maxLength={MAX_NAME_LENGTH}
           />
@@ -131,7 +147,9 @@ class UserRegistrationPage extends Component {
         </div>
         <div className={styles.btnsContainer}>
           <button className={styles.btn}>&larr; Авторизоваться</button>
-          <button className={styles.btn}>Применить &rarr;</button>
+          <button onClick={this.acceptData} className={styles.btn}>
+            Применить &rarr;
+          </button>
         </div>
       </Frame>
     );
