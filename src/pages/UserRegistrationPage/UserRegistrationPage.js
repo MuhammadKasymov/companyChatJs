@@ -3,7 +3,7 @@ import Frame from "../../components/Frame/Frame";
 import InputWithHeader from "../../components/InputWithHeader/InputWithHeader";
 import ComponenHeader from "../../components/ComponentHeader/ComponentHeader";
 import styles from "./UserRegistrationPage.module.scss";
-import { inputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
+import { regInputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
 import userRegistrationValidations from "../../common/validations/userRegistrationValidations";
 import { errorStateInputs } from "../../constants/initialStates/userRegistrationStates";
 
@@ -70,45 +70,47 @@ class UserRegistrationPage extends Component {
         <ComponenHeader header="Регистрация" />
         <div className={styles.inputColumn}>
           <InputWithHeader
-            errorText={this.state.errorStateInputs[inputTypes.firstName]}
-            onInput={this.typedOnInput(inputTypes.firstName)}
+            errorText={this.state.errorStateInputs[regInputTypes.firstName]}
+            onInput={this.typedOnInput(regInputTypes.firstName)}
             headerText={"Имя"}
           />
           <InputWithHeader
-            errorText={this.state.errorStateInputs[inputTypes.lastName]}
-            onInput={this.typedOnInput(inputTypes.lastName)}
+            errorText={this.state.errorStateInputs[regInputTypes.lastName]}
+            onInput={this.typedOnInput(regInputTypes.lastName)}
             headerText={"Отчество"}
           />
           <InputWithHeader
-            errorText={this.state.errorStateInputs[inputTypes.login]}
-            onInput={this.typedOnInput(inputTypes.login)}
+            errorText={this.state.errorStateInputs[regInputTypes.login]}
+            onInput={this.typedOnInput(regInputTypes.login)}
             headerText={"Логин"}
           />
           <InputWithHeader
-            errorText={this.state.errorStateInputs[inputTypes.password]}
-            onInput={this.typedOnInput(inputTypes.password)}
+            errorText={this.state.errorStateInputs[regInputTypes.password]}
+            onInput={this.typedOnInput(regInputTypes.password)}
             headerText={"Пароль"}
           />
         </div>
         <div className={styles.inputColumn}>
           <InputWithHeader
-            errorText={this.state.errorStateInputs[inputTypes.secontName]}
-            onInput={this.typedOnInput(inputTypes.secontName)}
+            errorText={this.state.errorStateInputs[regInputTypes.secontName]}
+            onInput={this.typedOnInput(regInputTypes.secontName)}
             headerText={"Фамилия"}
           />
           <InputWithHeader
-            errorText={this.state.errorStateInputs[inputTypes.birthday]}
-            onInput={this.typedOnInput(inputTypes.birthday)}
+            errorText={this.state.errorStateInputs[regInputTypes.birthday]}
+            onInput={this.typedOnInput(regInputTypes.birthday)}
             headerText={"Дата рождения"}
           />
           <InputWithHeader
-            errorText={this.state.errorStateInputs[inputTypes.email]}
-            onInput={this.typedOnInput(inputTypes.email)}
+            errorText={this.state.errorStateInputs[regInputTypes.email]}
+            onInput={this.typedOnInput(regInputTypes.email)}
             headerText={"Email"}
           />
           <InputWithHeader
-            errorText={this.state.errorStateInputs[inputTypes.repeatedPassword]}
-            onInput={this.typedOnInput(inputTypes.repeatedPassword)}
+            errorText={
+              this.state.errorStateInputs[regInputTypes.repeatedPassword]
+            }
+            onInput={this.typedOnInput(regInputTypes.repeatedPassword)}
             headerText={"Повторитие пароль"}
           />
         </div>
