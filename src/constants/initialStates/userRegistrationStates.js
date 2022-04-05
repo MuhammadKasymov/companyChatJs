@@ -1,6 +1,6 @@
 export const errorStateInputs = {
   firstName: null,
-  secontName: null,
+  secondName: null,
   lastName: null,
   birthday: null,
   login: null,

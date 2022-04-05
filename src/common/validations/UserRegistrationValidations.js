@@ -54,7 +54,7 @@ export default async function userRegistrationValidations(
     case regInputTypes.firstName:
       result = validName(value);
       break;
-    case regInputTypes.secontName:
+    case regInputTypes.secondName:
       result = validName(value);
       break;
     case regInputTypes.lastName:

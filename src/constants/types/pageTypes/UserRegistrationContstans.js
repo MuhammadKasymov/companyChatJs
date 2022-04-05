@@ -1,6 +1,6 @@
 export const regInputTypes = {
   firstName: 'firstName',
-  secontName: 'secondName',
+  secondName: 'secondName',
   lastName: 'lastName',
   birthday: 'birthday',
   login: 'login',
