@@ -4,6 +4,7 @@ import InputWithHeader from "../../components/InputWithHeader/InputWithHeader";
 import ComponenHeader from "../../components/ComponentHeader/ComponentHeader";
 import styles from "./UserRegistrationPage.module.scss";
 import { regInputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
+import { inputTypes } from "../../constants/types/inputTypes";
 import userRegistrationValidations from "../../common/validations/userRegistrationValidations";
 import { errorStateInputs } from "../../constants/initialStates/userRegistrationStates";
 
@@ -99,6 +100,7 @@ class UserRegistrationPage extends Component {
           <InputWithHeader
             errorText={this.state.errorStateInputs[regInputTypes.birthday]}
             onInput={this.typedOnInput(regInputTypes.birthday)}
+            inputType={inputTypes.DATE}
             headerText={"Дата рождения"}
           />
           <InputWithHeader

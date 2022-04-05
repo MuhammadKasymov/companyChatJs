@@ -1,27 +1,40 @@
 import React, { useState } from "react";
+import { getMaskedInput } from "../../common/inputMasks";
 import styles from "./InputText.module.scss";
 
-//Todo: расписать пропсы
-const InputText = ({ onInput, placeholder, errorText }) => {
+const InputText = ({
+  onInput,
+  placeholder,
+  errorText,
+  maxLength,
+  inputType,
+}) => {
   const [isChoosed, setIsChoosed] = useState(false);
   const [isTyped, setIsTyped] = useState(false);
+  const [value, setValue] = useState("");
+
   const onInputText = (txt) => {
-    const value = txt.target.value;
+    const value = getMaskedInput(txt.target.value, inputType);
     const trimmedValue = value.trim();
     !isTyped && setIsTyped(true);
     onInput(trimmedValue);
+    setValue(value);
   };
+
   const onClick = () => {
     setIsChoosed(true);
   };
   const onBlur = () => setIsChoosed(false);
+
   return (
     <div className={`${styles.container} ${isChoosed && styles.choosedInput}`}>
       <input
+        maxLength={maxLength || 24}
         placeholder={placeholder || "Введите текст..."}
         onClick={onClick}
         onInput={onInputText}
         onBlur={onBlur}
+        value={value}
         className={styles.inputText}
       />
       {errorText && <p className={styles.errorText}>{errorText}</p>}

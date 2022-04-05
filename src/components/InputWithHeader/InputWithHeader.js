@@ -8,11 +8,13 @@ const InputWithHeader = ({
   placeholder,
   onInput,
   errorText,
+  inputType,
 }) => {
   return (
     <div className={`${styles.container} ${style || ""}`}>
       <h2 className={styles.headerTxt}>{headerText}</h2>
       <InputText
+        inputType={inputType}
         errorText={errorText}
         onInput={onInput}
         placeholder={placeholder}
