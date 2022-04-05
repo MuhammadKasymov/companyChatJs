@@ -6,7 +6,7 @@ import {
   validPassword,
   validRepeatedPassword,
 } from "./validateInputs";
-import { inputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
+import { regInputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
 import {
   checkLogin,
   checkEmail,
@@ -26,7 +26,7 @@ export default async function userRegistrationValidations(
   let result = null;
   let isExist = false;
   switch (inputType) {
-    case inputTypes.login:
+    case regInputTypes.login:
       if (isEmptyString(value)) {
         result = EMPTY_INPUT;
       } else {
@@ -38,7 +38,7 @@ export default async function userRegistrationValidations(
         }
       }
       break;
-    case inputTypes.email:
+    case regInputTypes.email:
       if (isEmptyString(value)) {
         result = EMPTY_INPUT;
       } else {
@@ -50,22 +50,22 @@ export default async function userRegistrationValidations(
         }
       }
       break;
-    case inputTypes.firstName:
+    case regInputTypes.firstName:
       result = validName(value);
       break;
-    case inputTypes.secontName:
+    case regInputTypes.secontName:
       result = validName(value);
       break;
-    case inputTypes.lastName:
+    case regInputTypes.lastName:
       result = validName(value);
       break;
-    case inputTypes.birthday:
+    case regInputTypes.birthday:
       result = validDate(value);
       break;
-    case inputTypes.password:
+    case regInputTypes.password:
       result = validPassword(value);
       break;
-    case inputTypes.repeatedPassword:
+    case regInputTypes.repeatedPassword:
       result = validRepeatedPassword(value, extraValue);
       break;
     default:

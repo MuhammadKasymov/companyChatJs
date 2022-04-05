@@ -1,4 +1,4 @@
-export const inputTypes = {
+export const regInputTypes = {
   firstName: 'firstName',
   secontName: 'secondName',
   lastName: 'lastName',
