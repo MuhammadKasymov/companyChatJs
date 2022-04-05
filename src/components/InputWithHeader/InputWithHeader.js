@@ -9,6 +9,7 @@ const InputWithHeader = ({
   onInput,
   errorText,
   inputType,
+  maxLength,
 }) => {
   return (
     <div className={`${styles.container} ${style || ""}`}>
@@ -18,6 +19,7 @@ const InputWithHeader = ({
         errorText={errorText}
         onInput={onInput}
         placeholder={placeholder}
+        maxLength={maxLength}
       />
     </div>
   );

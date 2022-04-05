@@ -7,6 +7,12 @@ import { regInputTypes } from "../../constants/types/pageTypes/UserRegistrationC
 import { inputTypes } from "../../constants/types/inputTypes";
 import userRegistrationValidations from "../../common/validations/userRegistrationValidations";
 import { errorStateInputs } from "../../constants/initialStates/userRegistrationStates";
+import {
+  MAX_MAIL_LENGTH,
+  MAX_LOGIN_LENGTH,
+  MAX_NAME_LENGTH,
+  MAX_PASSWORD_LENGTH,
+} from "../../constants/validations/userRegistration";
 
 class UserRegistrationPage extends Component {
   state = {
@@ -74,21 +80,25 @@ class UserRegistrationPage extends Component {
             errorText={this.state.errorStateInputs[regInputTypes.firstName]}
             onInput={this.typedOnInput(regInputTypes.firstName)}
             headerText={"Имя"}
+            maxLength={MAX_NAME_LENGTH}
           />
           <InputWithHeader
             errorText={this.state.errorStateInputs[regInputTypes.lastName]}
             onInput={this.typedOnInput(regInputTypes.lastName)}
             headerText={"Отчество"}
+            maxLength={MAX_NAME_LENGTH}
           />
           <InputWithHeader
             errorText={this.state.errorStateInputs[regInputTypes.login]}
             onInput={this.typedOnInput(regInputTypes.login)}
             headerText={"Логин"}
+            maxLength={MAX_LOGIN_LENGTH}
           />
           <InputWithHeader
             errorText={this.state.errorStateInputs[regInputTypes.password]}
             onInput={this.typedOnInput(regInputTypes.password)}
             headerText={"Пароль"}
+            maxLength={MAX_PASSWORD_LENGTH}
           />
         </div>
         <div className={styles.inputColumn}>
@@ -96,6 +106,7 @@ class UserRegistrationPage extends Component {
             errorText={this.state.errorStateInputs[regInputTypes.secontName]}
             onInput={this.typedOnInput(regInputTypes.secontName)}
             headerText={"Фамилия"}
+            maxLength={MAX_NAME_LENGTH}
           />
           <InputWithHeader
             errorText={this.state.errorStateInputs[regInputTypes.birthday]}
@@ -107,6 +118,7 @@ class UserRegistrationPage extends Component {
             errorText={this.state.errorStateInputs[regInputTypes.email]}
             onInput={this.typedOnInput(regInputTypes.email)}
             headerText={"Email"}
+            maxLength={MAX_MAIL_LENGTH}
           />
           <InputWithHeader
             errorText={
@@ -114,6 +126,7 @@ class UserRegistrationPage extends Component {
             }
             onInput={this.typedOnInput(regInputTypes.repeatedPassword)}
             headerText={"Повторитие пароль"}
+            maxLength={MAX_PASSWORD_LENGTH}
           />
         </div>
         <div className={styles.btnsContainer}>
