@@ -45,7 +45,7 @@ const InputText = ({
         <div className={styles.choosedIndicator} />
       )}
       {!errorText && isTyped && <div className={styles.successIndicator} />}
-      {errorText && isTyped && <div className={styles.errorIndicator} />}
+      {errorText && <div className={styles.errorIndicator} />}
     </div>
   );
 };
