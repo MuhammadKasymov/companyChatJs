@@ -3,6 +3,7 @@ import {
   validEMail,
   validLogin,
   validName,
+  validLastName,
   validPassword,
   validRepeatedPassword,
 } from "./validateInputs";
@@ -57,7 +58,7 @@ export default async function userRegistrationValidations(
       result = validName(value);
       break;
     case regInputTypes.lastName:
-      result = validName(value);
+      result = validLastName(value);
       break;
     case regInputTypes.birthday:
       result = validDate(value);

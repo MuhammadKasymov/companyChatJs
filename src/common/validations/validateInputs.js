@@ -73,6 +73,21 @@ export const validName = (name) => {
   return result;
 };
 
+export const validLastName = (name) => {
+  let result = null;
+  const logLength = name.length;
+  const isGoodLength = logLength >= MIN_NAME_LENGTH;
+  const isEmpty = isEmptyString(name);
+  if (!isEmpty) {
+    if (!isGoodLength) {
+      result = MIN_TWO_SYMBOLS;
+    } else if (!latinAndCyrrilReg.test(name)) {
+      result = ONLY_LAT_KYR_LETTERS;
+    }
+  }
+  return result;
+};
+
 export const validDate = (date) => {
   let result = null;
   const isEmpty = isEmptyString(date);
