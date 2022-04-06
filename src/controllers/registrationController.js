@@ -3,7 +3,24 @@ import {
   URL_SERVER,
   CHECK_ROUTE_USER_EMAIL,
   CHECK_ROUTE_USER_LOGIN,
+  ROUTE_USER_NEW,
 } from "../constants/server";
+
+export const registrUser = async (userData) => {
+  let isSuccess = false;
+  await axios
+    .post(URL_SERVER + ROUTE_USER_NEW, userData)
+    .then((res) => {
+      const result = res.data;
+      if (result) {
+        isSuccess = true;
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return isSuccess;
+};
 
 export const checkEmail = async (email) => {
   let isExist = false;
@@ -13,7 +30,6 @@ export const checkEmail = async (email) => {
     })
     .then((res) => {
       const result = res.data;
-      console.log(result);
       if (res.data) {
         isExist = result.isExist;
       }
@@ -32,7 +48,6 @@ export const checkLogin = async (login) => {
     })
     .then((res) => {
       const result = res.data;
-      console.log(result);
       if (res.data) {
         isExist = result.isExist;
       }

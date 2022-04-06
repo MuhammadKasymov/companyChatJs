@@ -6,6 +6,7 @@ import styles from "./UserRegistrationPage.module.scss";
 import { regInputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
 import { inputTypes } from "../../constants/types/inputTypes";
 import userRegistrationValidations from "../../common/validations/userRegistrationValidations";
+import { getFormatedTime } from "../../common/time";
 import { errorStateInputs } from "../../constants/initialStates/userRegistrationStates";
 import {
   MAX_MAIL_LENGTH,
@@ -13,6 +14,8 @@ import {
   MAX_NAME_LENGTH,
   MAX_PASSWORD_LENGTH,
 } from "../../constants/validations/userRegistration";
+import { registrUser } from "../../controllers/registrationController";
+import { getDateType } from "../../constants/types/timeUtil";
 
 class UserRegistrationPage extends Component {
   state = {
@@ -62,8 +65,8 @@ class UserRegistrationPage extends Component {
 
     this.validTimers[inputType] && clearTimeout(this.validTimers[inputType]);
     this.validTimers[inputType] = setTimeout(
-      await this.validInput(inputType, value),
-      500
+      () => this.validInput(inputType, value),
+      1000
     );
 
     this.setState(changedData);
@@ -75,15 +78,17 @@ class UserRegistrationPage extends Component {
 
   acceptData = async () => {
     let isExactly = true;
-    const regInputTypesList = Object.keys(regInputTypes);
-    await regInputTypesList.forEach(
-      (el) => this.validInput(el, this.state[el])
-    );
+    let { errorStateInputs, ...regData } = this.state;
+    const regInputTypesList = Object.keys(regData);
+    await regInputTypesList.forEach((el) => this.validInput(el, regData[el]));
     regInputTypesList.forEach((el) => {
-      if (this.state.errorStateInputs[el] != null) isExactly = false;
+      if (errorStateInputs[el] != null) isExactly = false;
     });
+
     if (isExactly) {
-      console.log(true);
+      regData.registrationDate = getFormatedTime(getDateType.OD);
+      const isSuccessReg = await registrUser(regData);
+      isSuccessReg && console.log("next step");
     }
   };
 
