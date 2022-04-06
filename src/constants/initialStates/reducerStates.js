@@ -1,6 +1,15 @@
 export const initialSelfInformationState = {
-  id: "",
-  login: "",
   firstName: "",
   secondName: "",
+  lastName: "",
+  birthday: "",
+  login: "",
+  email: "",
+};
+
+//Todo: Прописать в редаксе типы
+export const lastChatId = {};
+
+export const token = {
+  token: "",
 };
