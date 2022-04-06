@@ -132,6 +132,7 @@ class UserRegistrationPage extends Component {
               errorText={this.state.errorStateInputs[regInputTypes.password]}
               onInput={this.typedOnInput(regInputTypes.password)}
               headerText={"Пароль"}
+              inputType={inputTypes.PASSWORD}
               maxLength={MAX_PASSWORD_LENGTH}
             />
           </div>
@@ -158,6 +159,7 @@ class UserRegistrationPage extends Component {
               errorText={
                 this.state.errorStateInputs[regInputTypes.repeatedPassword]
               }
+              inputType={inputTypes.PASSWORD}
               onInput={this.typedOnInput(regInputTypes.repeatedPassword)}
               headerText={"Повторитие пароль"}
               maxLength={MAX_PASSWORD_LENGTH}
