@@ -1,21 +1,25 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import styles from "./UserRegistrationPage.module.scss";
+import RedirectWrapper from "../../components/RedirectWrapper/RedirectWrapper";
 import Frame from "../../components/Frame/Frame";
 import InputWithHeader from "../../components/InputWithHeader/InputWithHeader";
 import ComponenHeader from "../../components/ComponentHeader/ComponentHeader";
-import styles from "./UserRegistrationPage.module.scss";
-import { regInputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
-import { inputTypes } from "../../constants/types/inputTypes";
+import { setAuth } from "../../store/action-creators/auth";
 import userRegistrationValidations from "../../common/validations/userRegistrationValidations";
 import { getFormatedTime } from "../../common/time";
-import { errorStateInputs } from "../../constants/initialStates/userRegistrationStates";
+import { registrUser } from "../../controllers/registrationController";
 import {
   MAX_MAIL_LENGTH,
   MAX_LOGIN_LENGTH,
   MAX_NAME_LENGTH,
   MAX_PASSWORD_LENGTH,
 } from "../../constants/validations/userRegistration";
-import { registrUser } from "../../controllers/registrationController";
 import { getDateType } from "../../constants/types/timeUtil";
+import { regInputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
+import { inputTypes } from "../../constants/types/inputTypes";
+import { errorStateInputs } from "../../constants/initialStates/userRegistrationStates";
 
 class UserRegistrationPage extends Component {
   state = {
@@ -27,6 +31,7 @@ class UserRegistrationPage extends Component {
     password: "",
     repeatedPassword: "",
     email: "",
+    isRedirect: false,
     errorStateInputs: errorStateInputs,
   };
 
@@ -40,6 +45,10 @@ class UserRegistrationPage extends Component {
     repeatedPassword: null,
     email: null,
   };
+
+  constructor({ props }) {
+    super(props);
+  }
 
   validInput = async (inputType, value) => {
     let errorType = null;
@@ -78,7 +87,9 @@ class UserRegistrationPage extends Component {
 
   acceptData = async () => {
     let isExactly = true;
-    let { errorStateInputs, ...regData } = this.state;
+    let { errorStateInputs, repeatedPassword, isRedirect, ...regData } =
+      this.state;
+    const { password, ...selfInfo } = regData;
     const regInputTypesList = Object.keys(regData);
     await regInputTypesList.forEach((el) => this.validInput(el, regData[el]));
     regInputTypesList.forEach((el) => {
@@ -88,77 +99,83 @@ class UserRegistrationPage extends Component {
     if (isExactly) {
       regData.registrationDate = getFormatedTime(getDateType.OD);
       const isSuccessReg = await registrUser(regData);
-      isSuccessReg && console.log("next step");
+      isSuccessReg && this.props.setAuth(selfInfo);
+      isSuccessReg && (await this.setState({ isRedirect: true }));
     }
   };
 
   render() {
     return (
-      <Frame style={styles.container}>
-        <ComponenHeader header="Регистрация" />
-        <div className={styles.inputColumn}>
-          <InputWithHeader
-            errorText={this.state.errorStateInputs[regInputTypes.firstName]}
-            onInput={this.typedOnInput(regInputTypes.firstName)}
-            headerText={"Имя"}
-            maxLength={MAX_NAME_LENGTH}
-          />
-          <InputWithHeader
-            errorText={this.state.errorStateInputs[regInputTypes.lastName]}
-            onInput={this.typedOnInput(regInputTypes.lastName)}
-            headerText={"Отчество"}
-            maxLength={MAX_NAME_LENGTH}
-          />
-          <InputWithHeader
-            errorText={this.state.errorStateInputs[regInputTypes.login]}
-            onInput={this.typedOnInput(regInputTypes.login)}
-            headerText={"Логин"}
-            maxLength={MAX_LOGIN_LENGTH}
-          />
-          <InputWithHeader
-            errorText={this.state.errorStateInputs[regInputTypes.password]}
-            onInput={this.typedOnInput(regInputTypes.password)}
-            headerText={"Пароль"}
-            maxLength={MAX_PASSWORD_LENGTH}
-          />
-        </div>
-        <div className={styles.inputColumn}>
-          <InputWithHeader
-            errorText={this.state.errorStateInputs[regInputTypes.secondName]}
-            onInput={this.typedOnInput(regInputTypes.secondName)}
-            headerText={"Фамилия"}
-            maxLength={MAX_NAME_LENGTH}
-          />
-          <InputWithHeader
-            errorText={this.state.errorStateInputs[regInputTypes.birthday]}
-            onInput={this.typedOnInput(regInputTypes.birthday)}
-            inputType={inputTypes.DATE}
-            headerText={"Дата рождения"}
-          />
-          <InputWithHeader
-            errorText={this.state.errorStateInputs[regInputTypes.email]}
-            onInput={this.typedOnInput(regInputTypes.email)}
-            headerText={"Email"}
-            maxLength={MAX_MAIL_LENGTH}
-          />
-          <InputWithHeader
-            errorText={
-              this.state.errorStateInputs[regInputTypes.repeatedPassword]
-            }
-            onInput={this.typedOnInput(regInputTypes.repeatedPassword)}
-            headerText={"Повторитие пароль"}
-            maxLength={MAX_PASSWORD_LENGTH}
-          />
-        </div>
-        <div className={styles.btnsContainer}>
-          <button className={styles.btn}>&larr; Авторизоваться</button>
-          <button onClick={this.acceptData} className={styles.btn}>
-            Применить &rarr;
-          </button>
-        </div>
-      </Frame>
+      <RedirectWrapper isRedirect={this.state.isRedirect} path={"/chat/-"}>
+        <Frame style={styles.container}>
+          <ComponenHeader header="Регистрация" />
+          <div className={styles.inputColumn}>
+            <InputWithHeader
+              errorText={this.state.errorStateInputs[regInputTypes.firstName]}
+              onInput={this.typedOnInput(regInputTypes.firstName)}
+              headerText={"Имя"}
+              maxLength={MAX_NAME_LENGTH}
+            />
+            <InputWithHeader
+              errorText={this.state.errorStateInputs[regInputTypes.lastName]}
+              onInput={this.typedOnInput(regInputTypes.lastName)}
+              headerText={"Отчество"}
+              maxLength={MAX_NAME_LENGTH}
+            />
+            <InputWithHeader
+              errorText={this.state.errorStateInputs[regInputTypes.login]}
+              onInput={this.typedOnInput(regInputTypes.login)}
+              headerText={"Логин"}
+              maxLength={MAX_LOGIN_LENGTH}
+            />
+            <InputWithHeader
+              errorText={this.state.errorStateInputs[regInputTypes.password]}
+              onInput={this.typedOnInput(regInputTypes.password)}
+              headerText={"Пароль"}
+              maxLength={MAX_PASSWORD_LENGTH}
+            />
+          </div>
+          <div className={styles.inputColumn}>
+            <InputWithHeader
+              errorText={this.state.errorStateInputs[regInputTypes.secondName]}
+              onInput={this.typedOnInput(regInputTypes.secondName)}
+              headerText={"Фамилия"}
+              maxLength={MAX_NAME_LENGTH}
+            />
+            <InputWithHeader
+              errorText={this.state.errorStateInputs[regInputTypes.birthday]}
+              onInput={this.typedOnInput(regInputTypes.birthday)}
+              inputType={inputTypes.DATE}
+              headerText={"Дата рождения"}
+            />
+            <InputWithHeader
+              errorText={this.state.errorStateInputs[regInputTypes.email]}
+              onInput={this.typedOnInput(regInputTypes.email)}
+              headerText={"Email"}
+              maxLength={MAX_MAIL_LENGTH}
+            />
+            <InputWithHeader
+              errorText={
+                this.state.errorStateInputs[regInputTypes.repeatedPassword]
+              }
+              onInput={this.typedOnInput(regInputTypes.repeatedPassword)}
+              headerText={"Повторитие пароль"}
+              maxLength={MAX_PASSWORD_LENGTH}
+            />
+          </div>
+          <div className={styles.btnsContainer}>
+            <button className={styles.btn}>&larr; Авторизоваться</button>
+            <button onClick={this.acceptData} className={styles.btn}>
+              Применить &rarr;
+            </button>
+          </div>
+        </Frame>
+      </RedirectWrapper>
     );
   }
 }
 
-export default UserRegistrationPage;
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ setAuth }, dispatch);
+
+export default connect(null, mapDispatchToProps)(UserRegistrationPage);
