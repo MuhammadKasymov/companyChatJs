@@ -31,24 +31,22 @@ export default async function userRegistrationValidations(
       if (isEmptyString(value)) {
         result = EMPTY_INPUT;
       } else {
-        isExist = await checkLogin(value);
-        if (!isExist) {
-          result = validLogin(value);
-        } else {
-          result = EXIST_LOGIN;
+        result = validLogin(value);
+        if (result == null) {
+          isExist = await checkLogin(value);
         }
+        if (isExist) result = EXIST_LOGIN;
       }
       break;
     case regInputTypes.email:
       if (isEmptyString(value)) {
         result = EMPTY_INPUT;
       } else {
-        isExist = await checkEmail(value);
-        if (!isExist) {
-          result = validEMail(value);
-        } else {
-          result = EXIST_EMAIL;
+        result = validEMail(value);
+        if (result == null) {
+          isExist = await checkEmail(value);
         }
+        if (isExist) result = EXIST_EMAIL;
       }
       break;
     case regInputTypes.firstName:
