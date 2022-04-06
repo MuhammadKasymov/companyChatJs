@@ -15,10 +15,10 @@ import { getDateType } from "../constants/types/timeUtil";
 
 export const getFormatedTime = (format, milliseconds) => {
   let date = "";
-  if (milliseconds !== 0) {
+  if (milliseconds) {
     date = new Date(milliseconds);
   } else date = new Date();
-  const onlyDate = date.toLocaleDateString();
+  const onlyDate = date.toLocaleDateString().toString();
   const onlyHours = date.toLocaleTimeString().toString();
   switch (format) {
     case getDateType.HM: // hours - minute
