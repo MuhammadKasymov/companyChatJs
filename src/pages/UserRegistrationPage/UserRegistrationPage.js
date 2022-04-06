@@ -5,7 +5,6 @@ import styles from "./UserRegistrationPage.module.scss";
 import RedirectWrapper from "../../components/RedirectWrapper/RedirectWrapper";
 import Frame from "../../components/Frame/Frame";
 import InputWithHeader from "../../components/InputWithHeader/InputWithHeader";
-import ComponenHeader from "../../components/ComponentHeader/ComponentHeader";
 import { setAuth } from "../../store/action-creators/auth";
 import userRegistrationValidations from "../../common/validations/userRegistrationValidations";
 import { getFormatedTime } from "../../common/time";
@@ -107,8 +106,7 @@ class UserRegistrationPage extends Component {
   render() {
     return (
       <RedirectWrapper isRedirect={this.state.isRedirect} path={"/chat/-"}>
-        <Frame style={styles.container}>
-          <ComponenHeader header="Регистрация" />
+        <Frame style={styles.container} headerText="Регистрация">
           <div className={styles.inputColumn}>
             <InputWithHeader
               errorText={this.state.errorStateInputs[regInputTypes.firstName]}
