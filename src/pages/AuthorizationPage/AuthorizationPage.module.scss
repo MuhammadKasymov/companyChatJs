@@ -1,0 +1,35 @@
+@import "../../styles/fonts.scss";
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 370px;
+  padding-top: 40px;
+  padding-bottom: 15px;
+  margin: 140px auto;
+}
+
+.authBtn {
+  width: 150px;
+  height: 40px;
+}
+
+.inputWithHeader {
+  width: 270px;
+  margin-bottom: 25px;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.regBtn {
+  background-color: transparent;
+  border: 0;
+  margin-right: 20px;
+  @extend %font_reg_link;
+}
