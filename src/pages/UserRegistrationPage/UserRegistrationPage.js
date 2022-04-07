@@ -19,6 +19,7 @@ import { getDateType } from "../../constants/types/timeUtil";
 import { regInputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
 import { inputTypes } from "../../constants/types/inputTypes";
 import { errorStateInputs } from "../../constants/initialStates/userRegistrationStates";
+import { chatRoute, authRoute } from "../../constants/routePath";
 
 class UserRegistrationPage extends Component {
   state = {
@@ -31,6 +32,7 @@ class UserRegistrationPage extends Component {
     repeatedPassword: "",
     email: "",
     isRedirect: false,
+    redirectPath: chatRoute,
     errorStateInputs: errorStateInputs,
   };
 
@@ -103,9 +105,19 @@ class UserRegistrationPage extends Component {
     }
   };
 
+  goToAuth = () => {
+    this.setState({
+      isRedirect: true,
+      redirectPath: authRoute,
+    });
+  };
+
   render() {
     return (
-      <RedirectWrapper isRedirect={this.state.isRedirect} path={"/chat/-"}>
+      <RedirectWrapper
+        isRedirect={this.state.isRedirect}
+        path={this.state.redirectPath}
+      >
         <Frame style={styles.container} headerText="Регистрация">
           <div className={styles.inputColumn}>
             <InputWithHeader
@@ -164,7 +176,9 @@ class UserRegistrationPage extends Component {
             />
           </div>
           <div className={styles.btnsContainer}>
-            <button className={styles.btn}>&larr; Авторизоваться</button>
+            <button onClick={this.goToAuth} className={styles.btn}>
+              &larr; Авторизоваться
+            </button>
             <button onClick={this.acceptData} className={styles.btn}>
               Применить &rarr;
             </button>
