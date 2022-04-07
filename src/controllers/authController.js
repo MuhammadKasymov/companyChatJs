@@ -1,11 +1,13 @@
 import axios from "axios";
 import { URL_SERVER, ROUTE_AUTH } from "../constants/server";
 import { isEmail } from "../common/validations/checkData";
+import { initialSelfInformationState } from "../constants/initialStates/reducerStates";
 
 const authUser = async (authData) => {
   let data = {
     goodAuth: false,
     notExistUser: false,
+    userData: initialSelfInformationState,
   };
 
   const isLogin = !isEmail(authData.login);
@@ -26,6 +28,7 @@ const authUser = async (authData) => {
       if (result) {
         data.goodAuth = result.goodAuth;
         data.notExistUser = result.notExistUser;
+        data.userData = result.userData;
       }
     })
     .catch((err) => {
