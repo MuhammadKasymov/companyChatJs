@@ -1,10 +1,7 @@
 import React from "react";
 import styles from "./HomePage.module.scss";
-import { connect } from "react-redux";
 import { getChats, getLastMessages } from "../../controllers/chatController";
-import { bindActionCreators } from "redux";
 import ChooseChat from "../../components/ChooseChat/ChooseChat";
-import { setAuth } from "../../store/action-creators/auth";
 import Chat from "../../components/Chat/Chat";
 
 class HomePage extends React.Component {
@@ -43,6 +40,4 @@ class HomePage extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ setAuth }, dispatch);
-export default connect(null, mapDispatchToProps)(HomePage);
+export default HomePage;
