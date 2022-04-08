@@ -9,6 +9,7 @@ const InputText = ({
   errorText,
   maxLength,
   inputType,
+  onKeyUp,
 }) => {
   const [isChoosed, setIsChoosed] = useState(false);
   const [isTyped, setIsTyped] = useState(false);
@@ -39,6 +40,7 @@ const InputText = ({
         onInput={onInputText}
         onBlur={onBlur}
         value={value}
+        onKeyUp={onKeyUp}
         type={getInputType()}
         className={styles.inputText}
       />

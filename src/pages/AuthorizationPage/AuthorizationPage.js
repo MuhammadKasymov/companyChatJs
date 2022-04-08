@@ -89,6 +89,10 @@ class AuthorizationPage extends Component {
     }
   };
 
+  onKeyPress = (event) => {
+    event.keyCode === 13 && this.confirmData();
+  };
+
   goToRegistration = () => {
     this.setState({
       isRedirect: true,
@@ -114,6 +118,7 @@ class AuthorizationPage extends Component {
             headerText={"Пароль"}
             inputType={inputTypes.PASSWORD}
             errorText={this.state.errorState.password}
+            onKeyUp={this.onKeyPress}
             onInput={this.typedOnInput(authInputTypes.password)}
           />
           <div className={styles.btnContainer}>

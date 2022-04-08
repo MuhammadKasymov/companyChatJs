@@ -7,6 +7,7 @@ const InputWithHeader = ({
   headerText,
   placeholder,
   onInput,
+  onKeyUp,
   errorText,
   inputType,
   maxLength,
@@ -18,6 +19,7 @@ const InputWithHeader = ({
         inputType={inputType}
         errorText={errorText}
         onInput={onInput}
+        onKeyUp={onKeyUp}
         placeholder={placeholder}
         maxLength={maxLength}
       />
