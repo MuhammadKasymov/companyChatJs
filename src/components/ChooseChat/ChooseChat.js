@@ -20,7 +20,7 @@ const ChooseChat = ({ chatsData }) => {
           <ChatLine
             key={chatData.id}
             isChoosed={isChoosed}
-            name={chatData.name}
+            name={chatData.title}
             user={chatData.user}
             lastMessage={chatData.lastMessage}
           />

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 //Todo: получать последнее сообщение
 // и выбранный чат из redux из redux;
 const ChatLine = ({ isChoosed, name, lastMessage }) => {
-  const msgText = addTripleDot(lastMessage.txt, 10);
+  const msgText = addTripleDot(lastMessage.messageText, 10);
   //Todo: изменять текущий чат в redux
   return (
     // <Link>

@@ -4,6 +4,7 @@ import { getLastMessages } from "../../controllers/chatController";
 import ChooseChat from "../../components/ChooseChat/ChooseChat";
 import Chat from "../../components/Chat/Chat";
 import { WS_SERVER } from "../../constants/server";
+import { connect } from "react-redux";
 
 class HomePage extends React.Component {
   state = {
@@ -11,6 +12,10 @@ class HomePage extends React.Component {
     isConnWS: false,
     lastMessagesData: [{ id: -1, lastMessage: "", date: 0 }],
   };
+
+  constructor({ props }) {
+    super(props);
+  }
 
   async componentDidMount() {
     await this.uploadData();
@@ -40,9 +45,9 @@ class HomePage extends React.Component {
     }
   };
 
-
   uploadData = async () => {
-    const lastMessages = await getLastMessages();
+    const lastMessages = await getLastMessages(this.props.auth.id);
+    console.log(lastMessages);
     this.setState({
       NeadLoad: false,
       lastMessagesData: lastMessages,
@@ -63,4 +68,9 @@ class HomePage extends React.Component {
   }
 }
 
-export default HomePage;
+const mapStateToProps = (state) => {
+  const { auth } = state;
+  return { auth };
+};
+
+export default connect(mapStateToProps, null)(HomePage);
