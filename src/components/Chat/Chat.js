@@ -24,7 +24,7 @@ class Chat extends React.Component {
     const chatData = await connectToChatById(chatId);
 
     this.setState({
-      chatData: chatData,
+      chatData: chatData || {},
       NeadLoad: false,
     });
   };
@@ -36,7 +36,6 @@ class Chat extends React.Component {
       date: currentDate.toString(),
       txt: messageText.trim(),
     };
-    console.log(msg)
     return msg;
   };
 
@@ -59,10 +58,4 @@ const mapStateToProps = (state) => {
   return { auth };
 };
 
-const mapDispatchToProps = (state) => {
-  const { chatData } = state;
-  return { chatData };
-};
-
-// export default Chat;
-export default connect(mapStateToProps, mapDispatchToProps)(Chat);
+export default connect(mapStateToProps, null)(Chat);
