@@ -5,7 +5,6 @@ import ChatLine from "../ChatLine/ChatLine";
 import { useLocation } from "react-router-dom";
 import { getChatIdByUrl } from "../../common/composeString";
 import HorizontalRule from "../../components/HorizontalRule/HorizontalRule";
-import { useReducer } from "react";
 
 const ChooseChat = ({ chatsData }) => {
   const history = useLocation();
