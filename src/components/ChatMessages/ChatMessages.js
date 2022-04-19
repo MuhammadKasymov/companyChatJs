@@ -14,7 +14,7 @@ const ChatMessages = ({ chatData }) => {
   return (
     <Frame style={styles.container}>
       <div className={styles.messageContainer} ref={chatRef}>
-        {chatData.chatHistorie.map((el, idx) => {
+        {chatData.chatHistorie?.map((el, idx) => {
           return <MessageLine key={idx.toString()} message={el} />;
         })}
       </div>
