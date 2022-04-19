@@ -1,19 +1,24 @@
-import { data } from "../temporaryData/chatsData";
-import {
-  getLastMessages as lastMessage,
-  getChatById as getChatWithId,
-} from "../temporaryData/lastChatData";
+import axios from "axios";
+import { URL_SERVER, URL_LAST_MESSAGES } from "../constants/server";
 
-//Todo: связать с беком
-export const getChats = async () => {
-  return data;
-};
+export const getLastMessages = async (userId) => {
+  let lastMessages = [];
+  const reqBody = { userId: userId };
 
-//Todo: связать с беком
-export const getLastMessages = async () => {
-  return lastMessage();
+  await axios
+    .post(URL_SERVER + URL_LAST_MESSAGES, reqBody)
+    .then((res) => {
+      if (res.data) {
+        lastMessages = res.data;
+      }
+    })
+    .catch((err) => {
+      console.log();
+    });
+
+  return lastMessages;
 };
 
 export const connectToChatById = async (chatId) => {
-  return getChatWithId(chatId);
+  return [];
 };
