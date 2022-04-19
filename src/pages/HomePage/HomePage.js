@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./HomePage.module.scss";
-import { getChats, getLastMessages } from "../../controllers/chatController";
+import { getLastMessages } from "../../controllers/chatController";
 import ChooseChat from "../../components/ChooseChat/ChooseChat";
 import Chat from "../../components/Chat/Chat";
 import { WS_SERVER } from "../../constants/server";
@@ -10,7 +10,6 @@ class HomePage extends React.Component {
     NeadLoad: true,
     isConnWS: false,
     lastMessagesData: [{ id: -1, lastMessage: "", date: 0 }],
-    chatsData: [{}],
   };
 
   async componentDidMount() {
@@ -41,13 +40,12 @@ class HomePage extends React.Component {
     }
   };
 
+
   uploadData = async () => {
     const lastMessages = await getLastMessages();
-    const chats = await getChats();
     this.setState({
       NeadLoad: false,
       lastMessagesData: lastMessages,
-      chatsData: chats,
     });
   };
 
