@@ -5,6 +5,9 @@ import Frame from "../Frame/Frame";
 
 const ChatMessages = ({ chatData }) => {
   const chatRef = useRef();
+  const chatHistory = chatData.chatHistory
+    ? JSON.parse(chatData.chatHistory)
+    : [];
 
   useEffect(() => {
     const scrollHeightComponent = chatRef.current.scrollHeight;
@@ -14,7 +17,7 @@ const ChatMessages = ({ chatData }) => {
   return (
     <Frame style={styles.container}>
       <div className={styles.messageContainer} ref={chatRef}>
-        {chatData.chatHistorie?.map((el, idx) => {
+        {chatHistory.map((el, idx) => {
           return <MessageLine key={idx.toString()} message={el} />;
         })}
       </div>
