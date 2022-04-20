@@ -47,7 +47,6 @@ class HomePage extends React.Component {
 
   uploadData = async () => {
     const lastMessages = await getLastMessages(this.props.auth.id);
-    console.log(lastMessages);
     this.setState({
       NeadLoad: false,
       lastMessagesData: lastMessages,
