@@ -1,12 +1,12 @@
 import axios from "axios";
-import { URL_SERVER, URL_LAST_MESSAGES } from "../constants/server";
+import { URL_SERVER, ROUTE_LAST_MESSAGES } from "../constants/server";
 
 export const getLastMessages = async (userId) => {
   let lastMessages = [];
   const reqBody = { userId: userId };
 
   await axios
-    .post(URL_SERVER + URL_LAST_MESSAGES, reqBody)
+    .post(URL_SERVER + ROUTE_LAST_MESSAGES, reqBody)
     .then((res) => {
       if (res.data) {
         lastMessages = res.data;
