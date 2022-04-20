@@ -1,5 +1,9 @@
 import axios from "axios";
-import { URL_SERVER, ROUTE_LAST_MESSAGES } from "../constants/server";
+import {
+  URL_SERVER,
+  ROUTE_LAST_MESSAGES,
+  ROUTE_CHAT_DATA,
+} from "../constants/server";
 
 export const getLastMessages = async (userId) => {
   let lastMessages = [];
@@ -19,6 +23,20 @@ export const getLastMessages = async (userId) => {
   return lastMessages;
 };
 
-export const connectToChatById = async (chatId) => {
-  return [];
+export const getChatData = async (chatId, userId) => {
+  let chatData = {};
+  const reqBody = { userId, chatId };
+
+  await axios
+    .post(URL_SERVER + ROUTE_CHAT_DATA, reqBody)
+    .then((res) => {
+      if (res.data) {
+        chatData = res.data;
+      }
+    })
+    .catch((err) => {
+      console.log();
+    });
+
+  return chatData;
 };

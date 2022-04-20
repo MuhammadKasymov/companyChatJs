@@ -5,3 +5,4 @@ export const CHECK_ROUTE_USER_EMAIL = "/api/check/user/email";
 export const CHECK_ROUTE_USER_LOGIN = "/api/check/user/login";
 export const ROUTE_AUTH = "/api/auth";
 export const ROUTE_LAST_MESSAGES = "/api/chat/headers";
+export const ROUTE_CHAT_DATA = "/api/chat/data";

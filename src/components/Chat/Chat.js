@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import styles from "./Chat.module.scss";
 import ChatMessages from "../ChatMessages/ChatMessages";
 import TextInput from "../TextInput/TextInput";
-import { connectToChatById } from "../../controllers/chatController";
+import { getChatData } from "../../controllers/chatController";
 
 class Chat extends React.Component {
   state = {
@@ -21,7 +21,8 @@ class Chat extends React.Component {
 
   uploadData = async () => {
     const chatId = this.props.chatId;
-    const chatData = await connectToChatById(chatId);
+    const userId = this.props.auth.id;
+    const chatData = await getChatData(chatId, userId);
 
     this.setState({
       chatData: chatData || {},
