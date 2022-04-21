@@ -8,6 +8,7 @@ const authUser = async (authData) => {
     goodAuth: false,
     notExistUser: false,
     userData: initialSelfInformationState,
+    adminChatId: -1,
   };
 
   const isLogin = !isEmail(authData.login);
@@ -26,9 +27,7 @@ const authUser = async (authData) => {
     .then((res) => {
       const result = res.data;
       if (result) {
-        data.goodAuth = result.goodAuth;
-        data.notExistUser = result.notExistUser;
-        data.userData = result.userData;
+        data = result;
       }
     })
     .catch((err) => {

@@ -15,7 +15,7 @@ import {
 import authUser from "../../controllers/authController";
 import { isEmptyString } from "../../common/validations/stringValidations";
 import { setAuth } from "../../store/action-creators/auth";
-import { chatRoute, registrationRoute } from "../../constants/routePath";
+import { chatRouteNoId, registrationRoute } from "../../constants/routePath";
 
 class AuthorizationPage extends Component {
   state = {
@@ -26,7 +26,7 @@ class AuthorizationPage extends Component {
       password: null,
     },
     isRedirect: false,
-    redirectPath: chatRoute,
+    redirectPath: chatRouteNoId,
   };
 
   constructor({ props }) {
@@ -65,14 +65,16 @@ class AuthorizationPage extends Component {
   }
 
   redirectTo(path) {
-    this.setState({ isRedirect: true, path: path });
+    this.setState({ isRedirect: true, redirectPath: path });
   }
 
   confirmData = async () => {
     const { errorState, ...authData } = this.state;
     const isValid = await this.isValidInputs();
     if (!isValid) return;
-    const { goodAuth, notExistUser, userData } = await authUser(authData);
+    const { goodAuth, notExistUser, userData, adminChatId } = await authUser(
+      authData
+    );
     if (notExistUser) {
       this.setState({
         errorState: { password: null, login: NOT_EXIST_USER },
@@ -83,9 +85,7 @@ class AuthorizationPage extends Component {
       });
     } else {
       this.props.setAuth(userData);
-      this.setState({
-        isRedirect: true,
-      });
+      this.redirectTo(chatRouteNoId + adminChatId);
     }
   };
 
