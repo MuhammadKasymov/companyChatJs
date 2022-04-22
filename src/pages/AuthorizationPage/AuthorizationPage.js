@@ -15,6 +15,7 @@ import {
 import authUser from "../../controllers/authController";
 import { isEmptyString } from "../../common/validations/stringValidations";
 import { setAuth } from "../../store/action-creators/auth";
+import { setCurrentChatId } from "../../store/action-creators/temporaryData";
 import { chatRouteNoId, registrationRoute } from "../../constants/routePath";
 
 class AuthorizationPage extends Component {
@@ -85,6 +86,7 @@ class AuthorizationPage extends Component {
       });
     } else {
       this.props.setAuth(userData);
+      this.props.setCurrentChatId(adminChatId);
       this.redirectTo(chatRouteNoId + adminChatId);
     }
   };
@@ -136,6 +138,6 @@ class AuthorizationPage extends Component {
 }
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ setAuth }, dispatch);
+  bindActionCreators({ setAuth, setCurrentChatId }, dispatch);
 
 export default connect(null, mapDispatchToProps)(AuthorizationPage);
