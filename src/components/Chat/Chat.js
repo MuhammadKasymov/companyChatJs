@@ -20,7 +20,7 @@ class Chat extends React.Component {
   }
 
   uploadData = async () => {
-    const chatId = this.props.chatId;
+    const chatId = this.props.tempData.chatId;
     const userId = this.props.auth.id;
     const chatData = await getChatData(chatId, userId);
 
@@ -55,8 +55,8 @@ class Chat extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { auth } = state;
-  return { auth };
+  const { auth, tempData } = state;
+  return { auth, tempData };
 };
 
 export default connect(mapStateToProps, null)(Chat);
