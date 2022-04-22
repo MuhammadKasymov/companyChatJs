@@ -1,6 +1,6 @@
 import React from "react";
 import RedirectWrapper from "../../components/RedirectWrapper/RedirectWrapper";
-import { chatRoute, authRoute } from "../../constants/routePath";
+import { chatRouteNoId, authRoute } from "../../constants/routePath";
 import {USER_DATA, LAST_CHAT_ID} from '../../constants/localStorageKeys';
 
 const InitialPage = () => {
@@ -9,7 +9,7 @@ const InitialPage = () => {
   const localAuthData = localStrAuthData ? JSON.parse(localStrAuthData) : null;
   const isAuth = Number(localAuthData?.id) && Number(localLastChatId);
   console.log(localAuthData?.id)
-  const baseUrl = isAuth ? chatRoute + localLastChatId : authRoute;
+  const baseUrl = isAuth ? chatRouteNoId + localLastChatId : authRoute;
 
   return <RedirectWrapper path={baseUrl} isRedirect={true} />;
 };
