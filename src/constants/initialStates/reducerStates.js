@@ -7,7 +7,9 @@ export const initialSelfInformationState = {
   email: "",
 };
 
-export const lastChatId = { id: -1 };
+export const initialTempData = {
+  chatId: -1,
+};
 
 export const token = {
   token: "",
