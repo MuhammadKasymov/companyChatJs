@@ -6,6 +6,7 @@ import RedirectWrapper from "../../components/RedirectWrapper/RedirectWrapper";
 import Frame from "../../components/Frame/Frame";
 import InputWithHeader from "../../components/InputWithHeader/InputWithHeader";
 import { setAuth } from "../../store/action-creators/auth";
+import { setCurrentChatId } from "../../store/action-creators/temporaryData";
 import userRegistrationValidations from "../../common/validations/userRegistrationValidations";
 import { getFormatedTime } from "../../common/time";
 import { registrUser } from "../../controllers/registrationController";
@@ -19,7 +20,7 @@ import { getDateType } from "../../constants/types/timeUtil";
 import { regInputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
 import { inputTypes } from "../../constants/types/inputTypes";
 import { errorStateInputs } from "../../constants/initialStates/userRegistrationStates";
-import { chatRoute, authRoute } from "../../constants/routePath";
+import { chatRouteNoId, authRoute } from "../../constants/routePath";
 
 class UserRegistrationPage extends Component {
   state = {
@@ -32,7 +33,7 @@ class UserRegistrationPage extends Component {
     repeatedPassword: "",
     email: "",
     isRedirect: false,
-    redirectPath: chatRoute,
+    redirectPath: chatRouteNoId,
     errorStateInputs: errorStateInputs,
   };
 
@@ -92,16 +93,27 @@ class UserRegistrationPage extends Component {
       this.state;
     const { password, ...selfInfo } = regData;
     const regInputTypesList = Object.keys(regData);
-    await regInputTypesList.forEach((el) => this.validInput(el, regData[el]));
+
+    for (let i = 0; i < regInputTypesList.length; i++) {
+      const el = regInputTypesList[i];
+      await this.validInput(el, regData[el]);
+    }
     regInputTypesList.forEach((el) => {
       if (errorStateInputs[el] != null) isExactly = false;
     });
-
     if (isExactly) {
       regData.registrationDate = getFormatedTime(getDateType.OD);
-      const isSuccessReg = await registrUser(regData);
-      isSuccessReg && this.props.setAuth(selfInfo);
-      isSuccessReg && (await this.setState({ isRedirect: true }));
+      const regResult = await registrUser(regData);
+      if (regResult.isSuccess) {
+        console.log(regResult)
+        selfInfo.id = regResult.userId; 
+        this.props.setCurrentChatId(regResult.adminChatId);
+        this.props.setAuth(selfInfo);
+        this.setState({
+          isRedirect: true,
+          redirectPath: chatRouteNoId + regResult.adminChatId,
+        });
+      }
     }
   };
 
@@ -190,6 +202,6 @@ class UserRegistrationPage extends Component {
 }
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ setAuth }, dispatch);
+  bindActionCreators({ setAuth, setCurrentChatId }, dispatch);
 
 export default connect(null, mapDispatchToProps)(UserRegistrationPage);

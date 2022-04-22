@@ -7,19 +7,24 @@ import {
 } from "../constants/server";
 
 export const registrUser = async (userData) => {
-  let isSuccess = false;
+  const data = {
+    isSuccess: false,
+    adminChatId: -1,
+  };
   await axios
     .post(URL_SERVER + ROUTE_USER_NEW, userData)
     .then((res) => {
       const result = res.data;
       if (result) {
-        isSuccess = true;
+        data.isSuccess = true;
+        data.adminChatId = result.adminChatId;
+        data.userId = result.userId
       }
     })
     .catch((err) => {
       console.log(err);
     });
-  return isSuccess;
+  return data;
 };
 
 export const checkEmail = async (email) => {
