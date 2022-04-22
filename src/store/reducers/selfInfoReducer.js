@@ -7,7 +7,9 @@ export const selfInfoReducer = (
 ) => {
   switch (action.type) {
     case AuthActionTypes.SET_AUTH_DATA:
-      return {...state, ...action.payload}
+      //Todo: delete it, and create good jwt access..
+      localStorage.setItem("userData", ...action.payload);
+      return { ...state, ...action.payload };
     default:
       return state;
   }
