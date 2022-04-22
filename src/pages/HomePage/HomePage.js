@@ -4,6 +4,7 @@ import { getLastMessages } from "../../controllers/chatController";
 import ChooseChat from "../../components/ChooseChat/ChooseChat";
 import Chat from "../../components/Chat/Chat";
 import { WS_SERVER } from "../../constants/server";
+import { USER_DATA } from "../../constants/localStorageKeys";
 import { connect } from "react-redux";
 
 class HomePage extends React.Component {
@@ -46,7 +47,8 @@ class HomePage extends React.Component {
   };
 
   uploadData = async () => {
-    const lastMessages = await getLastMessages(this.props.auth.id);
+    const authData = JSON.parse(localStorage.getItem(USER_DATA));
+    const lastMessages = await getLastMessages(authData.id);
     this.setState({
       NeadLoad: false,
       lastMessagesData: lastMessages,
