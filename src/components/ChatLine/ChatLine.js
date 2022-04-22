@@ -1,28 +1,40 @@
 import * as React from "react";
 import styles from "./ChatLine.module.scss";
 import { addTripleDot } from "../../common/composeString";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentChatId } from "../../store/action-creators/temporaryData";
+import { useNavigate } from "react-router-dom";
+import { chatRouteNoId } from "../../constants/routePath";
 
-//Todo: получать последнее сообщение
-// и выбранный чат из redux из redux;
-const ChatLine = ({ isChoosed, name, lastMessage }) => {
-  const msgText = addTripleDot(lastMessage.messageText, 10);
-  //Todo: изменять текущий чат в redux
+const ChatLine = ({ chatId, name, lastMessage }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const tempData = useSelector((state) => state.tempData);
+  const isChoosed = chatId === Number(tempData.chatId);
+  let msgText = "";
+  if (lastMessage) {
+    msgText = addTripleDot(lastMessage.messageText, 10);
+  }
+
+  const onPress = () => {
+    dispatch(setCurrentChatId({ chatId }));
+    navigate(chatRouteNoId + chatId);
+  };
+
   return (
-    // <Link>
-      <div
-        // Todo: добавить анимацию выбора чата
-        className={`${styles.container} ${isChoosed ? styles.bgColor : ""}`}
-      >
-        <div className={styles.ico}>
-          <p>{name.charAt(0)}</p>
-        </div>
-        <div className={styles.infDiv}>
-          <p>{`Имя: ${name}`} </p>
-          <p>{`Последнeе: ${msgText}`}</p>
-        </div>
+    <div
+      onClick={onPress}
+      className={`${styles.container} ${isChoosed ? styles.bgColor : ""}`}
+    >
+      <div className={styles.ico}>
+        <p>{name.charAt(0)}</p>
       </div>
-    // </Link>
+      <div className={styles.infDiv}>
+        <p>{`Имя: ${name}`} </p>
+        {msgText && <p>{`Последнeе: ${msgText}`}</p>}
+        {!msgText && <p>Пустая история чата...</p>}
+      </div>
+    </div>
   );
 };
 
