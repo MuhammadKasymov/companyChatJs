@@ -7,7 +7,7 @@ export const selfInfoReducer = (
 ) => {
   switch (action.type) {
     case AuthActionTypes.SET_AUTH_DATA:
-      return {...state, ...action.payload}
+      return { ...state, ...action.payload };
     default:
       return state;
   }

@@ -7,8 +7,9 @@ export const initialSelfInformationState = {
   email: "",
 };
 
-//Todo: Прописать в редаксе типы
-export const lastChatId = {};
+export const initialTempData = {
+  chatId: -1,
+};
 
 export const token = {
   token: "",
