@@ -61,7 +61,7 @@ class HomePage extends React.Component {
         {!this.state.NeadLoad && (
           <div className={styles.container}>
             <ChooseChat chatsData={this.state.lastMessagesData} />
-            <Chat chatId={0} />
+            <Chat />
           </div>
         )}
       </>
