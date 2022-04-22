@@ -4,10 +4,14 @@
   width: calc(100% - 20px);
   margin: 10px auto;
   border-radius: 25px;
+  background-size: 200% 100%;
+  transition: background-position 0.4s ease;
+  background-image: linear-gradient(to right, transparent 50%, rgba(255, 255, 255, 0.3) 50%);
+  transition: background-position 0.2s ease;
 }
 
 .bgColor {
-  background: rgba(255, 255, 255, 0.3);
+  background-position: 100% 0;
 }
 
 .ico {
