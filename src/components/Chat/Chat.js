@@ -9,7 +9,7 @@ import { wsReqTypes } from "../../constants/types/wsTypes";
 class Chat extends React.Component {
   state = {
     chatId: -1,
-    chatData: [],
+    chatData: "",
     NeadLoad: true,
   };
 
@@ -23,20 +23,40 @@ class Chat extends React.Component {
 
   async componentDidUpdate() {
     const chatId = this.props.tempData.chatId;
-    const userId = this.props.auth.id;
     if (chatId !== this.state.chatId) {
-      const chatData = await getChatData(chatId, userId);
-      this.setState({
-        chatId: chatId,
-        chatData: chatData || {},
-      });
+      this.setState({ NeadLoad: true, chatId: chatId });
+      await this.uploadData();
     }
+    await this.includeNewMessage();
   }
+
+  includeNewMessage = async () => {
+    const chatId = this.props.tempData.chatId;
+    const lastMessages = this.props.tempData.lastMessagesData;
+    const indexOfCurrentChat = lastMessages.findIndex(
+      (el) => el.id.toString() === chatId.toString()
+    );
+    const lastMessageOfStorage = lastMessages[indexOfCurrentChat]?.lastMessage;
+    const currentChatHistory = this.state.chatData?.chatHistory || [];
+    const currentLastMessageIndex = currentChatHistory.length - 1;
+    const currentLastMessage = currentChatHistory[currentLastMessageIndex];
+    if (lastMessageOfStorage.id !== currentLastMessage.id) {
+      currentChatHistory.push(lastMessageOfStorage);
+      const newChatData = {
+        ...this.state.chatData,
+        chatHistory: currentChatHistory,
+      };
+      this.setState({ chatData: newChatData });
+    }
+  };
 
   uploadData = async () => {
     const chatId = this.props.tempData.chatId;
     const userId = this.props.auth.id;
     const chatData = await getChatData(chatId, userId);
+    chatData.chatHistory = chatData.chatHistory
+      ? JSON.parse(chatData.chatHistory)
+      : [];
 
     this.setState({
       chatId: chatId,
@@ -55,14 +75,13 @@ class Chat extends React.Component {
 
   render() {
     return (
-      <>
-        {!this.state.NeadLoad && (
-          <div className={styles.container}>
-            <ChatMessages chatData={this.state.chatData} />
-            <TextInput sendMsg={this.sendMessage} />
-          </div>
-        )}
-      </>
+      <div className={styles.container}>
+        <ChatMessages
+          isLoading={this.state.NeadLoad}
+          chatData={this.state.chatData}
+        />
+        <TextInput sendMsg={this.sendMessage} />
+      </div>
     );
   }
 }

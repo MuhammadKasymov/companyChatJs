@@ -3,12 +3,10 @@ import styles from "./ChatMessages.module.scss";
 import MessageLine from "../MessageLine/MessageLine";
 import Frame from "../Frame/Frame";
 
-const ChatMessages = ({ chatData }) => {
+const ChatMessages = ({ chatData, isLoading }) => {
   const chatRef = useRef();
-  const chatHistory = chatData.chatHistory
-    ? JSON.parse(chatData.chatHistory)
-    : [];
-  const usersData = chatData.usersData;
+  const chatHistory = chatData ? chatData.chatHistory : [];
+  const usersData = chatData?.usersData;
   useEffect(() => {
     const scrollHeightComponent = chatRef.current.scrollHeight;
     chatRef.current.scrollTop = scrollHeightComponent;
@@ -17,19 +15,23 @@ const ChatMessages = ({ chatData }) => {
   return (
     <Frame style={styles.container}>
       <div className={styles.messageContainer} ref={chatRef}>
-        {chatHistory.map((el, idx) => {
-          const userDataIndex = usersData.findIndex(
-            (userData) => String(userData.id) === el.userId
-          );
-          const userData = usersData[userDataIndex];
-          return (
-            <MessageLine
-              key={el.id.toString()}
-              userData={userData}
-              message={el}
-            />
-          );
-        })}
+        {!isLoading ? (
+          chatHistory.map((el, idx) => {
+            const userDataIndex = usersData.findIndex(
+              (userData) => String(userData.id) === el.userId
+            );
+            const userData = usersData[userDataIndex];
+            return (
+              <MessageLine
+                key={el.id.toString()}
+                userData={userData}
+                message={el}
+              />
+            );
+          })
+        ) : (
+          <></>
+        )}
       </div>
     </Frame>
   );
