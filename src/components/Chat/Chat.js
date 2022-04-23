@@ -7,6 +7,7 @@ import { getChatData } from "../../controllers/chatController";
 
 class Chat extends React.Component {
   state = {
+    chatId: -1,
     chatData: [],
     NeadLoad: true,
   };
@@ -19,23 +20,34 @@ class Chat extends React.Component {
     await this.uploadData();
   }
 
+  async componentDidUpdate() {
+    const chatId = this.props.tempData.chatId;
+    const userId = this.props.auth.id;
+    if (chatId !== this.state.chatId) {
+      const chatData = await getChatData(chatId, userId);
+      this.setState({
+        chatId: chatId,
+        chatData: chatData || {},
+      });
+    }
+  }
+
   uploadData = async () => {
     const chatId = this.props.tempData.chatId;
     const userId = this.props.auth.id;
     const chatData = await getChatData(chatId, userId);
 
     this.setState({
+      chatId: chatId,
       chatData: chatData || {},
       NeadLoad: false,
     });
   };
 
   sendMessage = async (messageText) => {
-    const currentDate = new Date();
     const msg = {
       userId: this.props.auth.id,
-      date: currentDate.toString(),
-      txt: messageText.trim(),
+      messageText: messageText.trim(),
     };
     return msg;
   };
