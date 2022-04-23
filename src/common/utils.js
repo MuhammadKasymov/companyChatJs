@@ -4,12 +4,12 @@
  */
 export const isEmpty = (obj) => {
   if (obj == null) {
-    return false;
-  } else if (obj === undefined) {
-    return false;
-  } else if (obj === "") {
-    return false;
-  } else {
     return true;
+  } else if (obj === undefined) {
+    return true;
+  } else if (obj === "") {
+    return true;
+  } else {
+    return false;
   }
 };
