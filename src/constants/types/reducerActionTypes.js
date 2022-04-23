@@ -4,4 +4,5 @@ export const AuthActionTypes = {
 
 export const TemporaryDataActionTypes = {
   SET_CURRENT_CHAT_ID: "SET_CURRENT_CHAT_ID",
+  SET_LAST_MESSAGES_DATA: "SET_LAST_MESSAGES_DATA",
 };
