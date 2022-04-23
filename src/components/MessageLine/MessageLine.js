@@ -11,7 +11,7 @@ const MessageLine = ({ message, userData }) => {
   return (
     <div className={isSelf ? styles.selfMsg : styles.container}>
       <div className={styles.msgText}>
-        <p>{message.txt}</p>
+        <p>{message.messageText}</p>
         <p className={styles.date}>&nbsp;&nbsp;{messageTime}</p>
       </div>
       <div className={styles.ico}>
