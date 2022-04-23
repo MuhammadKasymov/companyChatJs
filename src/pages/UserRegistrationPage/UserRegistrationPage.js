@@ -106,7 +106,7 @@ class UserRegistrationPage extends Component {
       const regResult = await registrUser(regData);
       if (regResult.isSuccess) {
         selfInfo.id = regResult.userId;
-        this.props.setCurrentChatId({ chatId: regResult.adminChatId });
+        this.props.setCurrentChatId(regResult.adminChatId);
         this.props.setAuth(selfInfo);
         this.setState({
           isRedirect: true,

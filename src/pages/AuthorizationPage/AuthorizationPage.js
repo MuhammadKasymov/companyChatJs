@@ -86,7 +86,7 @@ class AuthorizationPage extends Component {
       });
     } else {
       this.props.setAuth(userData);
-      this.props.setCurrentChatId({chatId: adminChatId});
+      this.props.setCurrentChatId(adminChatId);
       this.redirectTo(chatRouteNoId + adminChatId);
     }
   };

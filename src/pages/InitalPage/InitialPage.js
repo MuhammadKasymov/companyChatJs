@@ -14,7 +14,7 @@ const InitialPage = () => {
   const isAuth = Number(localAuthData?.id) && Number(localLastChatId);
   let baseUrl = authRoute;
   if (isAuth) {
-    dispatch(setCurrentChatId({chatId: localLastChatId}));
+    dispatch(setCurrentChatId(localLastChatId));
     dispatch(setAuth(localAuthData));
     baseUrl = chatRouteNoId + localLastChatId;
   }

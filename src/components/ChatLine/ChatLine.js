@@ -17,7 +17,7 @@ const ChatLine = ({ chatId, name, lastMessage }) => {
   }
 
   const onPress = () => {
-    dispatch(setCurrentChatId({ chatId }));
+    dispatch(setCurrentChatId(chatId));
     navigate(chatRouteNoId + chatId);
   };
 
