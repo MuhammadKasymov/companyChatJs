@@ -7,12 +7,13 @@ import { WS_SERVER } from "../../constants/server";
 import { USER_DATA } from "../../constants/localStorageKeys";
 import { connect } from "react-redux";
 import { wsReqTypes } from "../../constants/types/wsTypes";
+import { bindActionCreators } from "redux";
+import { setLastMessagesData } from "../../store/action-creators/temporaryData";
 
 class HomePage extends React.Component {
   state = {
     NeadLoad: true,
     isConnWS: false,
-    lastMessagesData: [{ id: -1, lastMessage: "", date: 0 }],
   };
 
   wsConn = null;
@@ -46,11 +47,24 @@ class HomePage extends React.Component {
     };
   }
 
-  async componentDidUpdate() {}
+  editLastMessages = (newMessageData) => {
+    const lastMessagesArr = this.props.tempData?.lastMessagesData || [];
+    const { chatId, ...newMessage } = newMessageData;
+    const newMessageChatIndex = lastMessagesArr.findIndex(
+      (el) => el.id === chatId
+    );
+    if (newMessageChatIndex !== -1) {
+      lastMessagesArr[newMessageChatIndex].lastMessage = newMessage;
+      this.props.setLastMessagesData(lastMessagesArr);
+    } else {
+      // Todo: Получить и добавить новый чат в общий массив
+    }
+  };
 
   dispathWSMessage = (msgData) => {
     switch (msgData.type) {
       case wsReqTypes.NEW_CHAT_MESSAGE:
+        this.editLastMessages(msgData.payload);
         break;
       default:
         console.log("Bad ws message type");
@@ -69,10 +83,8 @@ class HomePage extends React.Component {
   uploadData = async () => {
     const authData = JSON.parse(localStorage.getItem(USER_DATA));
     const lastMessages = await getLastMessages(authData.id);
-    this.setState({
-      NeadLoad: false,
-      lastMessagesData: lastMessages,
-    });
+    this.props.setLastMessagesData(lastMessages);
+    this.setState({ NeadLoad: false });
   };
 
   render() {
@@ -80,7 +92,7 @@ class HomePage extends React.Component {
       <>
         {!this.state.NeadLoad && (
           <div className={styles.container}>
-            <ChooseChat chatsData={this.state.lastMessagesData} />
+            <ChooseChat />
             <Chat sendMessage={this.sendMessage} />
           </div>
         )}
@@ -89,9 +101,12 @@ class HomePage extends React.Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ setLastMessagesData }, dispatch);
+
 const mapStateToProps = (state) => {
-  const { auth } = state;
-  return { auth };
+  const { auth, tempData } = state;
+  return { auth, tempData };
 };
 
-export default connect(mapStateToProps, null)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

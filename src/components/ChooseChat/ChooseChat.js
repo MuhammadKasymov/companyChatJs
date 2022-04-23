@@ -3,8 +3,10 @@ import styles from "./ChooseChat.module.scss";
 import Frame from "../Frame/Frame";
 import ChatLine from "../ChatLine/ChatLine";
 import HorizontalRule from "../../components/HorizontalRule/HorizontalRule";
+import { useSelector } from "react-redux";
 
-const ChooseChat = ({ chatsData }) => {
+const ChooseChat = () => {
+  const chatsData = useSelector((state) => state.tempData.lastMessagesData);
   return (
     <Frame style={styles.container}>
       <h1>Список чатов</h1>
@@ -17,7 +19,6 @@ const ChooseChat = ({ chatsData }) => {
           lastMessage={chatData.lastMessage}
         />
       ))}
-
     </Frame>
   );
 };
