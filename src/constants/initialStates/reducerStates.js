@@ -9,7 +9,7 @@ export const initialSelfInformationState = {
 
 export const initialTempData = {
   chatId: -1,
-  lastChatMessages: [],
+  lastMessagesData: [],
 };
 
 export const token = {

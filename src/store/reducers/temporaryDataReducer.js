@@ -6,7 +6,7 @@ export const temporaryDataReducer = (state = initialTempData, action) => {
     case TemporaryDataActionTypes.SET_CURRENT_CHAT_ID:
       return { ...state, chatId: action.payload };
     case TemporaryDataActionTypes.SET_LAST_MESSAGES_DATA:
-      return { ...state, lastChatMessages: action.payload };
+      return { ...state, lastMessagesData: action.payload };
     default:
       return state;
   }
