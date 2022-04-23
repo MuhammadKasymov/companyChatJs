@@ -6,6 +6,7 @@ import Chat from "../../components/Chat/Chat";
 import { WS_SERVER } from "../../constants/server";
 import { USER_DATA } from "../../constants/localStorageKeys";
 import { connect } from "react-redux";
+import { wsReqTypes } from "../../constants/types/wsTypes";
 
 class HomePage extends React.Component {
   state = {
@@ -13,6 +14,8 @@ class HomePage extends React.Component {
     isConnWS: false,
     lastMessagesData: [{ id: -1, lastMessage: "", date: 0 }],
   };
+
+  wsConn = null;
 
   constructor({ props }) {
     super(props);
@@ -23,26 +26,43 @@ class HomePage extends React.Component {
     await this.connectWebsocket();
   }
 
-  async connectWebsocket(userId) {
-    const conn = new WebSocket(`${WS_SERVER}/userData?userId=${userId}`);
-    conn.onopen = () => {
+  async connectWebsocket() {
+    const authData = JSON.parse(localStorage.getItem(USER_DATA));
+    this.wsConn = new WebSocket(`${WS_SERVER}/?userId=${authData.id}`);
+    this.wsConn.onopen = () => {
       this.setState({ isConnWS: true });
     };
 
-    conn.onclose = () => {
+    this.wsConn.onclose = () => {
       this.setState({ isConnWS: false });
     };
 
-    conn.onmessage = (msg) => {};
+    this.wsConn.onmessage = (msg) => {
+      const data = msg.data;
+      if (data) {
+        const objData = JSON.parse(data);
+        this.dispathWSMessage(objData);
+      }
+    };
   }
 
-  dispathMessageMSG = (msg) => {
-    switch (msg.type) {
-      case "newMessage":
+  async componentDidUpdate() {}
+
+  dispathWSMessage = (msgData) => {
+    switch (msgData.type) {
+      case wsReqTypes.NEW_CHAT_MESSAGE:
         break;
       default:
         console.log("Bad ws message type");
         break;
+    }
+  };
+
+  sendMessage = (messageType, msgData) => {
+    if (this.state.isConnWS) {
+      const sendData = { type: messageType, payload: msgData };
+      const strSendData = JSON.stringify(sendData);
+      this.wsConn.send(strSendData);
     }
   };
 
@@ -61,7 +81,7 @@ class HomePage extends React.Component {
         {!this.state.NeadLoad && (
           <div className={styles.container}>
             <ChooseChat chatsData={this.state.lastMessagesData} />
-            <Chat />
+            <Chat sendMessage={this.sendMessage} />
           </div>
         )}
       </>

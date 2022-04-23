@@ -4,6 +4,7 @@ import styles from "./Chat.module.scss";
 import ChatMessages from "../ChatMessages/ChatMessages";
 import TextInput from "../TextInput/TextInput";
 import { getChatData } from "../../controllers/chatController";
+import { wsReqTypes } from "../../constants/types/wsTypes";
 
 class Chat extends React.Component {
   state = {
@@ -44,12 +45,12 @@ class Chat extends React.Component {
     });
   };
 
-  sendMessage = async (messageText) => {
-    const msg = {
-      userId: this.props.auth.id,
-      messageText: messageText.trim(),
+  sendMessage = (msgText) => {
+    const payload = {
+      chatId: this.state.chatId,
+      messageText: msgText,
     };
-    return msg;
+    this.props.sendMessage(wsReqTypes.ADD_CHAT_MESSAGE, payload);
   };
 
   render() {

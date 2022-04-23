@@ -16,7 +16,10 @@ const TextInput = ({ sendMsg }) => {
   };
   const sendCheckedMsg = () => {
     const trimmedValue = inpValue.trim();
-    isEmpty(trimmedValue) && sendMsg(inpValue);
+    if (!isEmpty(trimmedValue)) {
+      sendMsg(inpValue);
+      setInpValue("");
+    }
   };
 
   return (
