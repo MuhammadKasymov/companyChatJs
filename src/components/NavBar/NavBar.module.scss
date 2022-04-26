@@ -1,0 +1,55 @@
+@import "../../styles/backgroudns.scss";
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/utils.scss";
+
+.container {
+  display: flex;
+  padding: 0 15px;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  @extend %bg_component;
+  border: 5px solid $color-bg-container;
+  border-top: 0px;
+  width: 260px;
+  height: 50px;
+  border-radius: 0px 0px 5px 5px;
+  right: calc((100% - 1280px) / 10);
+}
+
+.ico {
+  background: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  color: blue;
+  font-size: 22px;
+  font-weight: 400;
+  @extend %unselectibal;
+}
+
+.userNameText {
+  @extend %font_h2;
+  font-size: 20px;
+  @extend %unselectibal;
+}
+
+.arrow {
+  @extend %font_h2;
+  font-size: 24px;
+  line-height: 10px;
+  @extend %unselectibal;
+}
+
+.arrowDown {
+  margin: 0px 0 10px 6px;
+}
+
+.arrowTop {
+  margin: 13px 0 0px 6px;
+}
