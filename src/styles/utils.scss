@@ -5,6 +5,10 @@
   }
 }
 
+%disableScroll {
+  overflow: hidden;
+}
+
 %unselectibal {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
