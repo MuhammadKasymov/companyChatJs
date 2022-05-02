@@ -52,7 +52,7 @@ class HomePage extends React.Component {
     const lastMessagesArr = this.props.tempData?.lastMessagesData || [];
     const { chatId, ...newMessage } = newMessageData;
     const newMessageChatIndex = lastMessagesArr.findIndex(
-      (el) => el.id === chatId
+      (el) => el.id.toString() === chatId.toString()
     );
     if (newMessageChatIndex !== -1) {
       lastMessagesArr[newMessageChatIndex].lastMessage = newMessage;
