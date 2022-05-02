@@ -10,6 +10,7 @@ const ChatLine = ({ chatId, name, lastMessage }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const tempData = useSelector((state) => state.tempData);
+  const currentChatId = tempData.chatId;
   const isChoosed = chatId === Number(tempData.chatId);
   let msgText = "";
   if (lastMessage) {
@@ -17,8 +18,10 @@ const ChatLine = ({ chatId, name, lastMessage }) => {
   }
 
   const onPress = () => {
-    dispatch(setCurrentChatId(chatId));
-    navigate(chatRouteNoId + chatId);
+    if (chatId !== currentChatId) {
+      dispatch(setCurrentChatId(chatId));
+      navigate(chatRouteNoId + chatId);
+    }
   };
 
   return (
