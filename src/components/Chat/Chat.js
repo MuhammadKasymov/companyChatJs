@@ -26,8 +26,9 @@ class Chat extends React.Component {
     if (chatId !== this.state.chatId) {
       this.setState({ NeadLoad: true, chatId: chatId });
       await this.uploadData();
+    } else {
+      await this.includeNewMessage();
     }
-    await this.includeNewMessage();
   }
 
   includeNewMessage = async () => {
@@ -40,7 +41,7 @@ class Chat extends React.Component {
     const currentChatHistory = this.state.chatData?.chatHistory || [];
     const currentLastMessageIndex = currentChatHistory.length - 1;
     const currentLastMessage = currentChatHistory[currentLastMessageIndex];
-    if (lastMessageOfStorage.id !== currentLastMessage.id) {
+    if (lastMessageOfStorage?.id !== currentLastMessage?.id) {
       currentChatHistory.push(lastMessageOfStorage);
       const newChatData = {
         ...this.state.chatData,
