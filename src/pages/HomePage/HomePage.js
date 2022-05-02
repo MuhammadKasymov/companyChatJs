@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./HomePage.module.scss";
 import { getLastMessages } from "../../controllers/chatController";
 import ChooseChat from "../../components/ChooseChat/ChooseChat";
+import NavBar from "../../components/NavBar/NavBar";
 import Chat from "../../components/Chat/Chat";
 import { WS_SERVER } from "../../constants/server";
 import { USER_DATA } from "../../constants/localStorageKeys";
@@ -92,6 +93,7 @@ class HomePage extends React.Component {
       <>
         {!this.state.NeadLoad && (
           <div className={styles.container}>
+            <NavBar />
             <ChooseChat />
             <Chat sendMessage={this.sendMessage} />
           </div>

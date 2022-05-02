@@ -4,7 +4,6 @@ import AuthorizationPage from "./pages/AuthorizationPage/AuthorizationPage";
 import InitialPage from "./pages/InitalPage/InitialPage";
 import UserRegistrationPage from "./pages/UserRegistrationPage/UserRegistrationPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar/NavBar";
 import {
   baseUrl,
   chatRoute,
@@ -14,7 +13,6 @@ import {
 
 const AppRouter = () => (
   <BrowserRouter>
-    <NavBar />
     <Routes>
       <Route path={baseUrl} element={<InitialPage />} />
       <Route path={chatRoute} element={<HomePage />} />
