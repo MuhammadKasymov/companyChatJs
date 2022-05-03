@@ -12,39 +12,41 @@ const NavBar = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <div
-      className={`${styles.container} ${isOpen && styles.openContainer}`}
-      onClick={changeVisobility}
-    >
-      <div className={styles.row}>
-        <div className={styles.ico}>{selfData.login?.charAt(0)}</div>
-        <p className={styles.userNameText}>
-          {`${selfData?.firstName} ${selfData?.secondName}`}
-        </p>
-        <p
-          className={`${styles.arrow} 
+    <div className={`${styles.shadowContainer}  ${isOpen && styles.shadowIt}`}>
+      <div
+        className={`${styles.container} ${isOpen && styles.openContainer}`}
+        onClick={changeVisobility}
+      >
+        <div className={styles.row}>
+          <div className={styles.ico}>{selfData.login?.charAt(0)}</div>
+          <p className={styles.userNameText}>
+            {`${selfData?.firstName} ${selfData?.secondName}`}
+          </p>
+          <p
+            className={`${styles.arrow} 
           ${isOpen ? styles.arrowTop : styles.arrowDown}`}
-        >
-          {isOpen ? "⌃" : "⌄"}
-        </p>
+          >
+            {isOpen ? "⌃" : "⌄"}
+          </p>
+        </div>
+        <HorizontalRule />
+        <NavLink className={styles.navRow} to="/profile">
+          <p className={styles.userNameText}>Профиль</p>
+        </NavLink>
+        <HorizontalRule />
+        <NavLink className={styles.navRow} to="/friends">
+          <p className={styles.userNameText}>Друзья</p>
+        </NavLink>
+        <HorizontalRule />
+        <NavLink className={styles.navRow} to="/newChat">
+          <p className={styles.userNameText}>Новый чат</p>
+        </NavLink>
+        <HorizontalRule />
+        <NavLink className={styles.navRow} to="/settings">
+          <p className={styles.userNameText}>Настройки</p>
+        </NavLink>
+        <HorizontalRule />
       </div>
-      <HorizontalRule />
-      <NavLink className={styles.navRow} to="/profile">
-        <p className={styles.userNameText}>Профиль</p>
-      </NavLink>
-      <HorizontalRule />
-      <NavLink className={styles.navRow} to="/friends">
-        <p className={styles.userNameText}>Друзья</p>
-      </NavLink>
-      <HorizontalRule />
-      <NavLink className={styles.navRow} to="/newChat">
-        <p className={styles.userNameText}>Новый чат</p>
-      </NavLink>
-      <HorizontalRule />
-      <NavLink className={styles.navRow} to="/settings">
-        <p className={styles.userNameText}>Настройки</p>
-      </NavLink>
-      <HorizontalRule />
     </div>
   );
 };
