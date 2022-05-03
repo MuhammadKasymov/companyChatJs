@@ -12,7 +12,7 @@ const NavBar = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className={`${styles.shadowContainer}  ${isOpen && styles.shadowIt}`}>
+    <div className={isOpen ? styles.shadowIt : {}}>
       <div
         className={`${styles.container} ${isOpen && styles.openContainer}`}
         onClick={changeVisobility}
