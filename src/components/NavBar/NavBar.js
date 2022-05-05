@@ -4,7 +4,7 @@ import { USER_DATA } from "../../constants/localStorageKeys";
 import { NavLink } from "react-router-dom";
 import HorizontalRule from "../HorizontalRule/HorizontalRule";
 
-const NavBar = () => {
+const NavBar = ({ onRedirect }) => {
   const [isOpen, setIsOpen] = useState(false);
   const selfDataStr = localStorage.getItem(USER_DATA);
   const selfData = JSON.parse(selfDataStr);
@@ -30,19 +30,19 @@ const NavBar = () => {
           </p>
         </div>
         <HorizontalRule />
-        <NavLink className={styles.navRow} to="/profile">
+        <NavLink onClick={onRedirect} className={styles.navRow} to="/profile">
           <p className={styles.userNameText}>Профиль</p>
         </NavLink>
         <HorizontalRule />
-        <NavLink className={styles.navRow} to="/friends">
+        <NavLink onClick={onRedirect} className={styles.navRow} to="/friends">
           <p className={styles.userNameText}>Друзья</p>
         </NavLink>
         <HorizontalRule />
-        <NavLink className={styles.navRow} to="/newChat">
+        <NavLink onClick={onRedirect} className={styles.navRow} to="/newChat">
           <p className={styles.userNameText}>Новый чат</p>
         </NavLink>
         <HorizontalRule />
-        <NavLink className={styles.navRow} to="/settings">
+        <NavLink onClick={onRedirect} className={styles.navRow} to="/settings">
           <p className={styles.userNameText}>Настройки</p>
         </NavLink>
         <HorizontalRule />
