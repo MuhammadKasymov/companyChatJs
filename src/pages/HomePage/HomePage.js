@@ -14,7 +14,6 @@ import { setLastMessagesData } from "../../store/action-creators/temporaryData";
 class HomePage extends React.Component {
   state = {
     NeadLoad: true,
-    isConnWS: false,
   };
 
   wsConn = null;
@@ -28,23 +27,22 @@ class HomePage extends React.Component {
     await this.connectWebsocket();
   }
 
-  async connectWebsocket() {
+  onRedirect = () => {
+    this.wsConn.close();
+  };
+
+  async connectWebsocket(sendWithOpen) {
     const authData = JSON.parse(localStorage.getItem(USER_DATA));
     this.wsConn = new WebSocket(`${WS_SERVER}/?userId=${authData.id}`);
-    this.wsConn.onopen = () => {
-      this.setState({ isConnWS: true });
-    };
-
-    this.wsConn.onclose = () => {
-      this.setState({ isConnWS: false });
-    };
-
     this.wsConn.onmessage = (msg) => {
       const data = msg.data;
       if (data) {
         const objData = JSON.parse(data);
         this.dispathWSMessage(objData);
       }
+    };
+    this.wsConn.onopen = () => {
+      sendWithOpen && this.wsConn.send(sendWithOpen);
     };
   }
 
@@ -73,11 +71,18 @@ class HomePage extends React.Component {
     }
   };
 
-  sendMessage = (messageType, msgData) => {
-    if (this.state.isConnWS) {
-      const sendData = { type: messageType, payload: msgData };
-      const strSendData = JSON.stringify(sendData);
+  sendMessage = async (messageType, msgData) => {
+    const sendData = { type: messageType, payload: msgData };
+    const strSendData = JSON.stringify(sendData);
+
+    const openStateWs = this.wsConn.__proto__?.OPEN;
+    const readyStateWs = this.wsConn.readyState;
+    const isOpenWs = openStateWs === readyStateWs;
+
+    if (isOpenWs) {
       this.wsConn.send(strSendData);
+    } else {
+      this.connectWebsocket(strSendData);
     }
   };
 
@@ -93,7 +98,7 @@ class HomePage extends React.Component {
       <>
         {!this.state.NeadLoad && (
           <div className={styles.container}>
-            <NavBar />
+            <NavBar onRedirect={this.onRedirect} />
             <ChooseChat />
             <Chat sendMessage={this.sendMessage} />
           </div>
