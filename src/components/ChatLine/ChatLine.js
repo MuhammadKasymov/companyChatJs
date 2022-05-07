@@ -13,7 +13,7 @@ const ChatLine = ({ chatId, name, lastMessage }) => {
   const currentChatId = tempData.chatId;
   const isChoosed = chatId === Number(tempData.chatId);
   let msgText = "";
-  if (lastMessage) {
+  if (lastMessage?.messageText) {
     msgText = addTripleDot(lastMessage.messageText, 10);
   }
 
