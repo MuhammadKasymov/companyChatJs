@@ -7,3 +7,4 @@ export const ROUTE_AUTH = "/api/auth";
 export const ROUTE_LAST_MESSAGES = "/api/chat/headers";
 export const ROUTE_CHAT_DATA = "/api/chat/data";
 export const ROUTE_FRIENDS_NEW = "/api/friends/new"
+export const ROUTER_FRIEND_INVITE = "/api/friends/invite"
