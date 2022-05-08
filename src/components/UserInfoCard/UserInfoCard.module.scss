@@ -1,0 +1,56 @@
+@import "../../styles/fonts.scss";
+@import "../../styles/utils.scss";
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: inherit;
+  padding: 0px 5px;
+}
+
+.openContainer {
+  width: 100%;
+}
+
+.infoText {
+  @extend %font_reg_link;
+  font-size: 19px;
+  color: #2c526f;
+}
+
+.openLogin {
+  margin: 2px 0;
+  width: inherit;
+  text-align: center;
+  font-size: 24px;
+  @extend %font_h2;
+}
+
+.allInfoContainer {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: 22px;
+  gap: 2px 5px;
+  overflow: scroll;
+  animation-duration: 0.3s;
+  animation-name: goodShow;
+  height: 220px;
+
+  h2 {
+    @extend %font_h2;
+    color: #38688d;
+    font-size: 20px;
+  }
+
+  @extend %hideScrollbar;
+}
+
+@keyframes goodShow {
+  from {
+    height: 50px;
+  }
+  to {
+    height: 220px;
+  }
+}
