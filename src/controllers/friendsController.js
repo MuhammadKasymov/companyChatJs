@@ -14,7 +14,6 @@ export const getNewFriendsData = async (userId, filterData) => {
     maxAge: filterData?.maxAge || null,
     name: filterData?.name || null,
   };
-  console.log(reqBody);
   await axios
     .post(URL_SERVER + ROUTE_FRIENDS_NEW, reqBody)
     .then((res) => {
