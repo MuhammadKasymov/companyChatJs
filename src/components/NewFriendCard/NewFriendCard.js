@@ -16,7 +16,7 @@ const NewFriendLine = ({ data }) => {
     if (!isSend) {
       const friendId = data.id;
       const isSuccess = await inviteFriend(selfId, friendId);
-      isSuccess && setIsSend(false);
+      isSuccess && setIsSend(true);
     }
   };
 
