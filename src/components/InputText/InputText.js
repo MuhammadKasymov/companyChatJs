@@ -22,13 +22,11 @@ const InputText = ({
     const value = getMaskedInput(txt.target.value, inputType);
     const trimmedValue = value.trim();
     !isTyped && setIsTyped(true);
-    onInput(trimmedValue);
+    onInput && onInput(trimmedValue);
     setValue(value);
   };
 
-  const onClick = () => {
-    setIsChoosed(true);
-  };
+  const onClick = () => setIsChoosed(true);
   const onBlur = () => setIsChoosed(false);
   const isUnreadedInd = () => !isChoosed && !errorText && !isTyped;
   const isChoosedInd = () => isChoosed && !errorText && !isTyped;
