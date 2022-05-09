@@ -10,6 +10,7 @@ const InputText = ({
   maxLength,
   inputType,
   onKeyUp,
+  inputStyle,
 }) => {
   const [isChoosed, setIsChoosed] = useState(false);
   const [isTyped, setIsTyped] = useState(false);
@@ -43,7 +44,7 @@ const InputText = ({
         value={value}
         onKeyUp={onKeyUp}
         type={getInputType()}
-        className={styles.inputText}
+        className={`${styles.inputText} ${inputStyle || ""}`}
       />
       {errorText && <p className={styles.errorText}>{errorText}</p>}
       {isUnreadedInd() && <div className={styles.unreadIndicator} />}
