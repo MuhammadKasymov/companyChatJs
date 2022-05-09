@@ -37,6 +37,9 @@ export const getMaskedInput = (value, inputType) => {
     case inputTypes.PHONE:
       result = getMasketPhone(value);
       break;
+    case inputTypes.NUMBERS:
+      result = getOnlyNumbers(value);
+      break;
     default:
       result = value;
   }
