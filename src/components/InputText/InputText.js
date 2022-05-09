@@ -30,6 +30,9 @@ const InputText = ({
     setIsChoosed(true);
   };
   const onBlur = () => setIsChoosed(false);
+  const isUnreadedInd = () => !isChoosed && !errorText && !isTyped;
+  const isChoosedInd = () => isChoosed && !errorText && !isTyped;
+  const isSuccessInd = () => !errorText && isTyped;
 
   return (
     <div className={`${styles.container} ${isChoosed && styles.choosedInput}`}>
@@ -45,13 +48,9 @@ const InputText = ({
         className={styles.inputText}
       />
       {errorText && <p className={styles.errorText}>{errorText}</p>}
-      {!isChoosed && !errorText && !isTyped && (
-        <div className={styles.unreadIndicator} />
-      )}
-      {isChoosed && !errorText && !isTyped && (
-        <div className={styles.choosedIndicator} />
-      )}
-      {!errorText && isTyped && <div className={styles.successIndicator} />}
+      {isUnreadedInd() && <div className={styles.unreadIndicator} />}
+      {isChoosedInd() && <div className={styles.choosedIndicator} />}
+      {isSuccessInd() && <div className={styles.successIndicator} />}
       {errorText && <div className={styles.errorIndicator} />}
     </div>
   );
