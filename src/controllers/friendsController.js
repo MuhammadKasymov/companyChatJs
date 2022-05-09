@@ -9,10 +9,12 @@ export const getNewFriendsData = async (userId, filterData) => {
   let data = [];
   const reqBody = {
     userId: userId || null,
+    login: filterData?.login || null,
     minAge: filterData?.minAge || null,
     maxAge: filterData?.maxAge || null,
     name: filterData?.name || null,
   };
+  console.log(reqBody);
   await axios
     .post(URL_SERVER + ROUTE_FRIENDS_NEW, reqBody)
     .then((res) => {
