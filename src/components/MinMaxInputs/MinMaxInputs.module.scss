@@ -1,0 +1,20 @@
+@import "../../styles/fonts.scss";
+
+.container {
+  display: flex;
+  width: 250px;
+  justify-content: space-between;
+  height: 40px;
+}
+
+.inputContainer {
+  width: 44%;
+}
+
+.sign {
+  @extend %font_h2;
+  font-size: 24px;
+  line-height: 24px;
+  margin-left: 2px;
+  margin-bottom: 3px;
+}
