@@ -3,6 +3,7 @@ import {
   URL_SERVER,
   ROUTE_FRIENDS_NEW,
   ROUTER_FRIEND_INVITE,
+  ROUTE_FRIENDS_ALL,
 } from "../constants/server";
 
 export const getNewFriendsData = async (userId, filterData) => {
@@ -49,4 +50,24 @@ export const inviteFriend = async (userId, friendId) => {
     });
 
   return isSuccess;
+};
+
+export const getFriendsData = async (userId) => {
+  let data = [];
+  const reqBody = {
+    userId: userId,
+  };
+  await axios
+    .post(URL_SERVER + ROUTE_FRIENDS_ALL, reqBody)
+    .then((res) => {
+      const result = res.data;
+      if (result) {
+        data = result.data;
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  return data;
 };
