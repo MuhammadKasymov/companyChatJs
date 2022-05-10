@@ -6,8 +6,8 @@ import { userFilter } from "../../constants/initialStates/filterStates";
 import { userFilterTypes } from "../../constants/types/pageTypes/UserFriendsFiltersConstants";
 import MinMaxInputs from "../MinMaxInputs/MinMaxInputs";
 
-const FilterUsersCard = ({ confirmFilters }) => {
-  const newFilters = Object(userFilter);
+const FilterUsersCard = ({ confirmFilters, filterData }) => {
+  const newFilters = filterData || Object(userFilter);
 
   const onConfirm = () => confirmFilters(newFilters);
   const setFilters = (typeData, value) => (newFilters[typeData] = value);
@@ -16,12 +16,14 @@ const FilterUsersCard = ({ confirmFilters }) => {
   return (
     <Frame style={styles.container}>
       <InputWithHeader
+        intialValue={newFilters.login || ""}
         style={styles.textInput}
         maxLength={18}
         onInput={typedSetFilter(userFilterTypes.login)}
         headerText={"Логин"}
       />
       <InputWithHeader
+        intialValue={newFilters.login || ""}
         style={styles.textInput}
         maxLength={18}
         onInput={typedSetFilter(userFilterTypes.name)}
@@ -30,6 +32,8 @@ const FilterUsersCard = ({ confirmFilters }) => {
       <div className={styles.ageContainer}>
         <h2 className={styles.headerText}>Возраст</h2>
         <MinMaxInputs
+          maxValue={newFilters.maxAge || ""}
+          minValue={newFilters.minAge || ""}
           onMinInput={typedSetFilter(userFilterTypes.minAge)}
           onMaxInput={typedSetFilter(userFilterTypes.maxAge)}
         />
