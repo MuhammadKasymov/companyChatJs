@@ -3,6 +3,7 @@ import styles from "./InputWithHeader.module.scss";
 import InputText from "../InputText/InputText";
 
 const InputWithHeader = ({
+  intialValue,
   style,
   headerText,
   placeholder,
@@ -16,6 +17,7 @@ const InputWithHeader = ({
     <div className={`${styles.container} ${style || ""}`}>
       <h2 className={styles.headerTxt}>{headerText}</h2>
       <InputText
+        intialValue={intialValue}
         inputType={inputType}
         errorText={errorText}
         onInput={onInput}

@@ -4,6 +4,7 @@ import styles from "./InputText.module.scss";
 import { inputTypes } from "../../constants/types/inputTypes";
 
 const InputText = ({
+  intialValue,
   onInput,
   placeholder,
   errorText,
@@ -14,7 +15,7 @@ const InputText = ({
 }) => {
   const [isChoosed, setIsChoosed] = useState(false);
   const [isTyped, setIsTyped] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(intialValue || "");
 
   const getInputType = () =>
     inputType === inputTypes.PASSWORD ? inputTypes.PASSWORD : "";
