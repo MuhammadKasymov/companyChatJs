@@ -3,6 +3,12 @@ import styles from "./NavBar.module.scss";
 import { USER_DATA } from "../../constants/localStorageKeys";
 import { NavLink } from "react-router-dom";
 import HorizontalRule from "../HorizontalRule/HorizontalRule";
+import {
+  friendsRoute,
+  profileRoute,
+  newChatRoute,
+  settingRoute,
+} from "../../constants/routePath";
 
 const NavBar = ({ onRedirect }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +18,7 @@ const NavBar = ({ onRedirect }) => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className={isOpen ? styles.shadowIt : {}}>
+    <div className={isOpen ? styles.shadowIt : ""}>
       <div
         className={`${styles.container} ${isOpen && styles.openContainer}`}
         onClick={changeVisobility}
@@ -30,19 +36,35 @@ const NavBar = ({ onRedirect }) => {
           </p>
         </div>
         <HorizontalRule />
-        <NavLink onClick={onRedirect} className={styles.navRow} to="/profile">
+        <NavLink
+          onClick={onRedirect}
+          className={styles.navRow}
+          to={profileRoute}
+        >
           <p className={styles.userNameText}>Профиль</p>
         </NavLink>
         <HorizontalRule />
-        <NavLink onClick={onRedirect} className={styles.navRow} to="/friends">
+        <NavLink
+          onClick={onRedirect}
+          className={styles.navRow}
+          to={friendsRoute}
+        >
           <p className={styles.userNameText}>Друзья</p>
         </NavLink>
         <HorizontalRule />
-        <NavLink onClick={onRedirect} className={styles.navRow} to="/newChat">
+        <NavLink
+          onClick={onRedirect}
+          className={styles.navRow}
+          to={newChatRoute}
+        >
           <p className={styles.userNameText}>Новый чат</p>
         </NavLink>
         <HorizontalRule />
-        <NavLink onClick={onRedirect} className={styles.navRow} to="/settings">
+        <NavLink
+          onClick={onRedirect}
+          className={styles.navRow}
+          to={settingRoute}
+        >
           <p className={styles.userNameText}>Настройки</p>
         </NavLink>
         <HorizontalRule />
