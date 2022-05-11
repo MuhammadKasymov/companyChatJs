@@ -1,0 +1,16 @@
+@import "../../styles/utils.scss";
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 700px;
+  height: 735px;
+  padding: 35px 15px 20px 15px;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(3, 225px);
+  grid-auto-rows: 1fr;
+  gap: 20px 15px;
+}
