@@ -15,7 +15,7 @@ import { numberReg } from "../constants/regularExpressions";
 export const addTripleDot = (str, len) => {
   let catchedString = str;
   if (str.length >= len) {
-    catchedString = str.substring(0, len) + "...";
+    catchedString = str.substring(0, len).trim() + "...";
   }
   return catchedString;
 };
