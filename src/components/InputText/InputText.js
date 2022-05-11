@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getMaskedInput } from "../../common/inputMasks";
 import styles from "./InputText.module.scss";
 import { inputTypes } from "../../constants/types/inputTypes";
@@ -15,10 +15,17 @@ const InputText = ({
 }) => {
   const [isChoosed, setIsChoosed] = useState(false);
   const [isTyped, setIsTyped] = useState(false);
-  const [value, setValue] = useState(intialValue || "");
+  const [value, setValue] = useState("");
+
+  const setInitialValue = () => {
+    intialValue && setValue(intialValue);
+    intialValue && setIsTyped(true);
+  };
 
   const getInputType = () =>
     inputType === inputTypes.PASSWORD ? inputTypes.PASSWORD : "";
+
+  useEffect(setInitialValue, [intialValue]);
 
   const onInputText = (txt) => {
     const value = getMaskedInput(txt.target.value, inputType);
