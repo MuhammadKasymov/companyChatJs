@@ -1,0 +1,47 @@
+@import "../../../../styles/fonts.scss";
+@import "../../../../styles/utils.scss";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  text-decoration: none;
+  margin-bottom: 15px;
+}
+
+.ico {
+  background: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  color: blue;
+  font-size: 22px;
+  font-weight: 400;
+  @extend %unselectibal;
+}
+
+.userNameText {
+  @extend %font_h2;
+  font-size: 20px;
+  @extend %unselectibal;
+}
+
+.arrow {
+  @extend %font_h2;
+  font-size: 24px;
+  line-height: 10px;
+  @extend %unselectibal;
+}
+
+.arrowDown {
+  margin: 0px 0 10px 6px;
+}
+
+.arrowTop {
+  margin: 13px 0 0px 6px;
+}

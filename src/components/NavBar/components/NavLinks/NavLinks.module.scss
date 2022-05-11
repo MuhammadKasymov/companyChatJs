@@ -1,0 +1,17 @@
+@import "../../../../styles/fonts.scss";
+@import "../../../../styles/utils.scss";
+
+.userNameText {
+  @extend %font_h2;
+  font-size: 20px;
+  @extend %unselectibal;
+}
+.navRow {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  top: -5px;
+  text-decoration: none;
+}
