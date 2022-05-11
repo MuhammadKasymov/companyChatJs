@@ -7,7 +7,7 @@ import { userFilterTypes } from "../../constants/types/pageTypes/UserFriendsFilt
 import MinMaxInputs from "../MinMaxInputs/MinMaxInputs";
 
 const FilterUsersCard = ({ confirmFilters, filterData }) => {
-  const newFilters = filterData || Object(userFilter);
+  const newFilters = Object(filterData) || Object(userFilter);
 
   const onConfirm = () => confirmFilters(newFilters);
   const setFilters = (typeData, value) => (newFilters[typeData] = value);
@@ -23,7 +23,7 @@ const FilterUsersCard = ({ confirmFilters, filterData }) => {
         headerText={"Логин"}
       />
       <InputWithHeader
-        intialValue={newFilters.login || ""}
+        intialValue={newFilters.name || ""}
         style={styles.textInput}
         maxLength={18}
         onInput={typedSetFilter(userFilterTypes.name)}
