@@ -1,12 +1,14 @@
-import React from "react";
-import { Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const RedirectWrapper = ({ children, isRedirect, path }) => {
-  return (
-    <>
-      {isRedirect && <Navigate to={path} replace={isRedirect} />}
-      {!isRedirect && children}
-    </>
-  );
+const RedirectWrapper = ({ children, isRedirect, path, state }) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    isRedirect && state && navigate(path, { state: state });
+    isRedirect && !state && navigate(path);
+  });
+
+  return <>{children}</>;
 };
 export default RedirectWrapper;
