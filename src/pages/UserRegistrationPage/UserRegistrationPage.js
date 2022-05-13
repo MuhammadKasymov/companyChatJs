@@ -13,7 +13,8 @@ import { registrUser } from "../../controllers/registrationController";
 import { getDateType } from "../../constants/types/timeUtil";
 import { errorStateInputs } from "../../constants/initialStates/userRegistrationStates";
 import { chatRouteNoId, authRoute } from "../../constants/routePath";
-import { inputTypes } from "../../constants/types/inputTypes";
+import { isEmptyString } from "../../common/validations/stringValidations";
+import { regInputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
 
 class UserRegistrationPage extends Component {
   state = {
@@ -63,13 +64,20 @@ class UserRegistrationPage extends Component {
 
   onInput = async (inputType, value) => {
     let changedData = {};
+    const isCheckRepeatPassword =
+      inputType === regInputTypes.password &&
+      !isEmptyString(this.state.repeatedPassword);
     changedData[inputType] = value;
 
     this.validTimers[inputType] && clearTimeout(this.validTimers[inputType]);
-    this.validTimers[inputType] = setTimeout(
-      () => this.validInput(inputType, value),
-      1000
-    );
+    this.validTimers[inputType] = setTimeout(() => {
+      this.validInput(inputType, value);
+      isCheckRepeatPassword &&
+        this.validInput(
+          regInputTypes.repeatedPassword,
+          this.state.repeatedPassword
+        );
+    }, 1000);
 
     this.setState(changedData);
   };
