@@ -2,25 +2,18 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import styles from "./UserRegistrationPage.module.scss";
+import RegistrationSelfInputs from "../../components/RegistrationInputs/RegistrationSelfInputs";
 import RedirectWrapper from "../../components/RedirectWrapper/RedirectWrapper";
 import Frame from "../../components/Frame/Frame";
-import InputWithHeader from "../../components/InputWithHeader/InputWithHeader";
 import { setAuth } from "../../store/action-creators/auth";
 import { setCurrentChatId } from "../../store/action-creators/temporaryData";
 import userRegistrationValidations from "../../common/validations/userRegistrationValidations";
 import { getFormatedTime } from "../../common/time";
 import { registrUser } from "../../controllers/registrationController";
-import {
-  MAX_MAIL_LENGTH,
-  MAX_LOGIN_LENGTH,
-  MAX_NAME_LENGTH,
-  MAX_PASSWORD_LENGTH,
-} from "../../constants/validations/userRegistration";
 import { getDateType } from "../../constants/types/timeUtil";
-import { regInputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
-import { inputTypes } from "../../constants/types/inputTypes";
 import { errorStateInputs } from "../../constants/initialStates/userRegistrationStates";
 import { chatRouteNoId, authRoute } from "../../constants/routePath";
+import { inputTypes } from "../../constants/types/inputTypes";
 
 class UserRegistrationPage extends Component {
   state = {
@@ -32,8 +25,6 @@ class UserRegistrationPage extends Component {
     password: "",
     repeatedPassword: "",
     email: "",
-    isRedirect: false,
-    redirectPath: chatRouteNoId,
     errorStateInputs: errorStateInputs,
   };
 
@@ -83,9 +74,7 @@ class UserRegistrationPage extends Component {
     this.setState(changedData);
   };
 
-  typedOnInput(inputType) {
-    return (value) => this.onInput(inputType, value);
-  }
+  typedOnInput = (inputType) => (value) => this.onInput(inputType, value);
 
   acceptData = async () => {
     let isExactly = true;
@@ -130,70 +119,11 @@ class UserRegistrationPage extends Component {
         path={this.state.redirectPath}
       >
         <Frame style={styles.container} headerText="Регистрация">
-          <div className={styles.inputColumn}>
-            <InputWithHeader
-              errorText={this.state.errorStateInputs[regInputTypes.firstName]}
-              onInput={this.typedOnInput(regInputTypes.firstName)}
-              headerText={"Имя"}
-              maxLength={MAX_NAME_LENGTH}
-            />
-            <InputWithHeader
-              errorText={this.state.errorStateInputs[regInputTypes.lastName]}
-              onInput={this.typedOnInput(regInputTypes.lastName)}
-              headerText={"Отчество"}
-              maxLength={MAX_NAME_LENGTH}
-            />
-            <InputWithHeader
-              errorText={this.state.errorStateInputs[regInputTypes.login]}
-              onInput={this.typedOnInput(regInputTypes.login)}
-              headerText={"Логин"}
-              maxLength={MAX_LOGIN_LENGTH}
-            />
-            <InputWithHeader
-              errorText={this.state.errorStateInputs[regInputTypes.password]}
-              onInput={this.typedOnInput(regInputTypes.password)}
-              headerText={"Пароль"}
-              inputType={inputTypes.PASSWORD}
-              maxLength={MAX_PASSWORD_LENGTH}
-            />
-          </div>
-          <div className={styles.inputColumn}>
-            <InputWithHeader
-              errorText={this.state.errorStateInputs[regInputTypes.secondName]}
-              onInput={this.typedOnInput(regInputTypes.secondName)}
-              headerText={"Фамилия"}
-              maxLength={MAX_NAME_LENGTH}
-            />
-            <InputWithHeader
-              errorText={this.state.errorStateInputs[regInputTypes.birthday]}
-              onInput={this.typedOnInput(regInputTypes.birthday)}
-              inputType={inputTypes.DATE}
-              headerText={"Дата рождения"}
-            />
-            <InputWithHeader
-              errorText={this.state.errorStateInputs[regInputTypes.email]}
-              onInput={this.typedOnInput(regInputTypes.email)}
-              headerText={"Email"}
-              maxLength={MAX_MAIL_LENGTH}
-            />
-            <InputWithHeader
-              errorText={
-                this.state.errorStateInputs[regInputTypes.repeatedPassword]
-              }
-              inputType={inputTypes.PASSWORD}
-              onInput={this.typedOnInput(regInputTypes.repeatedPassword)}
-              headerText={"Повторитие пароль"}
-              maxLength={MAX_PASSWORD_LENGTH}
-            />
-          </div>
-          <div className={styles.btnsContainer}>
-            <button onClick={this.goToAuth} className={styles.btn}>
-              &larr; Авторизоваться
-            </button>
-            <button onClick={this.acceptData} className={styles.btn}>
-              Применить &rarr;
-            </button>
-          </div>
+          <RegistrationSelfInputs
+            typedOnInput={this.typedOnInput.bind(this)}
+            errorStateInputs={this.state.errorStateInputs}
+            goNext={this.acceptData}
+          />
         </Frame>
       </RedirectWrapper>
     );

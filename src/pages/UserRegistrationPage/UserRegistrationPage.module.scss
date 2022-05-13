@@ -5,30 +5,3 @@
   height: 480px;
   margin: 100px auto;
 }
-
-.inputColumn {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 290px;
-  margin-top: 50px;
-  &:nth-of-type(odd){
-    margin-left: 40px;
-  }
-}
-
-.btnsContainer {
-  position: fixed;
-  display: flex;
-  bottom: 15px;
-  width: 550px;
-  justify-content: space-between;
-}
-
-.btn {
-  height: 40px;
-  padding: 0 10px;
-  &:first-of-type {
-    margin-right: 10px;
-  }
-}
