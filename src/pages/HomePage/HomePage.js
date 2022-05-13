@@ -56,7 +56,7 @@ class HomePage extends React.Component {
       lastMessagesArr[newMessageChatIndex].lastMessage = newMessage;
       this.props.setLastMessagesData(lastMessagesArr);
     } else {
-      // Todo: Получить и добавить новый чат в общий массив
+      this.uploadData();
     }
   };
 
