@@ -1,5 +1,4 @@
 import {
-  mailReg,
   latinAndNumbersReg,
   latinAndCyrrilReg,
   dateReg,
@@ -31,15 +30,15 @@ import {
 } from "../../constants/types/exceptionTypes/registrationExceptionTypes";
 import { getMonthsLengthList } from "../time";
 import { isEmptyString } from "./stringValidations";
+import { isEmail } from "./checkData";
 
 export const validEMail = (email) => {
   let result = null;
   const isEmpty = isEmptyString(email);
+
   if (isEmpty) {
     result = EMPTY_INPUT;
-  } else if (!mailReg.test(email)) {
-    result = INVALID_EMAIL;
-  }
+  } else if (!isEmail(email)) result = INVALID_EMAIL;
   return result;
 };
 
