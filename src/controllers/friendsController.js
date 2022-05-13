@@ -2,9 +2,10 @@ import axios from "axios";
 import {
   URL_SERVER,
   ROUTE_FRIENDS_NEW,
-  ROUTER_FRIEND_INVITE,
+  ROUTE_FRIEND_INVITE,
   ROUTE_FRIENDS_ALL,
   ROUTE_USER_DATA,
+  ROUTE_ACCEPT_FRIEND_INVITE,
 } from "../constants/server";
 
 export const getNewFriendsData = async (userId, filterData) => {
@@ -39,7 +40,7 @@ export const inviteFriend = async (userId, friendId) => {
   };
 
   await axios
-    .post(URL_SERVER + ROUTER_FRIEND_INVITE, reqBody)
+    .post(URL_SERVER + ROUTE_FRIEND_INVITE, reqBody)
     .then((res) => {
       const result = res.data;
       if (result) {
@@ -89,4 +90,22 @@ export const getFriendData = async (friendId) => {
       console.log(err);
     });
   return data;
+};
+
+export const acceptInviteFriend = async (notificationId, isAccept) => {
+  let isSuccess = false;
+  const reqBody = { notificationId, isAccept };
+
+  await axios
+    .post(URL_SERVER + ROUTE_ACCEPT_FRIEND_INVITE, reqBody)
+    .then((res) => {
+      const result = res.data;
+      if (result) {
+        isSuccess = true;
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return isSuccess;
 };
