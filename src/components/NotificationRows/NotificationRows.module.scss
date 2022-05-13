@@ -1,0 +1,64 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/utils.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 15px;
+}
+
+.emptyNotifText {
+  @extend %font_h2;
+  margin: 60px auto !important;
+  width: 240px !important;
+  text-align: center !important;
+}
+
+.goToMenu {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 0;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 30px;
+  width: 0;
+  border-radius: 0 50px 0 0;
+  background-color: $color-second-layot;
+  overflow-y: scroll;
+  p {
+    @extend %font_h2;
+    font-size: 18px;
+    &:nth-of-type(2) {
+      font-size: 0px;
+      transition-property: font-size;
+      transition-delay: 0.2s;
+    }
+  }
+  @extend %hideScrollbar;
+}
+
+.goToMenuOpen {
+  width: 30px;
+  border-top: 5px solid $color-third-layot;
+  border-right: 5px solid $color-third-layot;
+  transition-property: width, border, padding;
+  transition-duration: 0.4s;
+  transition-delay: 0.2s;
+  transition-timing-function: ease-out;
+
+  &:hover {
+    width: 80px;
+    padding: 0 5px;
+    p {
+      &:nth-of-type(2) {
+        font-size: 18px;
+        transition-property: font-size;
+        transition-delay: 0.2s;
+      }
+    }
+  }
+}
