@@ -18,10 +18,32 @@
   justify-content: center;
   align-items: center;
   margin-right: 10px;
+}
+
+.icoText {
+  position: fixed;
   color: blue;
   font-size: 22px;
   font-weight: 400;
   @extend %unselectibal;
+}
+
+.notifLength {
+  display: flex;
+  position: relative;
+  top: 13px;
+  left: 17px;
+  width: 15px;
+  height: 12px;
+  padding: 2px;
+  background-color: red;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  p {
+    @extend %font_p;
+    font-size: 9px;
+  }
 }
 
 .userNameText {
