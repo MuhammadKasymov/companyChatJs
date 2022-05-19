@@ -62,3 +62,10 @@
     }
   }
 }
+
+@media screen and (max-width: 1880px) {
+  .goToMenu {
+    background-color: $color-gray-layot;
+    border-color: $color-border-gray-layot;
+  }
+}
