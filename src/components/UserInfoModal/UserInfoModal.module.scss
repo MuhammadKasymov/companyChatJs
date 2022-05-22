@@ -1,0 +1,35 @@
+.container {
+  position: absolute;
+  width: 170px;
+  height: 0;
+  background-color: transparent;
+}
+
+.content {
+  background-color: white;
+  position: relative;
+  height: inherit;
+  width: inherit;
+  filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.2));
+  z-index: 5;
+  bottom: 60%;
+  left: 60%;
+  border-radius: 15px;
+  padding: 5px;
+  h2 {
+    text-align: left;
+  }
+  p {
+    text-align: left;
+    font-weight: 400;
+    &:nth-child(1) {
+      text-align: center;
+      font-weight: 600;
+    }
+  }
+}
+
+.showIt {
+  height: 200px;
+  transition: height 0.1s ease-out;
+}
