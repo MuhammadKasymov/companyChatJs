@@ -1,0 +1,39 @@
+@import "../../styles/colors.scss";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 49px;
+  width: 49px;
+  border-radius: 50%;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  border: 2px solid transparent;
+}
+
+.border {
+  border: 2px solid $color-wrong-border;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  background-color: white;
+  color: blue;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.imgBorder {
+  border: 3px solid $color-second-layot;
+  height: 36px;
+  width: 36px;
+}
+
+
