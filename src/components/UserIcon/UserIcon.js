@@ -11,14 +11,14 @@ const UserIcon = ({ userData, setData, showModal }) => {
   const isMounted = useIsMounted();
   let showTimeOut = null;
   const firstLetter = userData.login?.charAt(0)?.toUpperCase();
-  const updateNotif = useCallback(async () => {
+  const uploadImg = useCallback(async () => {
     if (userData.imageId != null) {
       const imgData = await getImageById(userData.imageId);
       isMounted.current && setUserImage(imgData?.image);
     }
   }, [isMounted, userData.imageId]);
 
-  useEffect(updateNotif, [updateNotif]);
+  useEffect(uploadImg, [uploadImg]);
 
   const onClickEv = () => {
     if (setData) {
@@ -50,11 +50,7 @@ const UserIcon = ({ userData, setData, showModal }) => {
       {userImg === null ? (
         <div className={styles.img}>{firstLetter}</div>
       ) : (
-        <img
-          src={userImg}
-          className={`${styles.img} ${isChoosed ? styles.imgBorder : ""}`}
-          alt={"Иконка"}
-        />
+        <img src={userImg} className={styles.img} alt={"Иконка"} />
       )}
       <UserInfoModal isShow={isMouseOver} userData={userData} />
     </button>
