@@ -30,7 +30,7 @@ const UserNameRow = ({ selfData, isOpen, changeVisibility, notifLength }) => {
             alt={"Пользовательская иконка"}
           />
         )}
-        {notifLength <= 0 && (
+        {notifLength > 0 && (
           <span className={styles.notifLength}>
             <p>{getMaxedNotif()}</p>
           </span>
