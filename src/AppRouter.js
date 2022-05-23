@@ -5,6 +5,7 @@ import InitialPage from "./pages/InitalPage/InitialPage";
 import NewFriendsPage from "./pages/NewFriendsPage/NewFriendsPage";
 import FriendsPage from "./pages/FriendsPage/FriendsPage";
 import UserRegistrationPage from "./pages/UserRegistrationPage/UserRegistrationPage";
+import CreateChatPage from "./pages/CreateChatPage/CreateChatPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   baseUrl,
@@ -13,6 +14,7 @@ import {
   registrationRoute,
   friendsSearchRoute,
   friendsRoute,
+  newChatRoute,
 } from "./constants/routePath";
 
 const AppRouter = () => (
@@ -24,6 +26,7 @@ const AppRouter = () => (
       <Route path={authRoute} element={<AuthorizationPage />} />
       <Route path={friendsSearchRoute} element={<NewFriendsPage />} />
       <Route path={friendsRoute} element={<FriendsPage />} />
+      <Route path={newChatRoute} element={<CreateChatPage />} />
     </Routes>
   </BrowserRouter>
 );
