@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 const FriendCard = ({ friendData }) => {
   const selfId = useSelector((state) => state.auth.id);
   const friendId = friendData.id;
-  const { login, srcImage } = friendData;
+  const { login, imageId } = friendData;
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ const FriendCard = ({ friendData }) => {
 
   return (
     <div className={styles.container}>
-      <UserImage login={login} srcImage={srcImage} />
+      <UserImage login={login} imageId={imageId} />
       <div
         className={`${styles.actionContainer} ${
           isOpen && styles.openActionContainer

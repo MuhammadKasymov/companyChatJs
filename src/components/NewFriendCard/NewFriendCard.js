@@ -8,7 +8,7 @@ import { inviteFriend } from "../../controllers/friendsController.js";
 const NewFriendLine = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSend, setIsSend] = useState(false);
-  const { login, srcImage } = data;
+  const { login, imageId } = data;
   const selfId = useSelector((state) => state.auth?.id);
 
   const changeOpenState = () => setIsOpen(!isOpen);
@@ -22,7 +22,7 @@ const NewFriendLine = ({ data }) => {
 
   return (
     <div className={styles.container}>
-      <UserImage login={login} srcImage={srcImage} />
+      <UserImage login={login} srcImage={imageId} />
       <div
         className={`${styles.actionContainer} ${
           isOpen && styles.openActionContainer
