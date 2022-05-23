@@ -1,5 +1,6 @@
 @import "../../../../styles/fonts.scss";
 @import "../../../../styles/utils.scss";
+@import "../../../../styles/colors.scss";
 
 .container {
   display: flex;
@@ -26,6 +27,14 @@
   font-size: 22px;
   font-weight: 400;
   @extend %unselectibal;
+}
+
+.icoImg {
+  position: fixed;
+  height: inherit;
+  width: inherit;
+  border: 2px solid $color-bg-container;
+  border-radius: 50%;
 }
 
 .notifLength {
