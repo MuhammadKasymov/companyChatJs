@@ -4,6 +4,7 @@ import {
   ROUTE_LAST_MESSAGES,
   ROUTE_CHAT_DATA,
   ROUTE_PRIVATE_CHAT_ID,
+  ROUTE_CHAT_NEW,
 } from "../constants/server";
 
 export const getLastMessages = async (userId) => {
@@ -54,7 +55,25 @@ export const getPrivateChatId = async (userId, friendId) => {
       }
     })
     .catch((err) => {
-      console.log();
+      console.log(err);
+    });
+
+  return chatId;
+};
+
+export const createNewChat = async (newChatData) => {
+  const reqBody = newChatData;
+  let chatId = -1;
+  await axios
+    .post(URL_SERVER + ROUTE_CHAT_NEW, reqBody)
+    .then((res) => {
+      const result = res.data;
+      if (result) {
+        chatId = result.chatId;
+      }
+    })
+    .catch((err) => {
+      console.log(err);
     });
 
   return chatId;
