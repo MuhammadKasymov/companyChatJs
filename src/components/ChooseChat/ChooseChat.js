@@ -22,13 +22,12 @@ const ChooseChat = () => {
   return (
     <Frame style={styles.container}>
       <h1>Список чатов</h1>
-      <HorizontalRule />
-      {chatsData.map((chatData) => (
-        <ChatLine
-          key={chatData.id}
-          data={chatData}
-        />
-      ))}
+      <HorizontalRule style={styles.hr} />
+      <div className={styles.chatsContainer}>
+        {chatsData.map((chatData) => (
+          <ChatLine key={chatData.id} data={chatData} />
+        ))}
+      </div>
     </Frame>
   );
 };
