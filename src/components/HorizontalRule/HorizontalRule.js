@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./HorizontalRule.module.scss";
 
-const HorizontalRule = () => <div className={styles.container} />;
+const HorizontalRule = ({ style }) => (
+  <div className={`${styles.container} ${style || ""}`} />
+);
 
 export default HorizontalRule;
