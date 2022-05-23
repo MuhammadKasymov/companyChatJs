@@ -7,7 +7,7 @@ import UserInfoModal from "../UserInfoModal/UserInfoModal";
 const UserIcon = ({ userData, setData, showModal }) => {
   const [isChoosed, setIsChoosed] = useState(false);
   const [userImg, setUserImage] = useState(null);
-  const [isMouseOver, setIsMouseOver] = useState(true);
+  const [isMouseOver, setIsMouseOver] = useState(false);
   const isMounted = useIsMounted();
   let showTimeOut = null;
   const firstLetter = userData.login?.charAt(0)?.toUpperCase();
@@ -22,6 +22,7 @@ const UserIcon = ({ userData, setData, showModal }) => {
 
   const onClickEv = () => {
     if (setData) {
+      mouseLeaved();
       setIsChoosed((prevState) => !prevState);
       setData(userData, isChoosed);
     }
@@ -29,13 +30,13 @@ const UserIcon = ({ userData, setData, showModal }) => {
   const mouseOvered = () => {
     if (showModal) {
       showTimeOut && clearTimeout(showTimeOut);
-      showTimeOut = setTimeout(() => setIsMouseOver(true), 400);
+      showTimeOut = setTimeout(() => setIsMouseOver(true), 600);
     }
   };
   const mouseLeaved = () => {
     if (showModal) {
-      isMouseOver && setIsMouseOver(false);
       showTimeOut && clearTimeout(showTimeOut);
+      isMouseOver && setIsMouseOver(false);
     }
   };
 
