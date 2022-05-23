@@ -14,7 +14,7 @@ const UserIcon = ({ userData, setData, showModal }) => {
   const uploadImg = useCallback(async () => {
     if (userData.imageId != null) {
       const imgData = await getImageById(userData.imageId);
-      isMounted.current && setUserImage(imgData?.image);
+      isMounted.current && setUserImage(imgData?.smallImage);
     }
   }, [isMounted, userData.imageId]);
 
