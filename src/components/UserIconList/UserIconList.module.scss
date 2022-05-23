@@ -1,0 +1,43 @@
+@import "../../styles/colors.scss";
+@import "../../styles/utils.scss";
+
+.container {
+  width: 100%;
+}
+
+.headerTxt {
+  margin: 0 auto 5px 0 !important;
+  font-size: 24px !important;
+  color: white !important;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 52px);
+  border: 5px solid $color-bg-container;
+  background-color: $color-inside-layot;
+  border-radius: 10px;
+}
+
+.users {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: calc(100% - 6px); // 6px is height of padding;
+  gap: 5px;
+  padding: 3px;
+  overflow-y: scroll;
+  @extend %hideScrollbar;
+}
+
+.emptyText {
+  font-size: 20px;
+  color: white;
+}
+
+.errText {
+  font-size: 20px;
+  color: $color-font-error-p;
+}
