@@ -6,17 +6,22 @@ import { setCurrentChatId } from "../../store/action-creators/temporaryData";
 import { useNavigate } from "react-router-dom";
 import { chatRouteNoId } from "../../constants/routePath";
 import { getFriendData } from "../../controllers/friendsController";
+import { useIsMounted } from "../../common/hooks";
+import { getImageById } from "../../controllers/files";
 
 function ChatLine({ data }) {
   const [name, setName] = React.useState(data.title);
+  const [imgData, setImgData] = React.useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isMounted = useIsMounted();
   const tempData = useSelector((state) => state.tempData);
   const selfId = useSelector((state) => state.auth.id);
-  const { isGeneral, isAdminChat, usersId } = data;
+  const { isGeneral, isAdminChat, usersId, imageId } = data;
   const chatId = data.id;
   const currentChatId = tempData.chatId;
   const isChoosed = chatId === Number(tempData.chatId);
+  const chatLineRef = React.createRef(null);
 
   let msgText = data.lastMessage?.messageText;
   if (msgText && msgText.length > 13) {
@@ -30,29 +35,60 @@ function ChatLine({ data }) {
     }
   };
 
-  React.useEffect(
-    () =>
-      !isGeneral &&
-      !isAdminChat &&
-      (async function () {
-        let chatName = name;
-        const userIdsArr = usersId?.split(",");
-        const [friendId] = userIdsArr?.filter((el) => el !== selfId.toString());
-        const friendData = await getFriendData(friendId);
-        chatName = `${friendData.firstName} ${friendData.secondName}`;
-        setName(chatName);
-      })(),
-    [isAdminChat, isGeneral, name, selfId, usersId]
+  const uploadName = React.useCallback(async () => {
+    const isPrivateUserChat = !isGeneral && !isAdminChat;
+    let friendData = null;
+    if (isPrivateUserChat) {
+      let chatName = name;
+      const userIdsArr = usersId?.split(",");
+      const [friendId] = userIdsArr?.filter((el) => el !== selfId?.toString());
+      friendData = await getFriendData(friendId);
+      chatName = `${friendData.firstName} ${friendData.secondName}`;
+
+      isMounted.current && setName(chatName);
+    }
+    return friendData;
+  }, [isAdminChat, isGeneral, isMounted, name, selfId, usersId]);
+
+  const uploadImg = React.useCallback(
+    async (friendImageId) => {
+      const imgId = friendImageId || imageId;
+      if (imgId) {
+        const imageData = await getImageById(imgId);
+        isMounted.current && setImgData(imageData);
+      }
+    },
+    [imageId, isMounted]
   );
+
+  const uploadData = React.useCallback(async () => {
+    const friendData = await uploadName();
+    uploadImg(friendData?.imageId);
+  }, [uploadImg, uploadName]);
+
+  const scrollToMe = () => isChoosed && chatLineRef.current.scrollIntoView();
+
+  React.useEffect(uploadData, [uploadData]);
+  React.useEffect(scrollToMe);
 
   return (
     <div
       onClick={onPress}
       className={`${styles.container} ${isChoosed ? styles.bgColor : ""}`}
+      ref={chatLineRef}
     >
-      <div className={styles.ico}>
-        <p>{name.charAt(0)}</p>
-      </div>
+      {!imgData.smallImage ? (
+        <div className={styles.ico}>
+          <p>{name.charAt(0)}</p>
+        </div>
+      ) : (
+        <img
+          className={styles.ico}
+          src={imgData.smallImage}
+          alt={"Пользовательская иконка"}
+        />
+      )}
+
       <div className={styles.infDiv}>
         <p className={styles.nameText}>{name}</p>
         {msgText && <p>{`Последнeе: ${msgText}`}</p>}
