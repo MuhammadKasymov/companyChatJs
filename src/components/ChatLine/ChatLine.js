@@ -9,7 +9,7 @@ import { getFriendData } from "../../controllers/friendsController";
 import { useIsMounted } from "../../common/hooks";
 import { getImageById } from "../../controllers/files";
 
-function ChatLine({ data }) {
+function ChatLine({ data, scrollToMe }) {
   const [name, setName] = React.useState(data.title);
   const [imgData, setImgData] = React.useState({});
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function ChatLine({ data }) {
   const chatId = data.id;
   const currentChatId = tempData.chatId;
   const isChoosed = chatId === Number(tempData.chatId);
-  const chatLineRef = React.createRef(null);
+  const chatLineRef = React.createRef();
 
   let msgText = data.lastMessage?.messageText;
   if (msgText && msgText.length > 13) {
@@ -66,10 +66,11 @@ function ChatLine({ data }) {
     uploadImg(friendData?.imageId);
   }, [uploadImg, uploadName]);
 
-  const scrollToMe = () => isChoosed && chatLineRef.current.scrollIntoView();
-
   React.useEffect(uploadData, [uploadData]);
-  React.useEffect(scrollToMe);
+  React.useEffect(
+    () => scrollToMe && isChoosed && scrollToMe(chatLineRef.current),
+    [chatLineRef, isChoosed, scrollToMe]
+  );
 
   return (
     <div
