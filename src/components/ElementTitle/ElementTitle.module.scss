@@ -1,0 +1,19 @@
+@import "../../styles/fonts.scss";
+
+.container {
+  @extend %font_chat;
+  position: absolute;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  font-size: 12px;
+}
+
+.leftShow {
+  margin-right: 14%;
+}
+
+.rightShow {
+  margin-left: 14%;
+}
