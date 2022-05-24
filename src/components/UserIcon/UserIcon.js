@@ -1,22 +1,27 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./UserIcon.module.scss";
 import { getImageById } from "../../controllers/files";
 import { useIsMounted } from "../../common/hooks";
 import UserInfoModal from "../UserInfoModal/UserInfoModal";
+import ElementTitle from "../ElementTitle/ElementTitle";
 
-const UserIcon = ({ userData, setData, showModal }) => {
+const UserIcon = ({ userData, setData, showModal, titleData }) => {
   const [isChoosed, setIsChoosed] = useState(false);
   const [userImg, setUserImage] = useState(null);
   const [isMouseOver, setIsMouseOver] = useState(false);
   const isMounted = useIsMounted();
+  const containerRef = useRef();
   let showTimeOut = null;
   const firstLetter = userData.login?.charAt(0)?.toUpperCase();
+
   const uploadImg = useCallback(async () => {
-    if (userData.imageId != null) {
+    if (userData.imageData) {
+      isMounted.current && setUserImage(userData.imageData.smallImage);
+    } else if (userData.imageId != null) {
       const imgData = await getImageById(userData.imageId);
       isMounted.current && setUserImage(imgData?.smallImage);
     }
-  }, [isMounted, userData.imageId]);
+  }, [isMounted, userData.imageData, userData.imageId]);
 
   useEffect(uploadImg, [uploadImg]);
 
@@ -28,13 +33,13 @@ const UserIcon = ({ userData, setData, showModal }) => {
     }
   };
   const mouseOvered = () => {
-    if (showModal) {
+    if (showModal || titleData?.text) {
       showTimeOut && clearTimeout(showTimeOut);
       showTimeOut = setTimeout(() => setIsMouseOver(true), 600);
     }
   };
   const mouseLeaved = () => {
-    if (showModal) {
+    if (showModal || titleData?.text) {
       showTimeOut && clearTimeout(showTimeOut);
       isMouseOver && setIsMouseOver(false);
     }
@@ -45,6 +50,7 @@ const UserIcon = ({ userData, setData, showModal }) => {
       onClick={onClickEv}
       onMouseEnter={mouseOvered}
       onMouseLeave={mouseLeaved}
+      ref={containerRef}
       className={`${styles.container} ${isChoosed ? styles.border : ""}`}
     >
       {userImg === null ? (
@@ -52,7 +58,12 @@ const UserIcon = ({ userData, setData, showModal }) => {
       ) : (
         <img src={userImg} className={styles.img} alt={"Иконка"} />
       )}
-      <UserInfoModal isShow={isMouseOver} userData={userData} />
+      <ElementTitle
+        isLeftSite={titleData?.isLeftSite}
+        text={titleData?.text}
+        isShow={isMouseOver && !showModal}
+      />
+      <UserInfoModal isShow={isMouseOver && showModal} userData={userData} />
     </button>
   );
 };
