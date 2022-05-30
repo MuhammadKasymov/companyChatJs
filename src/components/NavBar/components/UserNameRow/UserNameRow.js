@@ -5,7 +5,6 @@ import { getImageById } from "../../../../controllers/files";
 
 const UserNameRow = ({ selfData, isOpen, changeVisibility, notifLength }) => {
   const [imgData, setImgData] = useState({});
-  const getMaxedNotif = () => (notifLength < 99 ? "99+" : notifLength);
   const isMounted = useIsMounted();
 
   const uploadImg = React.useCallback(async () => {
@@ -17,6 +16,17 @@ const UserNameRow = ({ selfData, isOpen, changeVisibility, notifLength }) => {
   }, [isMounted, selfData?.imageId]);
 
   useEffect(uploadImg, [uploadImg]);
+
+  const getMaxedNotif = () => (notifLength > 99 ? "99+" : notifLength);
+
+  const getName = () => {
+    const firstName = selfData?.firstName || "??";
+    const secondName = selfData?.secondName || "??";
+    const login = selfData?.login || "??";
+    let name = `${firstName} ${secondName}`;
+    if (name.length > 20) return login;
+    return name
+  };
 
   return (
     <div className={styles.container} onClick={changeVisibility}>
@@ -37,9 +47,7 @@ const UserNameRow = ({ selfData, isOpen, changeVisibility, notifLength }) => {
         )}
       </div>
 
-      <p className={styles.userNameText}>
-        {`${selfData?.firstName} ${selfData?.secondName}`}
-      </p>
+      <p className={styles.userNameText}>{getName()}</p>
       <p
         className={`${styles.arrow} 
           ${isOpen ? styles.arrowTop : styles.arrowDown}`}
