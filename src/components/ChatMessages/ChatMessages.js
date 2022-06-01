@@ -9,7 +9,6 @@ const ChatMessages = ({ chatData, isLoading }) => {
   const chatRef = useRef();
   const chatHistory = chatData ? chatData.chatHistory : [];
   const [objUserData, setObjUsersData] = useState(null);
-  const [isUserData, setIsUserData] = useState(false);
   const isMounted = useIsMounted();
 
   const uploadUsersImg = useCallback(async () => {
@@ -25,7 +24,6 @@ const ChatMessages = ({ chatData, isLoading }) => {
       tempUsersObj[elId] = objUser;
     }
     usersData[0] && isMounted && setObjUsersData(tempUsersObj);
-    usersData[0] && isMounted && setIsUserData(true);
   }, [chatData?.usersData, isMounted]);
 
   useEffect(() => {
@@ -34,8 +32,18 @@ const ChatMessages = ({ chatData, isLoading }) => {
   });
   useEffect(uploadUsersImg, [uploadUsersImg]);
 
+  const isGoodLoadUsers = () => {
+    for (let el of chatHistory) {
+      if (!objUserData[el.userId]) {
+        uploadUsersImg();
+        return false;
+      }
+    }
+    return true;
+  };
+
   const isShowMessages = () => {
-    return objUserData != null && !isUserData && !isLoading;
+    return objUserData != null && !isLoading && isGoodLoadUsers();
   };
 
   return (
