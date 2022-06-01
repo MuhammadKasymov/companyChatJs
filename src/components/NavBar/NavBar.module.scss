@@ -24,7 +24,7 @@
 }
 
 .openContainer {
-  height: 310px;
+  height: 360px;
   min-width: 260px;
   overflow-y: scroll;
   transition-property: height, min-width;
@@ -35,7 +35,7 @@
 
 .content {
   overflow-y: scroll;
-  max-height: 240px;
+  max-height: 300px;
   padding: 10px 0;
   @extend %hideScrollbar;
 }

@@ -8,6 +8,7 @@ import {
   newChatRoute,
   settingRoute,
   chatRouteNoId,
+  authRoute,
 } from "../../../../constants/routePath";
 import { useSelector } from "react-redux";
 
@@ -15,7 +16,7 @@ const NavLinks = ({ onRedirect, setIsNotif }) => {
   const lastChatId = useSelector((state) => state.tempData.chatId);
   const lastChatRoute = chatRouteNoId + lastChatId;
   const goToNotifi = () => setIsNotif(true);
-
+  const exit = () => localStorage.clear();
   return (
     <>
       <HorizontalRule />
@@ -41,6 +42,10 @@ const NavLinks = ({ onRedirect, setIsNotif }) => {
       <HorizontalRule />
       <NavLink onClick={onRedirect} className={styles.navRow} to={newChatRoute}>
         <p className={styles.userNameText}>Новый чат</p>
+      </NavLink>
+      <HorizontalRule />
+      <NavLink onClick={exit} className={styles.navRow} to={authRoute}>
+        <p className={styles.userNameText}>Выйти</p>
       </NavLink>
       <HorizontalRule />
     </>
