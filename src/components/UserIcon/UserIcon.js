@@ -12,7 +12,8 @@ const UserIcon = ({ userData, setData, showModal, titleData }) => {
   const isMounted = useIsMounted();
   const containerRef = useRef();
   let showTimeOut = null;
-  const firstLetter = userData.login?.charAt(0)?.toUpperCase();
+  const login = userData?.login || "?";
+  const firstLetter = login.charAt(0).toUpperCase();
 
   const uploadImg = useCallback(async () => {
     if (userData.imageData) {
