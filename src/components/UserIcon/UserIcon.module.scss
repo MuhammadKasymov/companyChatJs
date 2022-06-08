@@ -3,9 +3,10 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: center;
   height: 49px;
-  width: 49px;
+  width: min-content;
+  min-width: 49px;
+  max-width: 300px;
   border-radius: 50%;
   padding: 0;
   border: 0;
@@ -15,6 +16,10 @@
 
 .border {
   border: 2px solid $color-wrong-border;
+}
+
+.reverseContent {
+  flex-direction: row-reverse;
 }
 
 .img {
@@ -29,5 +34,3 @@
   font-size: 22px;
   font-weight: 400;
 }
-
-

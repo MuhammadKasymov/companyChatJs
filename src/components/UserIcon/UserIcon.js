@@ -46,24 +46,27 @@ const UserIcon = ({ userData, setData, showModal, titleData }) => {
     }
   };
 
+  const getContainerClasses = () => {
+    let classNames = styles.container;
+    if (isChoosed) classNames += " " + styles.border;
+    if (titleData?.isLeftSite) classNames += " " + styles.reverseContent;
+    return classNames;
+  };
+
   return (
     <button
       onClick={onClickEv}
       onMouseEnter={mouseOvered}
       onMouseLeave={mouseLeaved}
       ref={containerRef}
-      className={`${styles.container} ${isChoosed ? styles.border : ""}`}
+      className={getContainerClasses()}
     >
       {userImg === null ? (
         <div className={styles.img}>{firstLetter}</div>
       ) : (
         <img src={userImg} className={styles.img} alt={"Иконка"} />
       )}
-      <ElementTitle
-        isLeftSite={titleData?.isLeftSite}
-        text={titleData?.text}
-        isShow={isMouseOver && !showModal}
-      />
+      <ElementTitle text={titleData?.text} isShow={isMouseOver && !showModal} />
       <UserInfoModal isShow={isMouseOver && showModal} userData={userData} />
     </button>
   );
