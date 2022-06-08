@@ -4,11 +4,14 @@ import MessageLine from "../MessageLine/MessageLine";
 import Frame from "../Frame/Frame";
 import { getImageById } from "../../controllers/files";
 import { useIsMounted } from "../../common/hooks";
+import DateDelay from "../DateDelay/DateDelay";
+import { getDelayDateType } from "../../common/time";
 
 const ChatMessages = ({ chatData, isLoading }) => {
   const chatRef = useRef();
   const chatHistory = chatData ? chatData.chatHistory : [];
   const [objUserData, setObjUsersData] = useState(null);
+  let delayType = null;
   const isMounted = useIsMounted();
 
   const uploadUsersImg = useCallback(async () => {
@@ -42,20 +45,26 @@ const ChatMessages = ({ chatData, isLoading }) => {
     return true;
   };
 
+  const isShowDelay = (message) => {
+    const messageDate = Number(message.messageDate);
+    const curDelayType = getDelayDateType(messageDate);
+    const isShow = delayType !== curDelayType;
+    if (isShow) delayType = curDelayType;
+    return isShow;
+  };
+
   const isShowMessages = () => {
     return objUserData != null && !isLoading && isGoodLoadUsers();
   };
-
   return (
     <Frame style={styles.container}>
       <div className={styles.messageContainer} ref={chatRef}>
         {isShowMessages() &&
           chatHistory.map((el) => (
-            <MessageLine
-              key={el.id.toString()}
-              userData={objUserData[el.userId]}
-              message={el}
-            />
+            <div key={el.id.toString()}>
+              {isShowDelay(el) && <DateDelay milliseconds={el.messageDate} />}
+              <MessageLine userData={objUserData[el.userId]} message={el} />
+            </div>
           ))}
       </div>
     </Frame>
