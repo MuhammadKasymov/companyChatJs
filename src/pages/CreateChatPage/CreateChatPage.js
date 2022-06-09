@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import Frame from "../../components/Frame/Frame";
-import ImagePicker from "../../components/ImagePicker/ImagePicker";
 import NavBar from "../../components/NavBar/NavBar";
 import styles from "./CreateChatPage.module.scss";
 import { getCompressedImg } from "../../common/files";
-import VerticalImage from "../../components/VerticalImage/VerticalImage";
 import InputWithHeader from "../../components/InputWithHeader/InputWithHeader";
 import UserIconList from "../../components/UserIconList/UserIconList";
 import { getFriendsData } from "../../controllers/friendsController";
@@ -21,6 +19,7 @@ import {
 import { createNewChat } from "../../controllers/chatController";
 import RedirectWrapper from "../../components/RedirectWrapper/RedirectWrapper";
 import { chatRouteNoId } from "../../constants/routePath";
+import CombinedImage from "../../components/CombinedImage/CombinedImage";
 
 class CreateChatPage extends Component {
   state = {
@@ -109,7 +108,7 @@ class CreateChatPage extends Component {
       const newChatId = await createNewChat(reqData);
       const path = chatRouteNoId + newChatId;
       newChatId !== -1 &&
-      this.setState({ navData: { path, isRedirect: true } });
+        this.setState({ navData: { path, isRedirect: true } });
     }
   };
 
@@ -122,16 +121,11 @@ class CreateChatPage extends Component {
         <RedirectWrapper path={redirPath} isRedirect={isRedirect} />
         <Frame style={styles.content} headerText={"Новый чат"}>
           <div className={styles.imgContainer}>
-            {!this.state.imgDataFile && (
-              <ImagePicker setImage={this.setImgFile} isDisable={false} />
-            )}
-            {this.state.imgDataFile && (
-              <VerticalImage
-                src={this.state.imgDataFile?.image}
-                removeImage={this.removeImgFile}
-                alt={"Изображение чата"}
-              />
-            )}
+            <CombinedImage
+              removeImg={this.removeImgFile}
+              imgData={this.state.imgDataFile?.image}
+              setImgData={this.setImgFile}
+            />
           </div>
           <div className={styles.fillInputs}>
             <InputWithHeader
