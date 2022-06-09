@@ -14,7 +14,7 @@ import { getDateType } from "../../constants/types/timeUtil";
 import { errorStateInputs } from "../../constants/initialStates/userRegistrationStates";
 import { chatRouteNoId, authRoute } from "../../constants/routePath";
 import { isEmptyString } from "../../common/validations/stringValidations";
-import { regInputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
+import { userInputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
 
 class UserRegistrationPage extends Component {
   state = {
@@ -65,7 +65,7 @@ class UserRegistrationPage extends Component {
   onInput = async (inputType, value) => {
     let changedData = {};
     const isCheckRepeatPassword =
-      inputType === regInputTypes.password &&
+      inputType === userInputTypes.password &&
       !isEmptyString(this.state.repeatedPassword);
     changedData[inputType] = value;
 
@@ -74,7 +74,7 @@ class UserRegistrationPage extends Component {
       this.validInput(inputType, value);
       isCheckRepeatPassword &&
         this.validInput(
-          regInputTypes.repeatedPassword,
+          userInputTypes.repeatedPassword,
           this.state.repeatedPassword
         );
     }, 1000);
@@ -89,13 +89,13 @@ class UserRegistrationPage extends Component {
     let { errorStateInputs, repeatedPassword, isRedirect, ...regData } =
       this.state;
     const { password, ...selfInfo } = regData;
-    const regInputTypesList = Object.keys(regData);
+    const userInputTypesList = Object.keys(regData);
 
-    for (let i = 0; i < regInputTypesList.length; i++) {
-      const el = regInputTypesList[i];
+    for (let i = 0; i < userInputTypesList.length; i++) {
+      const el = userInputTypesList[i];
       await this.validInput(el, regData[el]);
     }
-    regInputTypesList.forEach((el) => {
+    userInputTypesList.forEach((el) => {
       if (errorStateInputs[el] != null) isExactly = false;
     });
     if (isExactly) {

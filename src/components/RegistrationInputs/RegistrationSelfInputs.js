@@ -10,7 +10,7 @@ import {
 import { inputTypes } from "../../constants/types/inputTypes";
 import RedirectWrapper from "../RedirectWrapper/RedirectWrapper";
 import { authRoute } from "../../constants/routePath";
-import { regInputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
+import { userInputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
 
 function RegistrationSelfInputs({ typedOnInput, errorStateInputs, goNext }) {
   const [redirectData, setRedirectData] = useState({
@@ -32,26 +32,26 @@ function RegistrationSelfInputs({ typedOnInput, errorStateInputs, goNext }) {
     >
       <div className={styles.inputColumn}>
         <InputWithHeader
-          errorText={errorStateInputs[regInputTypes.firstName]}
-          onInput={typedOnInput(regInputTypes.firstName)}
+          errorText={errorStateInputs[userInputTypes.firstName]}
+          onInput={typedOnInput(userInputTypes.firstName)}
           headerText={"Имя"}
           maxLength={MAX_NAME_LENGTH}
         />
         <InputWithHeader
-          errorText={errorStateInputs[regInputTypes.lastName]}
-          onInput={typedOnInput(regInputTypes.lastName)}
+          errorText={errorStateInputs[userInputTypes.lastName]}
+          onInput={typedOnInput(userInputTypes.lastName)}
           headerText={"Отчество"}
           maxLength={MAX_NAME_LENGTH}
         />
         <InputWithHeader
-          errorText={errorStateInputs[regInputTypes.login]}
-          onInput={typedOnInput(regInputTypes.login)}
+          errorText={errorStateInputs[userInputTypes.login]}
+          onInput={typedOnInput(userInputTypes.login)}
           headerText={"Логин"}
           maxLength={MAX_LOGIN_LENGTH}
         />
         <InputWithHeader
-          errorText={errorStateInputs[regInputTypes.password]}
-          onInput={typedOnInput(regInputTypes.password)}
+          errorText={errorStateInputs[userInputTypes.password]}
+          onInput={typedOnInput(userInputTypes.password)}
           headerText={"Пароль"}
           inputType={inputTypes.PASSWORD}
           maxLength={MAX_PASSWORD_LENGTH}
@@ -59,27 +59,27 @@ function RegistrationSelfInputs({ typedOnInput, errorStateInputs, goNext }) {
       </div>
       <div className={styles.inputColumn}>
         <InputWithHeader
-          errorText={errorStateInputs[regInputTypes.secondName]}
-          onInput={typedOnInput(regInputTypes.secondName)}
+          errorText={errorStateInputs[userInputTypes.secondName]}
+          onInput={typedOnInput(userInputTypes.secondName)}
           headerText={"Фамилия"}
           maxLength={MAX_NAME_LENGTH}
         />
         <InputWithHeader
-          errorText={errorStateInputs[regInputTypes.birthday]}
-          onInput={typedOnInput(regInputTypes.birthday)}
+          errorText={errorStateInputs[userInputTypes.birthday]}
+          onInput={typedOnInput(userInputTypes.birthday)}
           inputType={inputTypes.DATE}
           headerText={"Дата рождения"}
         />
         <InputWithHeader
-          errorText={errorStateInputs[regInputTypes.email]}
-          onInput={typedOnInput(regInputTypes.email)}
+          errorText={errorStateInputs[userInputTypes.email]}
+          onInput={typedOnInput(userInputTypes.email)}
           headerText={"Email"}
           maxLength={MAX_MAIL_LENGTH}
         />
         <InputWithHeader
-          errorText={errorStateInputs[regInputTypes.repeatedPassword]}
+          errorText={errorStateInputs[userInputTypes.repeatedPassword]}
           inputType={inputTypes.PASSWORD}
-          onInput={typedOnInput(regInputTypes.repeatedPassword)}
+          onInput={typedOnInput(userInputTypes.repeatedPassword)}
           headerText={"Повторитие пароль"}
           maxLength={MAX_PASSWORD_LENGTH}
         />
