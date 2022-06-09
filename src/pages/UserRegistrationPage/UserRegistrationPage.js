@@ -7,7 +7,7 @@ import RedirectWrapper from "../../components/RedirectWrapper/RedirectWrapper";
 import Frame from "../../components/Frame/Frame";
 import { setAuth } from "../../store/action-creators/auth";
 import { setCurrentChatId } from "../../store/action-creators/temporaryData";
-import userRegistrationValidations from "../../common/validations/userRegistrationValidations";
+import userDataValidations from "../../common/validations/userDataValidations";
 import { getFormatedTime } from "../../common/time";
 import { registrUser } from "../../controllers/registrationController";
 import { getDateType } from "../../constants/types/timeUtil";
@@ -52,7 +52,7 @@ class UserRegistrationPage extends Component {
       errorStateInputs: this.state.errorStateInputs,
     };
 
-    errorType = await userRegistrationValidations(
+    errorType = await userDataValidations(
       inputType,
       trimmedValue,
       trimmedPasswordValue

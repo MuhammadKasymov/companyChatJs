@@ -19,7 +19,7 @@ import {
 } from "../../constants/types/exceptionTypes/registrationExceptionTypes";
 import { isEmptyString } from "./stringValidations";
 
-export default async function userRegistrationValidations(
+export default async function userDataValidations(
   inputType,
   value,
   extraValue
