@@ -5,13 +5,14 @@ import Frame from "../Frame/Frame";
 import { getImageById } from "../../controllers/files";
 import { useIsMounted } from "../../common/hooks";
 import DateDelay from "../DateDelay/DateDelay";
-import { getDelayDateType } from "../../common/time";
+import { getDateType } from "../../constants/types/timeUtil";
+import { getFormatedTime } from "../../common/time";
 
 const ChatMessages = ({ chatData, isLoading }) => {
   const chatRef = useRef();
   const chatHistory = chatData ? chatData.chatHistory : [];
   const [objUserData, setObjUsersData] = useState(null);
-  let delayType = null;
+  let delayTime = null;
   const isMounted = useIsMounted();
 
   const uploadUsersImg = useCallback(async () => {
@@ -47,9 +48,9 @@ const ChatMessages = ({ chatData, isLoading }) => {
 
   const isShowDelay = (message) => {
     const messageDate = Number(message.messageDate);
-    const curDelayType = getDelayDateType(messageDate);
-    const isShow = delayType !== curDelayType;
-    if (isShow) delayType = curDelayType;
+    const curDelayType = getFormatedTime(getDateType.OD, messageDate);
+    const isShow = delayTime !== curDelayType;
+    if (isShow) delayTime = curDelayType;
     return isShow;
   };
 
