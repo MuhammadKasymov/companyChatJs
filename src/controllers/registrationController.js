@@ -11,14 +11,18 @@ export const registrUser = async (userData) => {
     isSuccess: false,
     adminChatId: -1,
   };
+  const sendData = {
+    ...userData,
+    birthPlace: userData.birthPlace || null,
+  };
   await axios
-    .post(URL_SERVER + ROUTE_USER_NEW, userData)
+    .post(URL_SERVER + ROUTE_USER_NEW, sendData)
     .then((res) => {
       const result = res.data;
       if (result) {
         data.isSuccess = true;
         data.adminChatId = result.adminChatId;
-        data.userId = result.userId
+        data.userId = result.userId;
       }
     })
     .catch((err) => {
