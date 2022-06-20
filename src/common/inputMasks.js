@@ -23,9 +23,20 @@ export const getMaskedDate = (date) => {
   return result;
 };
 
-//Todo: fill func
-export const getMasketPhone = (number) => {
-  return number;
+export const getMasketPhone = (inputValue) => {
+  let result = "+7";
+  let number = getOnlyNumbers(inputValue);
+  const isWithCode = number[0] === "7";
+  number = isWithCode ? number.slice(1, 11) : number.slice(0, 11);
+  const firstPart = number.substring(0, 3);
+  const secondPart = number.substring(3, 6);
+  const thirdPart = number.substring(6, 8);
+  const lastPart = number.substring(8, 11);
+  if (firstPart) result += `(${firstPart}`;
+  if (secondPart) result += `)${secondPart}`;
+  if (thirdPart) result += `-${thirdPart}`;
+  if (lastPart) result += `-${lastPart}`;
+  return result;
 };
 
 export const getMaskedInput = (value, inputType) => {
