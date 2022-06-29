@@ -1,0 +1,39 @@
+@import "../../styles/colors.scss";
+
+.container {
+  padding: 120px 0;
+}
+
+.content {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  width: 620px;
+  min-height: 520px;
+  padding: 50px 15px 40px 15px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 500px;
+  width: 50%;
+}
+
+.imgContainer {
+  margin-bottom: 20px;
+}
+
+.input {
+  margin-bottom: 28px;
+}
+
+.btnConfirm {
+  background-color: $color-inside-layot;
+  width: 200px;
+  margin-top: 23px;
+  margin-bottom: 5px;
+  color: white;
+}

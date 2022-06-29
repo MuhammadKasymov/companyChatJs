@@ -15,7 +15,9 @@ import {
   friendsSearchRoute,
   friendsRoute,
   newChatRoute,
+  profileRoute,
 } from "./constants/routePath";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -27,6 +29,7 @@ const AppRouter = () => (
       <Route path={friendsSearchRoute} element={<NewFriendsPage />} />
       <Route path={friendsRoute} element={<FriendsPage />} />
       <Route path={newChatRoute} element={<CreateChatPage />} />
+      <Route path={profileRoute} element={<ProfilePage />} />
     </Routes>
   </BrowserRouter>
 );
