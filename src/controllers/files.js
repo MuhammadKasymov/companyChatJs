@@ -3,6 +3,7 @@ import {
   URL_SERVER,
   ROUTE_IMAGE_GET,
   ROUTE_IMAGE_NEW,
+  ROUTE_IMAGE_DELETE,
 } from "../constants/server";
 
 export const getImageById = async (imageId) => {
@@ -43,4 +44,13 @@ export const createImage = async (imageData, pastImageId) => {
     });
 
   return data;
+};
+
+export const deleteImage = async (imageId) => {
+  const reqBody = {
+    imageId,
+  };
+  await axios.post(URL_SERVER + ROUTE_IMAGE_DELETE, reqBody).catch((err) => {
+    console.log(err);
+  });
 };
