@@ -4,7 +4,7 @@ import HorizontalRule from "../../../HorizontalRule/HorizontalRule";
 import { NavLink } from "react-router-dom";
 import {
   friendsRoute,
-  profileRoute,
+  profileRouteNoId,
   newChatRoute,
   settingRoute,
   chatRouteNoId,
@@ -15,12 +15,17 @@ import { useSelector } from "react-redux";
 const NavLinks = ({ onRedirect, setIsNotif }) => {
   const lastChatId = useSelector((state) => state.tempData.chatId);
   const lastChatRoute = chatRouteNoId + lastChatId;
+  const selfId = useSelector((state) => state.auth.id);
   const goToNotifi = () => setIsNotif(true);
   const exit = () => localStorage.clear();
   return (
     <>
       <HorizontalRule />
-      <NavLink onClick={onRedirect} className={styles.navRow} to={profileRoute}>
+      <NavLink
+        onClick={onRedirect}
+        className={styles.navRow}
+        to={profileRouteNoId + selfId}
+      >
         <p className={styles.userNameText}>Профиль</p>
       </NavLink>
       <HorizontalRule />
