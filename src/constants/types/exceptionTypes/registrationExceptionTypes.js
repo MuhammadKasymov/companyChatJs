@@ -16,3 +16,4 @@ export const BAD_FORMAT_DATE = "Дата должна быть формата д
 export const INCORRECT_DATE =
   "Дата не может быть позднее текущего числа и раньше 1920 г.";
 export const EMPTY_INPUT = "Это поле является обязательным";
+export const BAD_OLD_PASSWORD = 'Не правильный пароль'
