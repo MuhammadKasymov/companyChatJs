@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getMaskedInput } from "../../common/inputMasks";
 import styles from "./InputText.module.scss";
 import { inputTypes } from "../../constants/types/inputTypes";
+import AttentionIcon from "../AttentionIcon/AttentionIcon";
 
 const InputText = ({
   intialValue,
@@ -53,12 +54,17 @@ const InputText = ({
         onKeyUp={onKeyUp}
         type={getInputType()}
         className={`${styles.inputText} ${inputStyle || ""}`}
-      />
-      {errorText && <p className={styles.errorText}>{errorText}</p>}
+      ></input>
       {isUnreadedInd() && <div className={styles.unreadIndicator} />}
       {isChoosedInd() && <div className={styles.choosedIndicator} />}
       {isSuccessInd() && <div className={styles.successIndicator} />}
       {errorText && <div className={styles.errorIndicator} />}
+      {errorText && (
+        <AttentionIcon
+          style={styles.errorIndicatorIcon}
+          hoverText={errorText}
+        />
+      )}
     </div>
   );
 };

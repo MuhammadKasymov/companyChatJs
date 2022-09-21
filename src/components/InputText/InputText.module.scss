@@ -18,10 +18,11 @@
   @extend %font_input;
 }
 
-.errorText {
-  position: relative;
-  top: 3px;
-  @extend %font_error_p;
+.errorIndicatorIcon {
+  position: absolute;
+  align-self: flex-end;
+  margin-bottom: 8px;
+  margin-right: 5px;
 }
 
 %indicator {
