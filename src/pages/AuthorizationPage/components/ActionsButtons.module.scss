@@ -1,0 +1,19 @@
+@import "../../../styles/fonts.scss";
+
+.btnContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.authBtn {
+  width: 150px;
+  height: 40px;
+}
+
+.regBtn {
+  background-color: transparent;
+  border: 0;
+  margin-right: 20px;
+  @extend %font_reg_link;
+}

@@ -16,7 +16,8 @@ import authUser from "../../controllers/authController";
 import { isEmptyString } from "../../common/validations/stringValidations";
 import { setAuth } from "../../store/action-creators/auth";
 import { setCurrentChatId } from "../../store/action-creators/temporaryData";
-import { chatRouteNoId, registrationRoute } from "../../constants/routePath";
+import { chatRouteNoId } from "../../constants/routePath";
+import ActionsButtons from "./components/ActionsButtons";
 
 class AuthorizationPage extends Component {
   state = {
@@ -95,13 +96,6 @@ class AuthorizationPage extends Component {
     event.keyCode === 13 && this.confirmData();
   };
 
-  goToRegistration = () => {
-    this.setState({
-      isRedirect: true,
-      redirectPath: registrationRoute,
-    });
-  };
-
   render() {
     return (
       <RedirectWrapper
@@ -123,14 +117,7 @@ class AuthorizationPage extends Component {
             onKeyUp={this.onKeyPress}
             onInput={this.typedOnInput(authInputTypes.password)}
           />
-          <div className={styles.btnContainer}>
-            <button onClick={this.goToRegistration} className={styles.regBtn}>
-              Регистрация
-            </button>
-            <button className={styles.authBtn} onClick={this.confirmData}>
-              Применить
-            </button>
-          </div>
+          <ActionsButtons confirmData={this.confirmData} />
         </Frame>
       </RedirectWrapper>
     );
