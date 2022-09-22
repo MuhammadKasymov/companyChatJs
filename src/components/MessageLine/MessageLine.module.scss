@@ -1,6 +1,3 @@
-@import "../../styles/colors.scss";
-@import "../../styles/fonts.scss";
-
 .container {
   display: flex;
   flex-direction: column;
@@ -14,24 +11,6 @@
   flex-direction: column;
   align-items: flex-end;
   margin: 10px 0;
-}
-
-.date {
-  font-size: 13px;
-  margin-left: auto;
-}
-
-.msgText {
-  display: flex;
-  align-items: flex-end;
-  background: white;
-  max-width: 690px;
-  width: max-content;
-  height: min-content;
-  padding: 10px;
-  border-radius: 10px;
-  margin: 0 40px;
-  @extend %font_chat;
 }
 
 .ico {

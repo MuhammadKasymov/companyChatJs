@@ -1,0 +1,19 @@
+@import "../../styles/fonts.scss";
+
+.msgText {
+  display: flex;
+  align-items: flex-end;
+  background: white;
+  max-width: 690px;
+  width: max-content;
+  height: min-content;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 0 40px;
+  @extend %font_chat;
+}
+
+.date {
+  font-size: 13px;
+  margin-left: auto;
+}
