@@ -4,7 +4,8 @@ import Frame from "../Frame/Frame";
 import InputWithHeader from "../InputWithHeader/InputWithHeader";
 import { userFilter } from "../../constants/initialStates/filterStates";
 import { userFilterTypes } from "../../constants/types/pageTypes/UserFriendsFiltersConstants";
-import MinMaxInputs from "../MinMaxInputs/MinMaxInputs";
+import ConfirmButton from "../ConfirmButton/ConfirmButton";
+import TitledMinMaxInputs from "../TitledMinMaxInputs/TitledMinMaxInputs";
 
 const FilterUsersCard = ({ confirmFilters, filterData }) => {
   const newFilters = Object(filterData) || Object(userFilter);
@@ -29,19 +30,13 @@ const FilterUsersCard = ({ confirmFilters, filterData }) => {
         onInput={typedSetFilter(userFilterTypes.name)}
         headerText={"ФИО"}
       />
-      <div className={styles.ageContainer}>
-        <h2 className={styles.headerText}>Возраст</h2>
-        <MinMaxInputs
-          maxValue={newFilters.maxAge || ""}
-          minValue={newFilters.minAge || ""}
-          onMinInput={typedSetFilter(userFilterTypes.minAge)}
-          onMaxInput={typedSetFilter(userFilterTypes.maxAge)}
-        />
-      </div>
-
-      <button className={styles.confirmBtn} onClick={onConfirm}>
-        Применить
-      </button>
+      <TitledMinMaxInputs
+        maxAge={newFilters.maxAge}
+        minAge={newFilters.minAge}
+        onTypingMin={typedSetFilter(userFilterTypes.minAge)}
+        onTypingMax={typedSetFilter(userFilterTypes.maxAge)}
+      />
+      <ConfirmButton onConfirm={onConfirm} />
     </Frame>
   );
 };

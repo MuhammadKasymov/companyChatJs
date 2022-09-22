@@ -1,0 +1,17 @@
+@import "../../styles/fonts.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 250px;
+  height: 70px;
+}
+
+.headerText {
+  @extend %font_h2;
+  font-size: 24px;
+  line-height: 24px;
+  margin-left: 2px;
+  margin-bottom: 3px;
+}

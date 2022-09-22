@@ -13,23 +13,3 @@
   margin-right: 0;
   margin-bottom: 15px;
 }
-
-.headerText {
-  @extend %font_h2;
-  font-size: 24px;
-  line-height: 24px;
-  margin-left: 2px;
-  margin-bottom: 3px;
-}
-
-.ageContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 250px;
-  height: 70px;
-}
-.confirmBtn {
-  width: 150px;
-  margin: 15px auto 0 auto;
-}
