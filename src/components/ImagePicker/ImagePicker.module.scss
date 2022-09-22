@@ -18,24 +18,3 @@
   font-size: 120px;
 }
 
-.plus {
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  border-radius: 50%;
-  font-size: 35px;
-  height: 30px;
-  width: 30px;
-  margin: 10px 5px 0 0;
-  span {
-    position: fixed;
-    width: 20px;
-    height: 4px;
-    background-color: rgb(48, 181, 224);
-    &:nth-of-type(1) {
-      transform: rotate(90deg);
-    }
-  }
-}

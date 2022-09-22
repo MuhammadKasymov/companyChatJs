@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import PlusIcon from "../PlusIcon/PlusIcon";
 import styles from "./ImagePicker.module.scss";
 
 const ImagePicker = ({ setImage, isDisable, style }) => {
@@ -11,12 +12,7 @@ const ImagePicker = ({ setImage, isDisable, style }) => {
       onClick={openExplorer}
       className={`${styles.container} ${style || ""}`}
     >
-      {!isDisable && (
-        <div className={styles.plus}>
-          <span />
-          <span />
-        </div>
-      )}
+      {!isDisable && <PlusIcon />}
       <input
         ref={(inp) => (inputRef = inp)}
         className={styles.selectImage}
