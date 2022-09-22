@@ -1,16 +1,8 @@
-@import '../../styles/utils.scss';
-
 .container {
   width: 300px;
   min-height: 60px;
   height: min-content;
   margin: 0 15px;
-}
-
-.chatsContainer {
-  overflow-y: scroll;
-  max-height: 33vh;
-  @extend %hideScrollbar;
 }
 
 .hr {
