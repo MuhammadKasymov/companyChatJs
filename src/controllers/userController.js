@@ -27,12 +27,10 @@ export const checkPassword = async (login, password) => {
     login,
     password,
   };
-  console.log(reqBody)
   let isGood = false;
   await axios.post(URL_SERVER + CHECK_ROUTE_PASSWORD, reqBody).then((res) => {
     const result = res.data;
     isGood = result.isGood;
-    console.log("isGood", isGood);
   }).catch(err => console.log(err));
   return isGood;
 };
