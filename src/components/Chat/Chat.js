@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import styles from "./Chat.module.scss";
 import ChatMessages from "../ChatMessages/ChatMessages";
-import TextInput from "../TextInput/TextInput";
+import MessageInput from "../MessageInput/MessageInput";
 import { getChatData } from "../../controllers/chatController";
 import { wsReqTypes } from "../../constants/types/wsTypes";
 
@@ -81,7 +81,7 @@ class Chat extends React.Component {
           isLoading={this.state.NeadLoad}
           chatData={this.state.chatData}
         />
-        <TextInput sendMsg={this.sendMessage} />
+        <MessageInput sendMsg={this.sendMessage} />
       </div>
     );
   }

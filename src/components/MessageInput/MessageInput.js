@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import styles from "./TextInput.module.scss";
+import styles from "./MessageInput.module.scss";
 import { isEnterPressed } from "../../common/handlerEvents";
 import { isEmpty } from "../../common/utils";
 import Frame from "../Frame/Frame";
 
-const TextInput = ({ sendMsg }) => {
+const MessageInput = ({ sendMsg }) => {
   const [inpValue, setInpValue] = useState("");
 
   const handlerEvents = (ev) => {
@@ -38,4 +38,4 @@ const TextInput = ({ sendMsg }) => {
   );
 };
 
-export default TextInput;
+export default MessageInput;
