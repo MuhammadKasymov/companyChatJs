@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styles from "./NotificationRows.module.scss";
-import FriendNotificationRow from "../FriendNotificationRow/FriendNotificationRow";
 import HorizontalRule from "../HorizontalRule/HorizontalRule";
+import FriendNotificationsList from "./components/FriendNotificationsList";
+import GoMenuButton from "./components/GoMenuButton";
 
 function NotificationRows({ data, setIsNotif, isOpen }) {
   const [deletedItems, setDeletedItems] = useState([]);
@@ -12,31 +13,18 @@ function NotificationRows({ data, setIsNotif, isOpen }) {
 
   return (
     <div className={styles.container}>
-      {isNotif() &&
-        data.map((el, index) => {
-          const isDeleted = deletedItems.includes(index);
-          const deleteMe = () => deleteEl(index);
-          return (
-            <div key={el.id}>
-              {!isDeleted && <HorizontalRule />}
-              {!isDeleted && (
-                <FriendNotificationRow deleteMe={deleteMe} data={el} />
-              )}
-            </div>
-          );
-        })}
+      {isNotif() && (
+        <FriendNotificationsList
+          data={data}
+          deletedItems={deletedItems}
+          deleteEl={deleteEl}
+        />
+      )}
       <HorizontalRule />
       {!isNotif() && (
         <h1 className={styles.emptyNotifText}>Пустой список уведомлений</h1>
       )}
-
-      <button
-        onClick={closeNotif}
-        className={`${styles.goToMenu} ${isOpen ? styles.goToMenuOpen : ""} `}
-      >
-        <p>❰</p>
-        <p>Меню</p>
-      </button>
+      <GoMenuButton closeNotif={closeNotif} isOpen={isOpen} />
     </div>
   );
 }
