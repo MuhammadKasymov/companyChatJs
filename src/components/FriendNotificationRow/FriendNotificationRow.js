@@ -4,6 +4,7 @@ import {
   getFriendData,
   acceptInviteFriend,
 } from "../../controllers/friendsController";
+import SquareButton from "../SquareButton/SquareButton";
 
 const FriendNotificationRow = ({ data, deleteMe }) => {
   const [friendData, setFriendData] = useState({});
@@ -32,18 +33,17 @@ const FriendNotificationRow = ({ data, deleteMe }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.infoContainer}>
-        <p>
-          <b>{getFriendName()}</b>, хочет с вами подружиться
-        </p>
-      </div>
+      <p className={styles.info}>
+        <b>{getFriendName()}</b> хочет с вами подружиться
+      </p>
+
       <div className={styles.btnContainer}>
-        <button className={styles.acceptBtn} onClick={acceptInvite}>
-          ✓
-        </button>
-        <button className={styles.regretBtn} onClick={rejectInvite}>
-          X
-        </button>
+        <SquareButton
+          onClick={acceptInvite}
+          title={"✓"}
+          style={styles.acceptBtn}
+        />
+        <SquareButton onClick={rejectInvite} title={"X"} />
       </div>
     </div>
   );
