@@ -1,52 +1,17 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 import UserImage from "../UserImage/UserImage";
-import UserInfoCard from "../UserInfoCard/UserInfoCard";
+import NewFriendCardAction from "../NewFriendCardAction/NewFriendCardAction";
 import styles from "./NewFriendCard.module.scss";
-import { inviteFriend } from "../../controllers/friendsController.js";
 
-const NewFriendLine = ({ data }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isSend, setIsSend] = useState(false);
+const NewFriendCard = ({ data }) => {
   const { login, imageId } = data;
-  const selfId = useSelector((state) => state.auth?.id);
-
-  const changeOpenState = () => setIsOpen(!isOpen);
-  const sendInvite = async () => {
-    if (!isSend) {
-      const friendId = data.id;
-      const isSuccess = await inviteFriend(selfId, friendId);
-      isSuccess && setIsSend(true);
-    }
-  };
 
   return (
     <div className={styles.container}>
       <UserImage login={login} srcImage={imageId} />
-      <div
-        className={`${styles.actionContainer} ${
-          isOpen && styles.openActionContainer
-        }`}
-      >
-        <UserInfoCard userData={data} isOpen={isOpen} />
-        <div className={styles.btnsContainer}>
-          <button
-            onClick={sendInvite}
-            title="Добавить в друзья"
-            className={`${styles.addToFriendsBtn} 
-                ${isSend && styles.invitedBtn}`}
-          >
-            {isSend ? "✓" : "+"}
-          </button>
-          <button onClick={changeOpenState} title="Показать больше">
-            <p className={isOpen ? styles.arrowDown : styles.arrowTop}>
-              {isOpen ? "⌄" : "⌃"}
-            </p>
-          </button>
-        </div>
-      </div>
+      <NewFriendCardAction data={data} />
     </div>
   );
 };
 
-export default NewFriendLine;
+export default NewFriendCard;

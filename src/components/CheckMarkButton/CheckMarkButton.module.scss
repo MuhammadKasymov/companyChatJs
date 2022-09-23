@@ -1,0 +1,15 @@
+.container {
+  font-size: 25px;
+  color: #679ec8;
+  margin-right: 5px;
+  &:active {
+    border: 0;
+  }
+}
+
+.markedBtn {
+  font-size: 19px;
+  &:active {
+    border-bottom: 2px solid rgb(180, 199, 233);
+  }
+}
