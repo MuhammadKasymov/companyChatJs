@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getMaskedInput } from "../../common/inputMasks";
 import styles from "./InputText.module.scss";
 import { inputTypes } from "../../constants/types/inputTypes";
-import AttentionIcon from "../AttentionIcon/AttentionIcon";
+import StateIndicator from "./components/StateIndicator";
 
 const InputText = ({
   intialValue,
@@ -38,9 +38,6 @@ const InputText = ({
 
   const onClick = () => setIsChoosed(true);
   const onBlur = () => setIsChoosed(false);
-  const isUnreadedInd = () => !isChoosed && !errorText && !isTyped;
-  const isChoosedInd = () => isChoosed && !errorText && !isTyped;
-  const isSuccessInd = () => !errorText && isTyped;
 
   return (
     <div className={`${styles.container} ${isChoosed && styles.choosedInput}`}>
@@ -54,17 +51,12 @@ const InputText = ({
         onKeyUp={onKeyUp}
         type={getInputType()}
         className={`${styles.inputText} ${inputStyle || ""}`}
-      ></input>
-      {isUnreadedInd() && <div className={styles.unreadIndicator} />}
-      {isChoosedInd() && <div className={styles.choosedIndicator} />}
-      {isSuccessInd() && <div className={styles.successIndicator} />}
-      {errorText && <div className={styles.errorIndicator} />}
-      {errorText && (
-        <AttentionIcon
-          style={styles.errorIndicatorIcon}
-          hoverText={errorText}
-        />
-      )}
+      />
+      <StateIndicator
+        errorText={errorText}
+        isChoosed={isChoosed}
+        isTyped={isTyped}
+      />
     </div>
   );
 };
