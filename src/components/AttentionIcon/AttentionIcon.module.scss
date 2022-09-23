@@ -3,9 +3,9 @@
 @import "../../styles/fonts.scss";
 
 .attention {
-  height: 15px;
-  width: 15px;
-  font-size: 12px;
+  height: 17px;
+  width: 17px;
+  font-size: 13px;
   border-radius: 50%;
   text-align: center;
   color: $color-white;
@@ -19,8 +19,9 @@
   content: attr(data-hover);
   visibility: hidden;
   opacity: 0;
-  width: max-content;
-  height: 10px;
+  min-width: max-content;
+  max-width: 200px;
+  height: 15px;
   background-color: $color-wrong-border;
   border: 1px solid $color-error-indicator;
   border-radius: 25px;
@@ -28,7 +29,9 @@
   position: absolute;
   z-index: 1;
   left: 120%;
-  top: 0;
+  top: -1px;
+  // bottom: 10px;
+
 
   @extend %font_attention_hover;
 }
