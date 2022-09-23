@@ -1,0 +1,15 @@
+%arrow {
+  position: relative;
+  color: rgb(148, 175, 224);
+  text-align: center;
+}
+
+.arrowDown {
+  @extend %arrow;
+  bottom: 6px;
+}
+
+.arrowTop {
+  @extend %arrow;
+  top: 5px;
+}
