@@ -62,7 +62,7 @@ const UserIcon = ({ userData, setData, showModal, titleData }) => {
       className={getContainerClasses()}
     >
       {userImg === null ? (
-        <div className={styles.img}>{firstLetter}</div>
+        <div className={styles.imgText}>{firstLetter}</div>
       ) : (
         <img src={userImg} className={styles.img} alt={"Иконка"} />
       )}

@@ -1,5 +1,15 @@
 @import "../../styles/colors.scss";
 
+%imgSizes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  background-color: white;
+}
+
 .container {
   display: flex;
   align-items: center;
@@ -24,14 +34,15 @@
 }
 
 .img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  height: 40px;
-  width: 40px;
-  background-color: white;
+  color: blue;
+  font-size: 10px;
+  font-weight: 400;
+  @extend %imgSizes;
+}
+
+.imgText {
   color: blue;
   font-size: 22px;
   font-weight: 400;
+  @extend %imgSizes;
 }
