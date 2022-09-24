@@ -11,6 +11,7 @@ import { inputTypes } from "../../constants/types/inputTypes";
 import RedirectWrapper from "../RedirectWrapper/RedirectWrapper";
 import { authRoute } from "../../constants/routePath";
 import { userInputTypes } from "../../constants/types/pageTypes/UserRegistrationContstans";
+import RegistrationButtons from "./components/RegistrationButtons";
 
 function RegistrationSelfInputs({ typedOnInput, errorStateInputs, goNext }) {
   const [redirectData, setRedirectData] = useState({
@@ -84,14 +85,7 @@ function RegistrationSelfInputs({ typedOnInput, errorStateInputs, goNext }) {
           maxLength={MAX_PASSWORD_LENGTH}
         />
       </div>
-      <div className={styles.btnsContainer}>
-        <button onClick={goToAuth} className={styles.btn}>
-          &larr; Авторизоваться
-        </button>
-        <button onClick={goNext} className={styles.btn}>
-          Применить &rarr;
-        </button>
-      </div>
+     <RegistrationButtons goToAuth={goToAuth} goNext={goNext} />
     </RedirectWrapper>
   );
 }
