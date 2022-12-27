@@ -5,6 +5,13 @@
   z-index: 5;
   background: url('../assets/img/bgImg.jpg') bottom / 100% no-repeat $color-bg;
   background-image: url('../assets/img/bgImg.jpg');
+  
+  @media screen and (max-width: 960px) {
+    background-size: 300%;
+  }
+  @media screen and (max-width: 660px) {
+    background-size: 400%;
+  }
 }
 
 

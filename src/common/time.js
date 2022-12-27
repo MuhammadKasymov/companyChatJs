@@ -119,7 +119,7 @@ export const getDelayDateType = (milliseconds) => {
 };
 
 /** get text of delay by type
- * @param {milliseconds} number
+ * @param {number} milliseconds
  * @param {getDateType} type
  * @returns {string}
  */

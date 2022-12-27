@@ -104,12 +104,14 @@ class AuthorizationPage extends Component {
       >
         <Frame headerText={"Авторизация"} style={styles.container}>
           <InputWithHeader
+            inputStyle={styles.inputStyle}
             style={styles.inputWithHeader}
             headerText={"Логин/Email"}
             errorText={this.state.errorState.login}
             onInput={this.typedOnInput(authInputTypes.login)}
           />
           <InputWithHeader
+            inputStyle={styles.inputStyle}
             style={styles.inputWithHeader}
             headerText={"Пароль"}
             inputType={inputTypes.PASSWORD}

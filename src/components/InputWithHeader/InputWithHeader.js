@@ -12,9 +12,10 @@ const InputWithHeader = ({
   errorText,
   inputType,
   maxLength,
+  inputStyle,
 }) => {
   return (
-    <div className={`${styles.container} ${style || ""}`}>
+    <div className={`${style || ""} ${styles.container}`}>
       <h2 className={styles.headerTxt}>{headerText}</h2>
       <InputText
         intialValue={intialValue}
@@ -24,6 +25,7 @@ const InputWithHeader = ({
         onKeyUp={onKeyUp}
         placeholder={placeholder}
         maxLength={maxLength}
+        inputStyle={inputStyle || ''}
       />
     </div>
   );
