@@ -3,8 +3,73 @@
   min-height: 60px;
   height: min-content;
   margin: 0 15px;
+  z-index: 999;
+}
+
+.headerButton {
+  pointer-events: none;
+  border: 0;
+  background-color: transparent;
+  width: 100%;
+  padding: 0;
 }
 
 .hr {
   margin: 0 !important;
+}
+
+.shadowIt {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  background-color: rgba($color: #000000, $alpha: 0.6);
+}
+
+@media screen and (max-width: 1280px) {
+  .container {
+    width: 260px;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    position: absolute;
+    z-index: 999;
+    left: 0;
+    width: 30px;
+  }
+  .content {
+    display: none;
+  }
+  .header {
+    writing-mode: vertical-lr;
+  }
+  .headerButton {
+    padding-top: 5px;
+    pointer-events: all;
+  }
+  .openContainer {
+    position: absolute;
+    z-index: 999;
+    top: 10vh;
+    width: 360px;
+    left: calc(50% - 150px);
+  }
+  .openHeader {
+    writing-mode: horizontal-tb;
+  }
+  .openContent {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .openContainer {
+    width: calc(81vw + 20px);
+    left: calc(9.5vw);
+  }
 }

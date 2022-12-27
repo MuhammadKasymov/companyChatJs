@@ -4,7 +4,7 @@
   display: flex;
   align-items: flex-end;
   background: white;
-  max-width: 690px;
+  max-width: calc(100% - 80px);
   width: max-content;
   height: min-content;
   padding: 10px;

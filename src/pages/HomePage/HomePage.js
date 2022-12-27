@@ -96,9 +96,9 @@ class HomePage extends React.Component {
   render() {
     return (
       <>
+        <NavBar onRedirect={this.onRedirect} />
         {!this.state.NeadLoad && (
           <div className={styles.container}>
-            <NavBar onRedirect={this.onRedirect} />
             <ChooseChat />
             <Chat sendMessage={this.sendMessage} />
           </div>

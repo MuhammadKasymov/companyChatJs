@@ -1,5 +1,18 @@
 .container {
   width: 800px;
   margin-left: 10px;
-  height: 760px;
+}
+
+@media screen and (max-width: 1440px) {
+  .container {
+    width: 65%;
+    margin-left: 0px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    width: 90%;
+    margin: 0 auto;
+  }
 }

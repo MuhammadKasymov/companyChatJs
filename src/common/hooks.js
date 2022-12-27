@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 export function useIsMounted() {
   const isMounted = useRef(false);
@@ -9,4 +9,10 @@ export function useIsMounted() {
   }, []);
 
   return isMounted;
+}
+
+export function useToggle(initalState = false) {
+  const [isOpen, setIsOpen] = useState(initalState);
+  const toggleOpen = () => setIsOpen((prev) => !prev);
+  return [isOpen, toggleOpen];
 }

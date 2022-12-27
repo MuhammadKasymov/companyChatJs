@@ -3,6 +3,7 @@ import styles from "./MessageInput.module.scss";
 import { isEnterPressed } from "../../common/handlerEvents";
 import { isEmpty } from "../../common/utils";
 import Frame from "../Frame/Frame";
+import { isMobile } from "../../constants/app";
 
 const MessageInput = ({ sendMsg }) => {
   const [inpValue, setInpValue] = useState("");
@@ -27,7 +28,7 @@ const MessageInput = ({ sendMsg }) => {
       <textarea
         onKeyPress={handlerEvents}
         className={styles.textInput}
-        rows={3}
+        rows={isMobile ? 2 : 3}
         value={inpValue}
         onChange={handleChange}
       />

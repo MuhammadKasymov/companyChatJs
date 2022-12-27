@@ -14,3 +14,22 @@
     font-size: 28px;
   }
 }
+
+@media screen and (max-width: 1440px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .container {
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    padding-left: 30px;
+    padding-bottom: 0;
+  }
+}

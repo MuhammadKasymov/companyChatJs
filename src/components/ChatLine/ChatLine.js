@@ -23,11 +23,6 @@ function ChatLine({ data, scrollToMe }) {
   const isChoosed = chatId === Number(tempData.chatId);
   const chatLineRef = React.createRef();
 
-  let msgText = data.lastMessage?.messageText;
-  if (msgText && msgText.length > 13) {
-    msgText = addTripleDot(msgText, 13);
-  }
-
   const onPress = () => {
     if (chatId !== currentChatId) {
       dispatch(setCurrentChatId(chatId));
@@ -72,6 +67,11 @@ function ChatLine({ data, scrollToMe }) {
     [chatLineRef, isChoosed, scrollToMe]
   );
 
+  let msgText = data.lastMessage?.messageText;
+  if (msgText && msgText.length > 13) {
+    msgText = addTripleDot(msgText, 13);
+  }
+
   return (
     <div
       onClick={onPress}
@@ -92,8 +92,8 @@ function ChatLine({ data, scrollToMe }) {
 
       <div className={styles.infDiv}>
         <p className={styles.nameText}>{name}</p>
-        {msgText && <p>{`Последнeе: ${msgText}`}</p>}
-        {!msgText && <p>Пустая история чата</p>}
+        {msgText && <p>{msgText}</p>}
+        {!msgText && <p>Пустая история</p>}
       </div>
     </div>
   );

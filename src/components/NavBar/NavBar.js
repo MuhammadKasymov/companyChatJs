@@ -31,7 +31,7 @@ const NavBar = ({ onRedirect }) => {
   useEffect(updateNotif, [updateNotif]);
 
   return (
-    <div className={isOpen ? styles.shadowIt : ""}>
+    <div className={`${isOpen ? styles.shadowIt : ""}`}>
       <div className={`${styles.container} ${isOpen && styles.openContainer}`}>
         <UserNameRow
           changeVisibility={changeVisibility}

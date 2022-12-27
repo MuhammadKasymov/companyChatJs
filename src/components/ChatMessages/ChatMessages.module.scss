@@ -10,3 +10,26 @@
   overflow-y: scroll;
   @extend %hideScrollbar;
 }
+
+@media screen and (max-width: 1440px) {
+    .messageContainer {
+      height: 70vh;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+  .messageContainer {
+    height: 60vh;
+  }
+}
+@media screen and (max-width: 800px) {
+  .messageContainer {
+    height: 70vh;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .messageContainer {
+    height: 65vh;
+  }
+}
